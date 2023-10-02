@@ -1,0 +1,77 @@
+{
+  "_from": "datatables.net-bs5@^1.13.1",
+  "_id": "datatables.net-bs5@1.13.6",
+  "_inBundle": false,
+  "_integrity": "sha512-lXroZoXhLhDulp8gvU7y7wBherg38SbLMGXcHwbnj+XXh4Hvy+d67zSPYbrVI3YiRwYq+aCx15G5qmMj7KjYQg==",
+  "_location": "/datatables.net-bs5",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "datatables.net-bs5@^1.13.1",
+    "name": "datatables.net-bs5",
+    "escapedName": "datatables.net-bs5",
+    "rawSpec": "^1.13.1",
+    "saveSpec": null,
+    "fetchSpec": "^1.13.1"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/datatables.net-bs5/-/datatables.net-bs5-1.13.6.tgz",
+  "_shasum": "33bf10c0844bb08e17327d841089c1f277f796ff",
+  "_spec": "datatables.net-bs5@^1.13.1",
+  "_where": "C:\\laragon\\www\\mazer-main",
+  "author": {
+    "name": "SpryMedia Ltd",
+    "url": "http://datatables.net"
+  },
+  "bugs": {
+    "url": "https://datatables.net/forums"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "datatables.net": ">=1.13.4",
+    "jquery": ">=1.7"
+  },
+  "deprecated": false,
+  "description": "DataTables for jQuery with styling for [Bootstrap5](https://getbootstrap.com/)",
+  "files": [
+    "css/**/*.css",
+    "js/**/*.js",
+    "js/**/*.mjs",
+    "types/**/*.d.ts",
+    "images/*"
+  ],
+  "homepage": "https://datatables.net",
+  "ignore": [
+    "composer.json",
+    "datatables.json",
+    "package.json"
+  ],
+  "keywords": [
+    "Bootstrap",
+    "Bootstrap5",
+    "Datatables",
+    "jQuery",
+    "table",
+    "filter",
+    "sort"
+  ],
+  "license": "MIT",
+  "main": "js/dataTables.bootstrap5.js",
+  "module": "js/dataTables.bootstrap5.mjs",
+  "moduleType": [
+    "globals",
+    "amd",
+    "node"
+  ],
+  "name": "datatables.net-bs5",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DataTables/Dist-DataTables-Bootstrap5.git"
+  },
+  "style": "css/dataTables.bootstrap5.css",
+  "types": "./types/dataTables.bootstrap5.d.ts",
+  "version": "1.13.6"
+}
