@@ -22,7 +22,7 @@ perlu untuk menginstall apapun kecuali server dan Database
 - nunggu tema biar gak blepotan
 
 ```bash
-git clone https://github.com/fahrul2212/Finalproject.git
+git clone https://github.com/ozkun-code/final.git
 ```
 
 ## Perhatian
