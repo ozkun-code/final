@@ -9,21 +9,5 @@ class Controller {
 
     }
 
-    public function section($name) {
-        ob_start();
-        $this->currentSection = $name;
-    }
-
-    public function endSection() {
-        if ($this->currentSection) {
-            $this->sections[$this->currentSection] = ob_get_clean();
-            $this->currentSection = null;
-        }
-    }
-
-    public function renderSection($name) {
-        echo $this->sections[$name] ?? '';
-
-    }
 }
 
