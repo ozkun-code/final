@@ -11,6 +11,7 @@ class Login extends Controller {
         // Atur session untuk kedaluwarsa setelah 30 menit
         $_SESSION['expiry'] = time() + (30 * 60);
 
+
         $model = new LoginModel();
         $user = $model->getUserByEmail($_POST['email']);
 
