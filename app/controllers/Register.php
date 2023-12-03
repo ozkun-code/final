@@ -1,7 +1,8 @@
-<?php 
+<?php
 
-class Register extends Controller {
-    public function index()  
+class Register extends Controller
+{
+    public function index()
     {
         $this->view('register/index');
     }
@@ -10,10 +11,8 @@ class Register extends Controller {
     {
         $model = new UserModel();
         $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $model->createUser($_POST['email'], $hashed_password, 'patient');
+        $model->createUser($_POST['email'], $hashed_password, 'super_admin');
 
         header('Location: ' . BASEURL . '/login/index');
     }
 }
-
-
