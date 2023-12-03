@@ -53,7 +53,15 @@ class Doctor_model extends Database {
     public function deleteDoctor($id) {
         $this->query('DELETE FROM ' . $this->table . ' WHERE id = :id');
         $this->bind(':id', $id);
-        $this->execute();
+        
+        // Jika execute() mengembalikan nilai true, maka penghapusan berhasil
+        if ($this->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
+    
+    
 }
 ?>

@@ -1,23 +1,49 @@
 <?php 
-
 class Doctors extends Controller
 {
-    public function index()
+    public function index()  
     {
+        // Mulai session
+        session_start();
+
+        // Cek apakah session 'role' sudah ada
+        if (!isset($_SESSION['role'])) {
+            // Jika belum ada, arahkan pengguna ke halaman login
+            header('Location: ' . BASEURL . '/login/index');
+            exit();
+        }
+
+        // Dapatkan role dari session
+        $role = $_SESSION['role'];
+
+        // Tampilkan header
+        $this->view('layouts/head');
+
+        // Tampilkan navigasi yang sesuai dengan role pengguna
+        switch ($role) {
+            case 'super_admin':
+                $this->view('layouts/navSuperadmin');
+                break;
+            case 'admin':
+                $this->view('layouts/navAdmin');
+                break;
+            case 'Doctor':
+                $this->view('layouts/navDoctor');
+                break;
+            default:
+                $this->view('layouts/navPatient');
+                break;
+        }
+
+        // Dapatkan data dokter dari model
         $doctorModel = new Doctor_model();
         $data['doctors'] = $doctorModel->getAllDoctor();
-        $this->view('doctors/index', $data);
-    }
 
-    public function show($id)
-    {
-        $doctorModel = new Doctor_model();
-        $data['doctor'] = $doctorModel->getDoctorById($id);
-        if (!$data['doctor']) {
-            $this->error404();
-        } else {
-            $this->view('doctors/show', $data);
-        }
+        // Tampilkan konten
+        $this->view('doctors/index', $data);
+
+        // Tampilkan footer
+        $this->view('layouts/footer');
     }
 
     public function create()
@@ -65,4 +91,19 @@ class Doctors extends Controller
             }
         }
     }
+
+    public function delete($id)
+{
+    $doctorModel = new Doctor_model();
+    $result = $doctorModel->deleteDoctor($id);
+    
+    if ($result) {
+        header('Location: ' . BASEURL . '/doctors/index');
+        exit();
+    } else {
+        $this->view('doctors/index', ['error' => 'Gagal menghapus dokter']);
+    }
+}
+
+
 }

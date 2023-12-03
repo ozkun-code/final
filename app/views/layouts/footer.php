@@ -1,28 +1,77 @@
-            <footer>
-    <div class="footer clearfix mb-0 text-muted">
-        <div class="float-start">
-            <p>2023 &copy; Mazer</p>
+ <!-- Footer -->
+ <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  , made with ❤️ by
+                  <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+                </div>
+                <div>
+                  <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+                  <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+                  <a
+                    href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                    target="_blank"
+                    class="footer-link me-4"
+                    >Documentation</a
+                  >
+
+                  <a
+                    href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                    target="_blank"
+                    class="footer-link me-4"
+                    >Support</a
+                  >
+                </div>
+              </div>
+            </footer>
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
         </div>
-        <div class="float-end">
-            <p>Crafted with <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span>
-                by <a href="https://saugi.me">Saugi</a></p>
-        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-</footer>
-        </div>
-    </div>
-    <script src="assets/static/js/components/dark.js"></script>
-    <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    
-    
-    <script src="assets/compiled/js/app.js"></script>
-    <!-- Need: Apexcharts -->
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="assets/static/js/pages/dashboard.js"></script>
+    <!-- / Layout wrapper -->
 
-    
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="<?= BASEURL; ?>/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="<?= BASEURL; ?>/assets/vendor/libs/popper/popper.js"></script>
+    <script src="<?= BASEURL; ?>/assets/vendor/js/bootstrap.js"></script>
+    <script src="<?= BASEURL; ?>/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="<?= BASEURL; ?>/assets/vendor/libs/hammer.js"></script>
+    <script src="<?= BASEURL; ?>/assets/vendor/libs/i18n.js"></script>
+    <script src="<?= BASEURL; ?>/assets/vendor/libs/typeahead.js"></script>
+    <script src="<?= BASEURL; ?>/assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
 
+    <!-- Vendors JS -->
+    <!-- Vendors JS -->
+  <script src="<?= BASEURL; ?>/assets/vendor/libs/datatables-bootstrap5.js"></script>
+    <!-- Flat Picker -->
+    <script src="<?= BASEURL; ?>/assets/vendor/libs/moment.js"></script>
+    <script src="<?= BASEURL; ?>/assets/vendor/libs/flatpickr.js"></script>
+    <!-- Form Validation -->
+    <script src="<?= BASEURL; ?>/assets/vendor/libs/popular.min.js"></script>
+    <script src="<?= BASEURL; ?>/assets/vendor/libs/index.min.js"></script>
+    <script src="<?= BASEURL; ?>/assets/vendor/libs/index1.min.js"></script>
 
-</body>
+    <!-- Main JS -->
+    <script src="<?= BASEURL; ?>/assets/js/main.js"></script>
 
+    <!-- Page JS -->
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
 </html>

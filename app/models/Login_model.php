@@ -10,3 +10,4 @@ class LoginModel extends Database {
         return $row;
     }
 }
+

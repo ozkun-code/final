@@ -25,7 +25,7 @@
             <li class="menu-item">
               <a href="index.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard doctors</div>
+                <div data-i18n="Analytics">Dashboard patient</div>
               </a>
             </li>
             <li class="menu-header small text-uppercase">
