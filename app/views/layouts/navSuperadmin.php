@@ -23,7 +23,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item">
-              <a href="index.html" class="menu-link">
+              <a href="<?= BASEURL; ?>/dashboard" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard Owner</div>
               </a>
@@ -39,12 +39,12 @@
                 </a>
                 <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="layouts-without-menu.html" class="menu-link">
+                    <a href="<?= BASEURL; ?>/doctors" class="menu-link">
                     <div data-i18n="Without menu">List Of Doctors</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="layouts-without-navbar.html" class="menu-link">
+                    <a href="<?= BASEURL; ?>/doctors/create" class="menu-link">
                     <div data-i18n="Without navbar">Add New Doctors</div>
                     </a>
                 </li>

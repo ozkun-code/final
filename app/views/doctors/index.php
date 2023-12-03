@@ -37,6 +37,7 @@
             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 82px;">ID</th>
             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Nama</th>
             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Email</th>
+            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Contact</th>
             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 112px;">specialty</th>
             <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 66px;">Actions</th>
           </tr>
@@ -57,12 +58,13 @@
             </td>
             <td><?= $doctor['name'] ?></td>
             <td><?= $doctor['email'] ?></td>
+            <td><?= $doctor['contact'] ?></td>
             <td class="" style="">
               <span class="badge  bg-label-success"><?= $doctor['specialty'] ?></span>
             </td>
             <td class="" style="">
             <div class="d-inline-block">
-                <a href="javascript:;" class="btn btn-sm btn-icon item-edit">
+                <a href="<?= BASEURL; ?>/doctors/edit/<?= $doctor['id']; ?>" class="btn btn-sm btn-icon item-edit">
                 <i class="bx bxs-edit"></i>
                 </a>
                 <a href="<?= BASEURL; ?>/doctors/delete/<?= $doctor['id']; ?>" class="btn btn-sm btn-icon delete-record">
