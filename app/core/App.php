@@ -45,5 +45,6 @@
             // mengembalikan array kosong jika $_GET['url'] tidak disetel
         }
         
+        
 
 }

@@ -52,7 +52,8 @@
 <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/datatables/index.min.css" />
 
     <!-- Page CSS -->
-
+    
+</style>
     <!-- Page CSS -->
 
     <!-- Helpers -->

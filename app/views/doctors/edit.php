@@ -9,12 +9,26 @@
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Edit Doctor</h5>
                 </div>
+                <div class="card-body text-center">
+                        <?php Flasher::flash(); ?>
+                </div>
                 <div class="card-body">
-                    <form action="<?= BASEURL; ?>/doctors/edit/<?= $data['id']; ?>" method="post">
-                        <div class="mb-3">
-                            <label class="form-label" for="name">Nama:</label>
-                            <input type="text" class="form-control" id="name" name="name" value="<?= $data['name']; ?>" required>
+                    <form action="<?= BASEURL; ?>/doctors/updateDoctor/<?= $data['id']; ?>" method="post">
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label" for="first_name">First Name:</label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name" value="<?= $data['first_name']; ?>" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label class="form-label" for="last_name">Last Name:</label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name" value="<?= $data['last_name']; ?>" required>
+                                </div>
+                            </div>
                         </div>
+                        
                         <div class="mb-3">
                             <label class="form-label" for="contact">Contact:</label>
                             <input type="text" class="form-control" id="contact" name="contact" value="<?= $data['contact']; ?>" required>

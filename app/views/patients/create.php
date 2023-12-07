@@ -1,19 +1,19 @@
 <div class="content-wrapper">
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Add Doctors</h4>
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Add Patient</h4>
 
         <!-- Basic Layout -->
         <div class="col-xxl">
             <div class="card mb-8">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Add New Doctor</h5>
+                    <h5 class="mb-0">Add New Patient</h5>
                 </div>
                 <div class="card-body text-center">
                         <?php Flasher::flash(); ?>
                 </div>
                 <div class="card-body">
-                    <form action="<?= BASEURL; ?>/doctors/createactive" method="post">
+                    <form action="<?= BASEURL; ?>/patients/createactive" method="post">
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
@@ -41,13 +41,11 @@
                             <input type="text" class="form-control" id="contact" name="contact" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="specialty">Specialty:</label>
-                            <input type="text" class="form-control" id="specialty" name="specialty" required>
+                            <label class="form-label" for="medical_history">Medical History:</label>
+                            <textarea class="form-control" id="medical_history" name="medical_history" required></textarea>
                         </div>
                       
-                             
-            
-                        <input type="submit" value="Tambah Dokter" class="btn btn-primary">
+                        <input type="submit" value="Tambah Pasien" class="btn btn-primary">
                     </form>
                     
                 </div>

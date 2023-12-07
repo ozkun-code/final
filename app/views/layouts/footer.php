@@ -56,6 +56,8 @@
     <!-- endbuild -->
 
     <!-- Vendors JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <!-- Vendors JS -->
   <script src="<?= BASEURL; ?>/assets/vendor/libs/datatables-bootstrap5.js"></script>
     <!-- Flat Picker -->

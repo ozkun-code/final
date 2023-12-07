@@ -6,24 +6,45 @@ class Login extends Controller {
     }
 
     public function process()
-    {
-        session_start();
-        // Atur session untuk kedaluwarsa setelah 30 menit
-        $_SESSION['expiry'] = time() + (30 * 60);
+{
+    // Atur session untuk kedaluwarsa setelah 30 menit
+    $_SESSION['expiry'] = time() + (30 * 60);
 
+    $model = new LoginModel();
+    $user = $model->getUserByEmail($_POST['email']);
 
-        $model = new LoginModel();
-        $user = $model->getUserByEmail($_POST['email']);
-
-        if ($user && password_verify($_POST['password'], $user['password'])) {
+    if ($user) {
+        if (password_verify($_POST['password'], $user['password'])) {
             // Simpan data pengguna ke dalam session
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['role'] = $user['role'];
 
             // Redirect semua pengguna ke dashboard/index
-            header('Location: ' . BASEURL . '/dashboard/index');
+            header('Location: ' . BASEURL . '/dashboard');
         } else {
-            header('Location: ' . BASEURL . '/login/index');
+            // Password salah
+            Flasher::setFlash('gagal login', 'password salah', 'danger');
+            header('Location: ' . BASEURL . '/login');
+        }
+    } else {
+        // Email belum terdaftar
+        Flasher::setFlash('gagal login', 'email belum terdaftar', 'danger');
+        header('Location: ' . BASEURL . '/login');
+    }
+}
+public function delete($id)
+    {
+        $doctorModel = new DoctorModel();
+        if ($doctorModel->deleteDoctor($id) > 0){
+            Flasher::setFlash('berhasil', 'di hapus', 'success');
+            header('Location: ' . BASEURL . '/doctors');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'di hapus', 'danger');
+            header('Location: ' . BASEURL . '/doctors');
+            exit;
         }
     }
+
+    
 }

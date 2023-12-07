@@ -10,7 +10,8 @@ class Database {
     private $stmt;
 
 
-    public function __construct() {
+    public function __construct()
+    {
         
     $dsn  = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
     $options = [
@@ -31,7 +32,8 @@ class Database {
         $this->stmt = $this->dbh->prepare($query);
     }
 
-    public function bind($param,$value,$type = null) {
+    public function bind($param,$value,$type = null) 
+    {
 
         if (is_null($type)) {
             switch(true) {
@@ -52,28 +54,29 @@ class Database {
         $this->stmt->bindValue($param, $value, $type);
     }
 
-    public function execute() {
-
-        $this->stmt->execute();
-
-        
+    public function execute() 
+    {
+        $this->stmt->execute();   
     }
 
-    public function resultSet() {
-
+    public function resultSet() 
+    {
         $this->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);     
     }
-    public function single() {
-
+    public function single() 
+    {
         $this->execute();
-        return $this->stmt->fetch(PDO::FETCH_ASSOC);
-        
+        return $this->stmt->fetch(PDO::FETCH_ASSOC);    
     }
-    public function lastInsertId() {
+    public function lastInsertId() 
+    {
         return $this->dbh->lastInsertId();
     }
-    
+    public function rowCount()
+    {
+        return $this->stmt->rowCount();
+    }
+
 
 }

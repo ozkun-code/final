@@ -1,24 +1,24 @@
 <?php 
-class Doctors extends Controller
+class Patients extends Controller
 {
     public function index()  
-{
-
-    $role = $_SESSION['role'];
-
-    $this->view('layouts/head');
-
-    $loginModel = new LoginModel();
-    $navView = $loginModel->getNavView($role);
-    $this->view($navView);
-
-    $doctorModel = new DoctorModel();
-    $data['doctors'] = $doctorModel->getAllDoctor();
-
-    $this->view('doctors/index', $data);
-
-    $this->view('layouts/footer');
-}
+    {
+        $role = $_SESSION['role'];
+    
+        $this->view('layouts/head');
+    
+        $loginModel = new LoginModel();
+        $navView = $loginModel->getNavView($role);
+        $this->view($navView);
+    
+        $patientModel = new PatientModel();
+        $data['patients'] = $patientModel->getAllPatient();
+    
+        $this->view('patients/index', $data);
+    
+        $this->view('layouts/footer');
+    }
+    
 
 
 public function create()  
@@ -31,14 +31,27 @@ public function create()
     $navView = $loginModel->getNavView($role);
     $this->view($navView);
 
-    $doctorModel = new DoctorModel();
-    $data['doctors'] = $doctorModel->getAllDoctor();
+    $PatientModel = new PatientModel();
+    $data['Patients'] = $PatientModel->getAllpatient();
 
-    $this->view('doctors/create', $data);
+    $this->view('Patients/create', $data);
 
     $this->view('layouts/footer');
 }
 
+public function delete()
+{
+    $PatientModel = new PatientModel();
+    if ($PatientModel->deleteDoctor($data, $userId) > 0){
+        Flasher::setFlash('berhasil', 'di hapus', 'success');
+        header('Location: ' . BASEURL . '/Patients/create');
+        exit;
+    } else {
+        Flasher::setFlash('gagal', 'di hapus', 'danger');
+        header('Location: ' . BASEURL . '/Patients/create');
+        exit;
+    }
+}
 
 public function createactive()
     {
@@ -47,16 +60,16 @@ public function createactive()
         $email = $_POST['email'];
         $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         if ($userModel->isEmailExists($email)) {
-            // Jika ya, berikan pesan error
+
             Flasher::setFlash('gagal', 'Email sudah terdaftar', 'danger');
-            header('Location: ' . BASEURL . '/doctors/create');
+            header('Location: ' . BASEURL . '/Patients/create');
             exit;
         }
         
         $userModel->createUser($_POST['email'], $hashed_password, 'doctor');
         $userId = $userModel->lastInsertId(); // Dapatkan ID dari user yang baru saja dibuat
 
-        $doctorModel = new DoctorModel();
+        $PatientModel = new PatientModel();
         $data = [
             'first_name' => $_POST['first_name'],
             'last_name' => $_POST['last_name'],
@@ -64,13 +77,13 @@ public function createactive()
             'specialty' => $_POST['specialty'], // Set default value for specialty
         ];
 
-        if ($doctorModel->createDoctor($data, $userId) > 0){
+        if ($PatientModel->createDoctor($data, $userId) > 0){
             Flasher::setFlash('berhasil', 'di tambahkan', 'success');
-            header('Location: ' . BASEURL . '/doctors/create');
+            header('Location: ' . BASEURL . '/Patients/create');
             exit;
         } else {
             Flasher::setFlash('gagal', 'di tambahkan', 'danger');
-            header('Location: ' . BASEURL . '/doctors/create');
+            header('Location: ' . BASEURL . '/Patients/create');
             exit;
         }
     }
@@ -87,48 +100,33 @@ public function createactive()
     $this->view($navView);
 
 
-    $doctorModel = new DoctorModel();
-    $doctor = $doctorModel->getDoctorById($id);
+    $PatientModel = new PatientModel();
+    $doctor = $PatientModel->getDoctorById($id);
 
-    $this->view('doctors/edit', $doctor);
+    $this->view('Patients/edit', $doctor);
 
     $this->view('layouts/footer');
 }
 
 public function updateDoctor($id)
 {
-    // Create instance of Doctor model
-    $doctorModel = new DoctorModel();
+    $PatientModel = new PatientModel();
 
     $data = [
         'first_name' => $_POST['first_name'],
         'last_name' => $_POST['last_name'],
         'contact' => $_POST['contact'],
-        'specialty' => $_POST['specialty'], // Set default value for specialty
+        'specialty' => $_POST['specialty'], 
     ];
 
-    if ($doctorModel->updateDoctor($id, $data) > 0){
+    if ($PatientModel->updateDoctor($id, $data) > 0){
         Flasher::setFlash('berhasil', 'di update', 'success');
-        header('Location: ' . BASEURL . '/doctors/edit/' . $id);
+        header('Location: ' . BASEURL . '/Patients/edit/' . $id);
         exit;
     } else {
         Flasher::setFlash('gagal', 'di update', 'danger');
-        header('Location: ' . BASEURL . '/doctors/edit/' . $id);
+        header('Location: ' . BASEURL . '/Patients/edit/' . $id);
         exit;
     }
 }
-public function delete($id)
-{
-    $doctorModel = new DoctorModel();
-    if ($doctorModel->deleteDoctor($id) > 0){
-        Flasher::setFlash('berhasil', 'di hapus', 'success');
-        header('Location: ' . BASEURL . '/doctors');
-        exit;
-    } else {
-        Flasher::setFlash('gagal', 'di hapus', 'danger');
-        header('Location: ' . BASEURL . '/doctors');
-        exit;
-    }
-}
-
 }

@@ -60,12 +60,12 @@
 
             <ul class="menu-sub">
                 <li class="menu-item">
-                <a href="layouts-without-menu.html" class="menu-link">
+                <a href="<?= BASEURL; ?>/patients" class="menu-link">
                     <div data-i18n="Without menu">List Of Patients</div>
                 </a>
                 </li>
                 <li class="menu-item">
-                <a href="layouts-without-navbar.html" class="menu-link">
+                <a href="<?= BASEURL; ?>/patients/create" class="menu-link">
                     <div data-i18n="Without navbar">Add New Patients</div>
                 </a>
                 </li>    
