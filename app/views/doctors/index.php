@@ -14,7 +14,6 @@
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
               <div class="card-header flex-column flex-md-row">
                 <div class="head-label text-center">
-<<<<<<< HEAD
                 <script>
                   function submitForm() {
                       var searchValue = document.getElementById('search').value;
@@ -31,23 +30,7 @@
 
 
           </div>
-       
-        
-        <div class="dt-action-buttons text-end pt-3 pt-md-0">
-          <div class="dt-buttons">
-          <a href="<?= BASEURL; ?>/doctors/create/" class="dt-button create-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0">
-            <span>
-                <i class="bx bx-plus me-sm-1"></i>
-                <span class="d-none d-sm-inline-block">Add New Doctors</span>
-            </span>
-        </a>
 
-          </div>
-        </div>
-      </div>
-      <div class="card-body text-center">
-                        <?php Flasher::flash(); ?>
-                </div>
 
                 <div class="dt-action-buttons text-end pt-3 pt-md-0">
                   <div class="dt-buttons">
