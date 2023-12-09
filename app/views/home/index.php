@@ -23,10 +23,8 @@
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/css/bootstrap.min.css">
     <!-- Nice Select CSS -->
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/css/nice-select.css">
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/css/font-awesome.min.css">
-    <!-- icofont CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/icofont@1.0.0/dist/icofont.min.css">
+   
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/fonts/boxicons.css" />
     <!-- Slicknav -->
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/css/slicknav.min.css">
     <!-- Owl Carousel CSS -->
@@ -130,7 +128,7 @@
                     <div class="row">
                         <div class="col-lg-7">
                             <div class="text">
-                                <h1>We Provide <span>Medical</span> Services That You Can <span>Trust!</span></h1>
+                                <h1>whbjdshbsbjdkj <span>Medical</span> Services That You Can <span>Trust!</span></h1>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed nisl pellentesque, faucibus libero eu, gravida quam. </p>
                                 <div class="button">
                                     <a href="#" class="btn">Get Appointment</a>
@@ -192,13 +190,13 @@
                         <div class="single-schedule first">
                             <div class="inner">
                                 <div class="icon">
-                                    <i class="fa fa-ambulance"></i>
+                                    <i class="bx bx-ambulance"></i>
                                 </div>
                                 <div class="single-content">
                                     <span>Lorem Amet</span>
                                     <h4>Emergency Cases</h4>
                                     <p>Lorem ipsum sit amet consectetur adipiscing elit. Vivamus et erat in lacus convallis sodales.</p>
-                                    <a href="#">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+                                    <a href="#">LEARN MORE<i class="bx bx-long-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -214,7 +212,7 @@
                                     <span>Fusce Porttitor</span>
                                     <h4>Doctors Timetable</h4>
                                     <p>Lorem ipsum sit amet consectetur adipiscing elit. Vivamus et erat in lacus convallis sodales.</p>
-                                    <a href="#">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+                                    <a href="#">LEARN MORE<i class="bx bx-long-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -234,7 +232,7 @@
                                         <li class="day">Saturday <span>9.00-18.30</span></li>
                                         <li class="day">Monday - Thusday <span>9.00-15.00</span></li>
                                     </ul>
-                                    <a href="#">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+                                    <a href="#">LEARN MORE<i class="bx bx-long-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -303,7 +301,7 @@
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Fun -->
                     <div class="single-fun">
-                        <i class="icofont icofont-home"></i>
+                        <i class="bx bx-home"></i>
                         <div class="content">
                             <span class="counter">3468</span>
                             <p>Hospital Rooms</p>
@@ -371,16 +369,16 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <ul class="list">
-                                    <li><i class="fa fa-caret-right"></i>Maecenas vitae luctus nibh. </li>
-                                    <li><i class="fa fa-caret-right"></i>Duis massa massa.</li>
-                                    <li><i class="fa fa-caret-right"></i>Aliquam feugiat interdum.</li>
+                                    <li><i class="bx bx-caret-right"></i>Maecenas vitae luctus nibh. </li>
+                                    <li><i class="bx bx-caret-right"></i>Duis massa massa.</li>
+                                    <li><i class="bx bx-caret-right"></i>Aliquam feugiat interdum.</li>
                                 </ul>
                             </div>
                             <div class="col-lg-6">
                                 <ul class="list">
-                                    <li><i class="fa fa-caret-right"></i>Maecenas vitae luctus nibh. </li>
-                                    <li><i class="fa fa-caret-right"></i>Duis massa massa.</li>
-                                    <li><i class="fa fa-caret-right"></i>Aliquam feugiat interdum.</li>
+                                    <li><i class="bx bx-caret-right"></i>Maecenas vitae luctus nibh. </li>
+                                    <li><i class="bx bx-caret-right"></i>Duis massa massa.</li>
+                                    <li><i class="bx bx-caret-right"></i>Aliquam feugiat interdum.</li>
                                 </ul>
                             </div>
                         </div>
@@ -400,7 +398,7 @@
                                 </div>
                             </div>
                             <!--/ End Video Animation -->
-                            <a href="https://www.youtube.com/watch?v=RFVXy6CRVR4" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
+                            <a href="https://www.youtube.com/watch?v=RFVXy6CRVR4" class="video video-popup mfp-iframe"><i class="bx bx-play"></i></a>
                         </div>
                     </div>
                     <!-- End Choose Rights -->
@@ -420,7 +418,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porttitor dictum turpis nec gravida.</p>
                         <div class="button">
                             <a href="#" class="btn">Contact Now</a>
-                            <a href="#" class="btn second">Learn More<i class="fa fa-long-arrow-right"></i></a>
+                            <a href="#" class="btn second">Learn More<i class="bx bx-long-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -912,20 +910,20 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <ul>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About Us</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Services</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Our Cases</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other Links</a></li>
+                                        <li><a href="#"><i class="bx bx-caret-right" aria-hidden="true"></i>Home</a></li>
+                                        <li><a href="#"><i class="bx bx-caret-right" aria-hidden="true"></i>About Us</a></li>
+                                        <li><a href="#"><i class="bx bx-caret-right" aria-hidden="true"></i>Services</a></li>
+                                        <li><a href="#"><i class="bx bx-caret-right" aria-hidden="true"></i>Our Cases</a></li>
+                                        <li><a href="#"><i class="bx bx-caret-right" aria-hidden="true"></i>Other Links</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <ul>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Consuling</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Finance</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Testimonials</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a></li>
-                                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact Us</a></li>
+                                        <li><a href="#"><i class="bx bx-caret-right" aria-hidden="true"></i>Consuling</a></li>
+                                        <li><a href="#"><i class="bx bx-caret-right" aria-hidden="true"></i>Finance</a></li>
+                                        <li><a href="#"><i class="bx bx-caret-right" aria-hidden="true"></i>Testimonials</a></li>
+                                        <li><a href="#"><i class="bx bx-caret-right" aria-hidden="true"></i>FAQ</a></li>
+                                        <li><a href="#"><i class="bx bx-caret-right" aria-hidden="true"></i>Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -48,6 +48,13 @@ class DoctorModel extends Database {
         return $this->rowCount();
     }
     
+  
+    public function searchDoctor($name) {
+        $this->query('SELECT doctors.id, doctors.first_name, doctors.last_name, doctors.specialty, doctors.contact, users.email FROM ' . $this->table . ' JOIN users ON doctors.user_id = users.id WHERE doctors.first_name LIKE :name OR doctors.last_name LIKE :name');
+        $this->bind(':name', '%' . $name . '%');
+        return $this->resultSet();
+    }
     
 }
+
 ?>

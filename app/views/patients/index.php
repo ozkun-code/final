@@ -62,13 +62,13 @@
             </td>
             <td class="" style="">
             <div class="d-inline-block">
-                <a href="<?= BASEURL; ?>/patients/detail/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-detail">
+                <a href="<?= BASEURL; ?>/patients/detail/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-detail" title="Detail Patient">
                     <i class="bx bxs-info-circle"></i>
                 </a>
-                <a href="<?= BASEURL; ?>/patients/edit/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit">
+                <a href="<?= BASEURL; ?>/patients/edit/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit" title="Edit Patient">
                     <i class="bx bxs-edit"></i>
                 </a>
-                <a href="#" class="btn btn-sm btn-icon delete-record" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $patient['id']; ?>">
+                <a href="#" class="btn btn-sm btn-icon delete-record" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $patient['id']; ?>" title="Delete Patient">
                     <i class="bx bxs-trash"></i>
                 </a>
             </div>
