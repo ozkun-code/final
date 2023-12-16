@@ -10,7 +10,7 @@
                     <h5 class="mb-0">Add New Patient</h5>
                 </div>
                 <div class="card-body text-center">
-                        <?php Flasher::flash(); ?>
+                    <?php Flasher::flash(); ?>
                 </div>
                 <div class="card-body">
                     <form action="<?= BASEURL; ?>/patients/createactive" method="post">
@@ -44,10 +44,10 @@
                             <label class="form-label" for="medical_history">Medical History:</label>
                             <textarea class="form-control" id="medical_history" name="medical_history" required></textarea>
                         </div>
-                      
+
                         <input type="submit" value="Tambah Pasien" class="btn btn-primary">
                     </form>
-                    
+
                 </div>
             </div>
         </div>
