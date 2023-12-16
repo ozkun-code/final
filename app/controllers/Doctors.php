@@ -1,9 +1,8 @@
 <?php 
 class Doctors extends Controller
 {
-    public function index()  
+    public function index($name = null)  
 {
-
     $role = $_SESSION['role'];
 
     $this->view('layouts/head');
@@ -13,12 +12,21 @@ class Doctors extends Controller
     $this->view($navView);
 
     $doctorModel = new DoctorModel();
-    $data['doctors'] = $doctorModel->getAllDoctor();
+
+    // Cek apakah ada query pencarian
+    if ($name) {
+        $data['doctors'] = $doctorModel->searchDoctor($name);
+    } else {
+        $data['doctors'] = $doctorModel->getAllDoctor();
+    }
 
     $this->view('doctors/index', $data);
 
     $this->view('layouts/footer');
 }
+
+
+
 
 
 public function create()  

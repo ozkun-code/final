@@ -14,8 +14,23 @@
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
               <div class="card-header flex-column flex-md-row">
                 <div class="head-label text-center">
-                  <h5 class="card-title mb-0">List Of Doctors </h5>
-                </div>
+                <script>
+                  function submitForm() {
+                      var searchValue = document.getElementById('search').value;
+                      var form = document.getElementById('searchForm');
+                      form.action = "<?= BASEURL; ?>/doctors/" + searchValue;
+                      form.submit();
+                  }
+                  </script>
+
+                  <form class="d-flex" id="searchForm" onsubmit="event.preventDefault(); submitForm();">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+
+
+          </div>
+
 
                 <div class="dt-action-buttons text-end pt-3 pt-md-0">
                   <div class="dt-buttons">
