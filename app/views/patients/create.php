@@ -37,12 +37,25 @@
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                         <div class="mb-3">
+                            <label class="form-label" for="gender">Gender:</label><br>
+                            <label>Male</label>
+                            <input type="radio" name="gender" id="male" value="male" checked>
+                            <label>Female</label>
+                            <input type="radio" name="gender" id="female" value="female">
+                            </fieldset>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label" for="contact">Contact:</label>
                             <input type="text" class="form-control" id="contact" name="contact" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="medical_history">Medical History:</label>
-                            <textarea class="form-control" id="medical_history" name="medical_history" required></textarea>
+                            <label class="form-label" for="address">Address</label>
+                            <textarea class="form-control" id="address" name="address" required></textarea><br>
+                            <div class="mb-3">
+                                <label class="form-label" for="date_of_birth">date 0f birth:</label><br>
+                                <input id="date_of_birth" name="date_of_birth" type="date">
+                            </div>
+
                         </div>
 
                         <input type="submit" value="Tambah Pasien" class="btn btn-primary">

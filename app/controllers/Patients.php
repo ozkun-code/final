@@ -74,7 +74,9 @@ class Patients extends Controller
             'first_name' => $_POST['first_name'],
             'last_name' => $_POST['last_name'],
             'contact' => $_POST['contact'],
-            'specialty' => $_POST['specialty'], // Set default value for specialty
+            'address' => $_POST['address'], // Set default value for specialty
+            'date_of_birth' => $_POST['date_of_birth'], // Set default value for specialty
+            'gender' => $_POST['gender'], // Set default value for specialty
         ];
 
         if ($PatientModel->createPatient($data, $userId) > 0) {
