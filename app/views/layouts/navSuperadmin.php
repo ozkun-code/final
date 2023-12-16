@@ -92,6 +92,26 @@
               </li>
             </ul>
           </li>
+          <!-- Admins -->
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-capsule"></i>
+              <div data-i18n="Layouts">Drugs</div>
+            </a>
+
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="<?= BASEURL; ?>/admin" class="menu-link">
+                  <div data-i18n="Without menu">List Of Drugs</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="<?= BASEURL; ?>/admin/create" class="menu-link">
+                  <div data-i18n="Without navbar">Add New Drugs</div>
+                </a>
+              </li>
+            </ul>
+          </li>
 
           <!-- Appointments -->
           <li class="menu-item">
