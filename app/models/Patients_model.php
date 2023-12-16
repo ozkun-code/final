@@ -6,7 +6,7 @@ class PatientModel extends Database
 
     public function getAllPatient()
     {
-        $this->query('SELECT patients.id, patients.first_name, patients.last_name , patients.date_of_birth, patients.contact, patients.addres, users.email FROM ' . $this->table . ' JOIN users ON patients.user_id = users.id');
+        $this->query('SELECT patients.id, patients.first_name, patients.last_name , patients.date_of_birth, patients.contact, patients.address, users.email FROM ' . $this->table . ' JOIN users ON patients.user_id = users.id');
 
         return $this->resultSet();
     }
@@ -20,12 +20,13 @@ class PatientModel extends Database
 
     public function createPatient($patient, $userId)
     {
-        $this->query('INSERT INTO ' . $this->table . ' (user_id, first_name, last_name, contact, addres, date_of_birth) VALUES (:user_id, :first_name, :last_name, :contact, :addres, :date_of_birth)');
+        $this->query('INSERT INTO ' . $this->table . ' (user_id, first_name, last_name, contact, address, date_of_birth, gender) VALUES (:user_id, :first_name, :last_name, :contact, :address, :date_of_birth, :gender)');
         $this->bind(':user_id', $userId);
         $this->bind(':first_name', $patient['first_name']);
         $this->bind(':last_name', $patient['last_name']);
         $this->bind(':contact', $patient['contact']);
-        $this->bind(':addres', $patient['addres']);
+        $this->bind(':address', $patient['address']);
+        $this->bind(':gender', $patient['gender']);
         $this->bind(':date_of_birth', $patient['date_of_birth']);
         $this->execute();
         return $this->rowCount();
@@ -39,7 +40,7 @@ class PatientModel extends Database
         $this->bind(':first_name', $patient['first_name']);
         $this->bind(':last_name', $patient['last_name']);
         $this->bind(':contact', $patient['contact']);
-        $this->bind(':addres', $patient['addres']);
+        $this->bind(':address', $patient['address']);
         $this->bind(':date_of_birth', $patient['date_of_birth']);
         $this->execute();
         return $this->rowCount();
