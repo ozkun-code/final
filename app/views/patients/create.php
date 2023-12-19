@@ -49,7 +49,7 @@
                             <input type="text" class="form-control" id="contact" name="contact" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="address">Address</label>
+                            <label class="form-label" for="address">Address:</label>
                             <textarea class="form-control" id="address" name="address" required></textarea><br>
                             <div class="mb-3">
                                 <label class="form-label" for="date_of_birth">date 0f birth:</label><br>
