@@ -5,7 +5,7 @@ class DrugModel extends Database
 
     public function getAllDrug()
     { // Change the method name to getAllDrugs
-        $this->query('SELECT drug.id, drug.nama_obat, drug.harga_beli, drug.admin_id, drug.harga_jual, drug.stok, admins.first_name, admins.last_name FROM ' . $this->table . ' JOIN admins ON drug.admin_id = admins.id');
+        $this->query('SELECT drug.id, drug.nama_obat,drug.expayer_date, drug.harga_beli, drug.admin_id, drug.harga_jual, drug.stok, admins.first_name, admins.last_name FROM ' . $this->table . ' JOIN admins ON drug.admin_id = admins.id');
         return $this->resultSet();
     }
 

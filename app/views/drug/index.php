@@ -14,7 +14,7 @@
                     <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
                         <div class="card-header flex-column flex-md-row">
                             <div class="head-label text-center">
-                                <h5 class="card-title mb-0">List Of </h5>
+                                <h5 class="card-title mb-0">List Of Obat</h5>
                             </div>
 
                             <div class="dt-action-buttons text-end pt-3 pt-md-0">
@@ -41,13 +41,15 @@
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 82px;">ID</th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Nama</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Email</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Contact</th>
-                                    <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 66px;">Actions</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Harga jual</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Stok</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Expayer date</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Actions</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data['Drugs'] as $drug) : ?>
+                                <?php foreach ($data['drugs'] as $drug) : ?>
                                     <tr class="odd">
                                         <td class="control dtr-hidden" tabindex="0" style="display: none;"></td>
                                         <td class="  dt-checkboxes-cell">
@@ -60,16 +62,21 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><?= ucfirst($drug['first_name']) . ' ' . ucfirst($drug['last_name']) ?></td>
-                                        <td><?= $drug['email'] ?></td>
-                                        <td><?= $drug['contact'] ?></td>
+                                        <td><?= $drug['nama_obat'] ?></td>
+                                        <td><?= $drug['harga_jual'] ?></td>
+                                        <td><?= $drug['stok'] ?></td>
+                                        <td><?= $drug['expayer_date'] ?></td>
                                         <td class="" style="">
                                             <div class="d-inline-block">
-                                                <a href="<?= BASEURL; ?>/drug/edit/<?= $drug['id']; ?>" class="btn btn-sm btn-icon item-edit">
-                                                    <i class="bx bxs-edit"></i>
-                                                    <a href="#" class="btn btn-sm btn-icon delete-record" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $drug['id']; ?>">
-                                                        <i class="bx bxs-trash"></i>
-                                                    </a>
+                                                <a href="<?= BASEURL; ?>/patients/detail/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit">
+                                                    <i class="bx bxs-user-detail" title="detail patient"></i>
+                                                </a>
+                                                <a href="<?= BASEURL; ?>/patients/edit/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit">
+                                                    <i class="bx bxs-edit" title="edit patient"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-icon delete-record" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $patient['id']; ?>">
+                                                    <i class="bx bxs-trash" title="delete patient"></i>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
