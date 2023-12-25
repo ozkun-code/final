@@ -53,4 +53,13 @@ class PatientModel extends Database
         $this->execute();
         return $this->rowCount();
     }
+    public function searchPatient($name)
+    {
+        $this->query('SELECT patients.id, patients.first_name, patients.last_name, patients.date_of_birth, patients.contact, patients.address, users.email 
+                  FROM ' . $this->table . ' 
+                  JOIN users ON patients.user_id = users.id 
+                  WHERE patients.first_name LIKE :name OR patients.last_name LIKE :name');
+        $this->bind(':name', '%' . $name . '%');
+        return $this->resultSet();
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 class Admin extends Controller
 {
-    public function index()
+    public function index($name = null)
     {
 
         $role = $_SESSION['role'];
@@ -13,7 +13,12 @@ class Admin extends Controller
         $this->view($navView);
 
         $adminModel = new AdminModel();
-        $data['admins'] = $adminModel->getAllAdmin();
+        // Cek apakah ada query pencarian
+        if ($name) {
+            $data['admins'] = $adminModel->searchAdmin($name);
+        } else {
+            $data['admins'] = $adminModel->getAllAdmin();
+        }
 
         $this->view('admin/index', $data);
 

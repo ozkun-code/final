@@ -45,4 +45,15 @@ class AdminModel extends Database
         $this->execute();
         return $this->rowCount();
     }
+    public function searchAdmin($name)
+    {
+        // Use placeholders in the SQL query where you want to inject the values
+        $this->query('SELECT admins.id, admins.user_id, admins.first_name, admins.last_name, admins.contact, users.email FROM ' . $this->table . ' JOIN users ON admins.user_id = users.id WHERE admins.first_name LIKE :name OR admins.last_name LIKE :name');
+
+        // Bind the parameter with the actual value
+        $this->bind(':name', '%' . $name . '%');
+
+        // Execute the query and return the result set
+        return $this->resultSet();
+    }
 }

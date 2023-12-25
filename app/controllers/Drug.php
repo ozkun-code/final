@@ -1,7 +1,7 @@
 <?php
 class Drug extends Controller
 {
-    public function index()
+    public function index($name = null)
     {
 
         $role = $_SESSION['role'];
@@ -13,7 +13,12 @@ class Drug extends Controller
         $this->view($navView);
 
         $drugModel = new DrugModel();
-        $data['drugs'] = $drugModel->getAllDrug();
+        // Cek apakah ada query pencarian
+        if ($name) {
+            $data['drugs'] = $drugModel->searchDrug($name);
+        } else {
+            $data['drugs'] = $drugModel->getAllDrug();
+        }
 
         $this->view('drug/index', $data);
 

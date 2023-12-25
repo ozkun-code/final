@@ -49,4 +49,10 @@ class DrugModel extends Database
         $this->execute();
         return $this->rowCount();
     }
+    public function searchDrug($name)
+    {
+        $this->query('SELECT id, drug_name, manufacturer, dosage, price FROM drugs WHERE drug_name LIKE :name');
+        $this->bind(':name', '%' . $name . '%');
+        return $this->resultSet();
+    }
 }

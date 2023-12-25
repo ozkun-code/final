@@ -1,7 +1,7 @@
 <?php
 class Patients extends Controller
 {
-    public function index()
+    public function index($name = null)
     {
         $role = $_SESSION['role'];
 
@@ -12,7 +12,12 @@ class Patients extends Controller
         $this->view($navView);
 
         $patientModel = new PatientModel();
-        $data['patients'] = $patientModel->getAllPatient();
+        // Cek apakah ada query pencarian
+        if ($name) {
+            $data['patients'] = $patientModel->searchPatient($name);
+        } else {
+            $data['patients'] = $patientModel->getAllPatient();
+        }
 
         $this->view('patients/index', $data);
 
@@ -39,10 +44,10 @@ class Patients extends Controller
         $this->view('layouts/footer');
     }
 
-    public function delete()
+    public function delete($id)
     {
         $PatientModel = new PatientModel();
-        if ($PatientModel->deletePatient($data, $userId) > 0) {
+        if ($PatientModel->deletePatient($id) > 0) {
             Flasher::setFlash('berhasil', 'di hapus', 'success');
             header('Location: ' . BASEURL . '/Patients/create');
             exit;
