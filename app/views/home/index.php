@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/css/bootstrap.min.css">
     <!-- Nice Select CSS -->
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/css/nice-select.css">
-   
+
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/fonts/boxicons.css" />
     <!-- Slicknav -->
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/css/slicknav.min.css">

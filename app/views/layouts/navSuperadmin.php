@@ -106,7 +106,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a href="<?= BASEURL; ?>/admin/create" class="menu-link">
+                <a href="<?= BASEURL; ?>/drug/create" class="menu-link">
                   <div data-i18n="Without navbar">Add New Drug</div>
                 </a>
               </li>

@@ -19,7 +19,7 @@
 
                             <div class="dt-action-buttons text-end pt-3 pt-md-0">
                                 <div class="dt-buttons">
-                                    <a href="<?= BASEURL; ?>/admin/create/" class="dt-button create-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0">
+                                    <a href="<?= BASEURL; ?>/drug/create/" class="dt-button create-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0">
                                         <span>
                                             <i class="bx bx-plus me-sm-1"></i>
                                             <span class="d-none d-sm-inline-block">Add New Admin</span>
