@@ -14,7 +14,19 @@
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
               <div class="card-header flex-column flex-md-row">
                 <div class="head-label text-center">
-                  <h5 class="card-title mb-0">List Of patients </h5>
+                  <script>
+                    function submitForm() {
+                      var searchValue = document.getElementById('search').value;
+                      var form = document.getElementById('searchForm');
+                      form.action = "<?= BASEURL; ?>/patients/" + searchValue;
+                      form.submit();
+                    }
+                  </script>
+
+                  <form class="d-flex" id="searchForm" onsubmit="event.preventDefault(); submitForm();">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
                 </div>
                 <div class="dt-action-buttons text-end pt-3 pt-md-0">
                   <div class="dt-buttons">
@@ -66,10 +78,10 @@
                             <i class="bx bxs-user-detail" title="detail patient"></i>
                           </a>
                           <a href="<?= BASEURL; ?>/patients/edit/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit">
-                            <i class="bx bxs-edit"  title="edit patient"></i>
+                            <i class="bx bxs-edit" title="edit patient"></i>
                           </a>
                           <a href="#" class="btn btn-sm btn-icon delete-record" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $patient['id']; ?>">
-                            <i class="bx bxs-trash"  title="delete patient"></i>
+                            <i class="bx bxs-trash" title="delete patient"></i>
                           </a>
                         </div>
                       </td>
@@ -89,7 +101,7 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                            <a href="<?= BASEURL; ?>/patientss/delete/<?= $patient['id']; ?>" class="btn btn-primary">Hapus</a>
+                            <a href="<?= BASEURL; ?>/patients/delete/<?= $patient['id']; ?>" class="btn btn-primary">Hapus</a>
                           </div>
                         </div>
                       </div>

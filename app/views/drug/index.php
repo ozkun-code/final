@@ -5,7 +5,7 @@
         <div class="container-xxl flex-grow-1 container-p-y">
 
             <h4 class="py-3 mb-4">
-                <span class="text-muted fw-light">DataTables /</span> Admin
+                <span class="text-muted fw-light">DataTables /</span> Drug
             </h4>
 
             <!-- DataTable with Buttons -->
@@ -18,7 +18,7 @@
                                     function submitForm() {
                                         var searchValue = document.getElementById('search').value;
                                         var form = document.getElementById('searchForm');
-                                        form.action = "<?= BASEURL; ?>/admin/" + searchValue;
+                                        form.action = "<?= BASEURL; ?>/drug/" + searchValue;
                                         form.submit();
                                     }
                                 </script>
@@ -31,10 +31,10 @@
 
                             <div class="dt-action-buttons text-end pt-3 pt-md-0">
                                 <div class="dt-buttons">
-                                    <a href="<?= BASEURL; ?>/admin/create/" class="dt-button create-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0">
+                                    <a href="<?= BASEURL; ?>/drug/create/" class="dt-button create-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0">
                                         <span>
                                             <i class="bx bx-plus me-sm-1"></i>
-                                            <span class="d-none d-sm-inline-block">Add New Admin</span>
+                                            <span class="d-none d-sm-inline-block">Add New Drug</span>
                                         </span>
                                     </a>
 
@@ -53,13 +53,15 @@
                                     </th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 82px;">ID</th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Nama</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Email</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Contact</th>
-                                    <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 66px;">Actions</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Harga jual</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Stok</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Expayer date</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Actions</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data['admins'] as $admin) : ?>
+                                <?php foreach ($data['drugs'] as $drug) : ?>
                                     <tr class="odd">
                                         <td class="control dtr-hidden" tabindex="0" style="display: none;"></td>
                                         <td class="  dt-checkboxes-cell">
@@ -68,25 +70,30 @@
                                         <td>
                                             <div class="d-flex justify-content-start align-items-center user-name">
                                                 <div class="d-flex flex-column">
-                                                    <span class="emp_name text-truncate"><?= $admin['id'] ?></span>
+                                                    <span class="emp_name text-truncate"><?= $drug['id'] ?></span>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><?= ucfirst($admin['first_name']) . ' ' . ucfirst($admin['last_name']) ?></td>
-                                        <td><?= $admin['email'] ?></td>
-                                        <td><?= $admin['contact'] ?></td>
+                                        <td><?= $drug['nama_obat'] ?></td>
+                                        <td><?= $drug['harga_jual'] ?></td>
+                                        <td><?= $drug['stok'] ?></td>
+                                        <td><?= $drug['expayer_date'] ?></td>
                                         <td class="" style="">
                                             <div class="d-inline-block">
-                                                <a href="<?= BASEURL; ?>/admin/edit/<?= $admin['id']; ?>" class="btn btn-sm btn-icon item-edit">
-                                                    <i class="bx bxs-edit"></i>
-                                                    <a href="#" class="btn btn-sm btn-icon delete-record" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $admin['id']; ?>">
-                                                        <i class="bx bxs-trash"></i>
-                                                    </a>
+                                                <a href="<?= BASEURL; ?>/drug/detail/<?= $drug['id']; ?>" class="btn btn-sm btn-icon item-edit">
+                                                    <i class="bx bxs-user-detail" title="detail patient"></i>
+                                                </a>
+                                                <a href="<?= BASEURL; ?>/drug/edit/<?= $drug['id']; ?>" class="btn btn-sm btn-icon item-edit">
+                                                    <i class="bx bxs-edit" title="edit patient"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-icon delete-record" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $drug['id']; ?>">
+                                                    <i class="bx bxs-trash" title="delete patient"></i>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
                                     <!-- Modal Hapus -->
-                                    <div class="modal fade" id="deleteModal<?= $admin['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="deleteModal<?= $drug['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -94,11 +101,11 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body" style="font-size: 20px;">
-                                                    Apakah Anda yakin ingin menghapus dokter <strong><?= ucfirst($admin['first_name']) . ' ' . ucfirst($admin['last_name']) ?></strong> ini?
+                                                    Apakah Anda yakin ingin menghapus Obat <strong><?= ucfirst($drug['nama_obat']) . ' ' ?></strong> ini?
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                    <a href="<?= BASEURL; ?>/admin/delete/<?= $admin['id']; ?>" class="btn btn-primary">Hapus</a>
+                                                    <a href="<?= BASEURL; ?>/drug/delete/<?= $drug['id']; ?>" class="btn btn-primary">Hapus</a>
                                                 </div>
                                             </div>
                                         </div>

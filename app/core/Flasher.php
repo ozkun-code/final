@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class Flasher {
+class Flasher
+{
     public static function setFlash($message, $action, $type)
     {
         $_SESSION['flash'] = [
@@ -12,7 +13,7 @@ class Flasher {
 
     public static function flash()
     {
-        if( isset($_SESSION['flash']) ) {
+        if (isset($_SESSION['flash'])) {
             echo '<div class="alert alert-' . $_SESSION['flash']['type'] . '" role="alert">
             Data Dokter <strong>' . $_SESSION['flash']['message'] . '</strong> ' . $_SESSION['flash']['action'] . '
             </div>';
@@ -20,4 +21,3 @@ class Flasher {
         }
     }
 }
-
