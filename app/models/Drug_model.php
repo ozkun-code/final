@@ -11,7 +11,7 @@ class DrugModel extends Database
 
     public function getDrugById($id)
     {
-        $this->query('SELECT * FROM ' . $this->table . ' WHERE id = :id');
+        $this->query('SELECT id, nama_obat, harga_beli, harga_jual, stok, expayer_date FROM ' . $this->table . ' WHERE id = :id');
         $this->bind(':id', $id);
         return $this->single();
     }
@@ -51,7 +51,7 @@ class DrugModel extends Database
     }
     public function searchDrug($name)
     {
-        $this->query('SELECT id, drug_name, manufacturer, dosage, price FROM drugs WHERE drug_name LIKE :name');
+        $this->query('SELECT id, nama_obat, harga_beli, harga_jual, stok, expayer_date FROM ' . $this->table . ' WHERE nama_obat LIKE :name');
         $this->bind(':name', '%' . $name . '%');
         return $this->resultSet();
     }

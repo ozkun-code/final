@@ -68,11 +68,11 @@ class Admin extends Controller
         ];
 
         if ($adminModel->createAdmin($data, $userId) > 0) {
-            Flasher::setFlash('berhasil', 'di tambahkan', 'success');
+            Flasher::setFlash('Admin berhasil', 'di tambahkan', 'success');
             header('Location: ' . BASEURL . '/admin/create');
             exit;
         } else {
-            Flasher::setFlash('gagal', 'di tambahkan', 'danger');
+            Flasher::setFlash('Admin gagal', 'di tambahkan', 'danger');
             header('Location: ' . BASEURL . '/admin/create');
             exit;
         }
@@ -111,11 +111,11 @@ class Admin extends Controller
         ];
 
         if ($adminModel->updateAdmin($id, $data) > 0) {
-            Flasher::setFlash('berhasil', 'di update', 'success');
+            Flasher::setFlash('Admin berhasil', 'di update', 'success');
             header('Location: ' . BASEURL . '/admin/edit/' . $id);
             exit;
         } else {
-            Flasher::setFlash('gagal', 'di update', 'danger');
+            Flasher::setFlash('Admin gagal', 'di update', 'danger');
             header('Location: ' . BASEURL . '/admin/edit/' . $id);
             exit;
         }
@@ -124,11 +124,11 @@ class Admin extends Controller
     {
         $adminModel = new AdminModel();
         if ($adminModel->deleteAdmin($id) > 0) {
-            Flasher::setFlash('berhasil', 'di hapus', 'success');
+            Flasher::setFlash('Admin berhasil', 'di hapus', 'success');
             header('Location: ' . BASEURL . '/admin');
             exit;
         } else {
-            Flasher::setFlash('gagal', 'di hapus', 'danger');
+            Flasher::setFlash('Admin gagal', 'di hapus', 'danger');
             header('Location: ' . BASEURL . '/admin');
             exit;
         }

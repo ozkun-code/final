@@ -15,7 +15,7 @@ class Flasher
     {
         if (isset($_SESSION['flash'])) {
             echo '<div class="alert alert-' . $_SESSION['flash']['type'] . '" role="alert">
-            Data Dokter <strong>' . $_SESSION['flash']['message'] . '</strong> ' . $_SESSION['flash']['action'] . '
+            Data <strong>' . $_SESSION['flash']['message'] . '</strong> ' . $_SESSION['flash']['action'] . '
             </div>';
             unset($_SESSION['flash']);
         }

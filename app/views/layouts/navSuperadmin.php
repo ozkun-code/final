@@ -136,8 +136,8 @@
             <span class="menu-header-text">SETTING</span>
           </li>
           <li class="menu-item">
-            <a href="transactions.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-credit-card"></i>
+            <a href="<?= BASEURL; ?>/setting" class="menu-link">
+              <i class="bx bx-cog me-2"></i>
               <div data-i18n="Transactions">Setting</div>
             </a>
           </li>
@@ -202,7 +202,7 @@
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="<?= BASEURL; ?>/setting">
                       <i class="bx bx-cog me-2"></i>
                       <span class="align-middle">App Settings</span>
                     </a>

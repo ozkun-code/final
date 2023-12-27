@@ -10,6 +10,7 @@ require_once 'models/Login_model.php';
 require_once 'models/Patients_model.php';
 require_once 'models/Admin_model.php';
 require_once 'models/Drug_model.php';
+require_once 'models/Setting_model.php';
 
 
 

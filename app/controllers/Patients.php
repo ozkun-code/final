@@ -48,11 +48,11 @@ class Patients extends Controller
     {
         $PatientModel = new PatientModel();
         if ($PatientModel->deletePatient($id) > 0) {
-            Flasher::setFlash('berhasil', 'di hapus', 'success');
+            Flasher::setFlash('Patient berhasil', 'di hapus', 'success');
             header('Location: ' . BASEURL . '/Patients/create');
             exit;
         } else {
-            Flasher::setFlash('gagal', 'di hapus', 'danger');
+            Flasher::setFlash('Patient gagal', 'di hapus', 'danger');
             header('Location: ' . BASEURL . '/Patients/create');
             exit;
         }
@@ -85,11 +85,11 @@ class Patients extends Controller
         ];
 
         if ($PatientModel->createPatient($data, $userId) > 0) {
-            Flasher::setFlash('berhasil', 'di tambahkan', 'success');
+            Flasher::setFlash('Patient berhasil', 'di tambahkan', 'success');
             header('Location: ' . BASEURL . '/Patients/create');
             exit;
         } else {
-            Flasher::setFlash('gagal', 'di tambahkan', 'danger');
+            Flasher::setFlash('Patient gagal', 'di tambahkan', 'danger');
             header('Location: ' . BASEURL . '/Patients/create');
             exit;
         }
@@ -127,11 +127,11 @@ class Patients extends Controller
         ];
 
         if ($PatientModel->updatePatient($id, $data) > 0) {
-            Flasher::setFlash('berhasil', 'di update', 'success');
+            Flasher::setFlash('Patient berhasil', 'di update', 'success');
             header('Location: ' . BASEURL . '/Patients/edit/' . $id);
             exit;
         } else {
-            Flasher::setFlash('gagal', 'di update', 'danger');
+            Flasher::setFlash('Patient gagal', 'di update', 'danger');
             header('Location: ' . BASEURL . '/Patients/edit/' . $id);
             exit;
         }
