@@ -73,11 +73,11 @@ class Doctors extends Controller
         ];
 
         if ($doctorModel->createDoctor($data, $userId) > 0) {
-            Flasher::setFlash('berhasil', 'di tambahkan', 'success');
+            Flasher::setFlash('Doctor berhasil', 'di tambahkan', 'success');
             header('Location: ' . BASEURL . '/doctors/create');
             exit;
         } else {
-            Flasher::setFlash('gagal', 'di tambahkan', 'danger');
+            Flasher::setFlash('Doctor gagal', 'di tambahkan', 'danger');
             header('Location: ' . BASEURL . '/doctors/create');
             exit;
         }
@@ -116,11 +116,11 @@ class Doctors extends Controller
         ];
 
         if ($doctorModel->updateDoctor($id, $data) > 0) {
-            Flasher::setFlash('berhasil', 'di update', 'success');
+            Flasher::setFlash('Doctor berhasil', 'di update', 'success');
             header('Location: ' . BASEURL . '/doctors/edit/' . $id);
             exit;
         } else {
-            Flasher::setFlash('gagal', 'di update', 'danger');
+            Flasher::setFlash('Doctor gagal', 'di update', 'danger');
             header('Location: ' . BASEURL . '/doctors/edit/' . $id);
             exit;
         }
@@ -129,11 +129,11 @@ class Doctors extends Controller
     {
         $doctorModel = new DoctorModel();
         if ($doctorModel->deleteDoctor($id) > 0) {
-            Flasher::setFlash('berhasil', 'di hapus', 'success');
+            Flasher::setFlash('Doctor berhasil', 'di hapus', 'success');
             header('Location: ' . BASEURL . '/doctors');
             exit;
         } else {
-            Flasher::setFlash('gagal', 'di hapus', 'danger');
+            Flasher::setFlash('Doctor gagal', 'di hapus', 'danger');
             header('Location: ' . BASEURL . '/doctors');
             exit;
         }
