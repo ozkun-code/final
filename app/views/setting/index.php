@@ -43,8 +43,9 @@
                             <div class="row">
                                 <div class="mb-3 col-md-6 fv-plugins-icon-container">
                                     <label for="firstName" class="form-label">First Name</label>
-                                    <input class="form-control" type="text" id="first_Name" name="first_Name" value="John" autofocus="">
+                                    <input type="text" class="form-control" id="first_name" name="first_name" value="<?= $data['first_name']; ?>" required>
                                     <div class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback"></div>
+                                    z
                                 </div>
                                 <div class="mb-3 col-md-6 fv-plugins-icon-container">
                                     <label for="lastName" class="form-label">Last Name</label>
