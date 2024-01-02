@@ -1,7 +1,6 @@
 <?php
-class Dashboard extends Controller
-{
-    public function index()
+class Appointments extends Controller {
+    public function index()  
     {
 
         if (!isset($_SESSION['role'])) {
@@ -16,13 +15,9 @@ class Dashboard extends Controller
         $navView = $loginModel->getNavView($role);
         $this->view($navView);
 
-
-        // Tampilkan konten
-        $this->view('Dashboard/index');
+        $this->view('Appointments/index');
 
         $this->view('layouts/footer');
-
-
 
     }
 }

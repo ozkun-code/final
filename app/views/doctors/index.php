@@ -1,15 +1,17 @@
-    <!-- Content wrapper -->
-    <div class="content-wrapper">
+     <!-- Content wrapper -->
+     <div class="content-wrapper">
 
-      <!-- Content -->
-      <div class="container-xxl flex-grow-1 container-p-y">
+<!-- Content -->
 
-        <h4 class="py-3 mb-4">
-          <span class="text-muted fw-light">DataTables /</span> Doctors
-        </h4>
+  <div class="container-xxl flex-grow-1 container-p-y">
+    
+    
+<h4 class="py-3 mb-4">
+<span class="text-muted fw-light">DataTables /</span> Basic
+</h4>
 
-        <!-- DataTable with Buttons -->
-        <div class="card">
+ <!-- DataTable with Buttons -->
+ <div class="card">
           <div class="card-datatable table-responsive">
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
               <div class="card-header flex-column flex-md-row">
