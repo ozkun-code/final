@@ -60,12 +60,14 @@
   <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/typeahead-js/typeahead.js"></script>
   <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/js/menu.js"></script>
   
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/datepicker.min.js"></script> 
   <!-- endbuild -->
     <!-- Vendors JS -->
     <script src="<?= BASEURL; ?>/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
 <!-- Flat Picker -->
 <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/moment/moment.js"></script>
 <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/flatpickr/flatpickr.js"></script>
+
 <!-- Form Validation -->
 <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/@form-validation/umd/bundle/popular.min.js"></script>
 <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js"></script>
@@ -77,12 +79,30 @@
 
   <!-- Page JS -->
   <script src="<?= BASEURL; ?>/assets/js/tables-datatables-basic.js"></script>
+  <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/js/forms-pickers.js"></script>
 
   <!-- Vendors JS -->
   <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
   <!-- Main JS -->
   <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/js/main.js"></script>
+  <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script> 
+
+  
+                <!-- Calender Js-->
+                <script src="https://doctorly.themesbrand.website/build/libs/select2/js/select2.min.js"></script>
+        <script src="https://doctorly.themesbrand.website/build/libs/jquery-ui/jquery-ui.min.js"></script>
+        <script src="https://doctorly.themesbrand.website/build/libs/moment/moment.js"></script>
+        <script src="https://doctorly.themesbrand.website/build/libs/fullcalendar/index.global.min.js"></script>
+        <!-- Get App url in Javascript file -->
+        <script type="text/javascript">
+            var aplist_url = "https://doctorly.themesbrand.website/appointmentList";
+        </script>
+        <!-- Init js-->
+        <script src="https://doctorly.themesbrand.website/build/js/pages/calendar-init.js"></script>
+        <script src="https://doctorly.themesbrand.website/build/js/pages/form-advanced.init.js"></script>
+        <script src="https://doctorly.themesbrand.website/build/js/pages/appointment.js"></script>
+            <!-- App js -->
   
 
   <!-- Page JS -->
