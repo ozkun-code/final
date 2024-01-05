@@ -73,11 +73,11 @@ https://templatemo.com/tm-566-medic-care
                         </a>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#booking">Appoitment</a>
+                            <a class="nav-link" href="#contact">Contact</a>
                         </li>
 
                         <li class="nav-link center">
-                            <a href="<?= BASEURL; ?>/login" class="dt-button create-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0">
+                            <a href="<?= BASEURL; ?>/register" class="dt-button create-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0">
                                 <span>
                                     <i class="bx bx-plus me-sm-0"></i>
                                     <span class="d-none d-sm-inline-block">Register</span>
@@ -107,13 +107,13 @@ https://templatemo.com/tm-566-medic-care
                         <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="<?= BASEURL; ?>/assets/img/4fa405a6907ef5fb443bd1320a7b05ab.jpg" class=" img-fluid" alt="">
+                                    <img src="<?= BASEURL; ?>/assets/img/portrait-successful-mid-adult-doctor-with-crossed-arms.jpg" class=" img-fluid" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="<?= BASEURL; ?>/assets/img/9360c2b5f9d9496b33b26994f8aca2f7.jpg" class=" img-fluid" alt="">
+                                    <img src="<?= BASEURL; ?>/assets/img/young-asian-female-dentist-white-coat-posing-clinic-equipment.jpg" class=" img-fluid" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="<?= BASEURL; ?>/assets/img/19b253c7e19beb33385d2f259bd5635a.jpg" class=" img-fluid" alt="">
+                                    <img src="<?= BASEURL; ?>/assets/img/doctor-s-hand-holding-stethoscope-closeup.jpgz" class=" img-fluid" alt="">
                                 </div>
                             </div>
                         </div>
@@ -293,48 +293,7 @@ https://templatemo.com/tm-566-medic-care
             </div>
         </section>
         <section class="section-padding" id="booking">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-8 col-12 mx-auto">
-                        <div class="booking-form">
-
-                            <h2 class="text-center mb-lg-3 mb-2">Appointment</h2>
-
-                            <form role="form" action="#booking" method="post">
-                                <div class="row">
-                                    <div class="col-lg-6 col-12">
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required>
-                                    </div>
-
-                                    <div class="col-lg-6 col-12">
-                                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required>
-                                    </div>
-
-                                    <div class="col-lg-6 col-12">
-                                        <input type="telephone" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" placeholder="Phone: +62">
-                                    </div>
-
-                                    <div class="col-lg-6 col-12">
-                                        <input type="date" name="date" id="date" value="" class="form-control">
-
-                                    </div>
-
-                                    <div class="col-12">
-                                        <textarea class="form-control" rows="5" id="message" name="message" placeholder="Additional Message"></textarea>
-                                    </div>
-
-                                    <div class="col-lg-3 col-md-4 col-6 mx-auto">
-                                        <button type="submit" class="form-control" id="submit-button">Book Now</button>
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            <h2 class="text-center mb-lg-3 mb-2">Maps</h2>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.348203834089!2d107.40263707305657!3d-6.348941193640893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69715953ce0a4d%3A0x1f24b1a882ee398c!2sKlinik%20NUR%20ASY%20-%20SYIFA!5e0!3m2!1sid!2sid!4v1703946701352!5m2!1sid!2sid" width="600" height="450" style="padding:5%;  display: block; margin: 0 auto;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </section>
 
