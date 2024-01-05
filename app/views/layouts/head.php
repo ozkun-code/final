@@ -25,25 +25,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/7.1.0/css/flag-icons.min.css"></script>
     
     <!-- Core CSS -->
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/css/demo.css" />
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="<?= BASEURL; ?>/sneat-bootstrap-html-admin-template/assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/demo.css" />
     
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/typeahead-js/typeahead.css" /> 
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/apex-charts/apex-charts.css" />
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css">
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css">
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css">
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css">
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/flatpickr/flatpickr.css" />
-    <!-- Row Group CSS -->
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css">
-    <!-- Form Validation -->
-    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/@form-validation/umd/styles/index.min.css" />
+    <!-- Vendors DASHBOARD CSS -->
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/typeahead-js/typeahead.css" /> 
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <!-- Vendors DATATABLE CSS -->
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/datatables/datatables.bootstrap5.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/datatables/responsive.bootstrap5.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/datatables/datatables.checkboxes.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/datatables/buttons.bootstrap5.css">
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/flatpickr.css" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/bootstrap-select/bootstrap-select.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/datatables/rowgroup.bootstrap5.css">
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/bootstrap-datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://doctorly.themesbrand.website/build/libs/fullcalendar/fullcalendar.min.css">
     
 
+    <style>.timeslots li {
+    width: calc(100% / 4); 
+    padding: 10px;/* Atur lebar timeslot berdasarkan jumlah per baris */
+}</style>
     <!-- Page CSS -->
     
 
