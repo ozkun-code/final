@@ -31,40 +31,6 @@
           <li class="menu-header small text-uppercase">
             <span class="menu-header-text">KLINIK</span>
           </li>
-          <!-- Doctors -->
-          <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-              <i class="menu-icon tf-icons bx bx-plus-medical"></i>
-              <div data-i18n="Layouts">Doctors</div>
-            </a>
-            <ul class="menu-sub">
-              <li class="menu-item">
-                <a href="layouts-without-menu.html" class="menu-link">
-                  <div data-i18n="Without menu">List Of Doctors</div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="layouts-without-navbar.html" class="menu-link">
-                  <div data-i18n="Without navbar">Add New Doctors</div>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <!-- Appointments -->
-          <li class="menu-item">
-            <a href="appointments.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-calendar-plus"></i>
-              <div data-i18n="Appointments">Appointments</div>
-            </a>
-          </li>
-          <!-- Appointments list -->
-          <li class="menu-item">
-            <a href="appointments.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-calendar"></i>
-              <div data-i18n="Appointments">Appointments List</div>
-            </a>
-          </li>
-
           <!-- Patients -->
           <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -74,12 +40,12 @@
 
             <ul class="menu-sub">
               <li class="menu-item">
-                <a href="layouts-without-menu.html" class="menu-link">
+                <a href="<?= BASEURL; ?>/patients" class="menu-link">
                   <div data-i18n="Without menu">List Of Patients</div>
                 </a>
               </li>
               <li class="menu-item">
-                <a href="layouts-without-navbar.html" class="menu-link">
+                <a href="<?= BASEURL; ?>/patients/create" class="menu-link">
                   <div data-i18n="Without navbar">Add New Patients</div>
                 </a>
               </li>
@@ -93,12 +59,12 @@
             </a>
             <ul class="menu-sub">
               <li class="menu-item">
-                <a href="layouts-without-menu.html" class="menu-link">
+                <a href="<?= BASEURL; ?>/drug" class="menu-link">
                   <div data-i18n="Without menu">List Of Drug</div>
                 </a>
               </li>
               <li class="menu-item">
-                <a href="layouts-without-navbar.html" class="menu-link">
+                <a href="<?= BASEURL; ?>/drug/create" class="menu-link">
                   <div data-i18n="Without navbar">Add New Drug</div>
                 </a>
               </li>
@@ -109,6 +75,19 @@
             <a href="appointments.html" class="menu-link">
               <i class="menu-icon tf-icons bx bx-notepad"></i>
               <div data-i18n="Appointments">Prescription</div>
+            </a>
+          </li>
+          <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
+          <li class="menu-item">
+            <a href="<?= BASEURL; ?>/setting" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-cog"></i>
+              <div data-i18n="Basic">Setting</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="cards-basic.html" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-log-out"></i>
+              <div data-i18n="Basic">Logout</div>
             </a>
           </li>
 
