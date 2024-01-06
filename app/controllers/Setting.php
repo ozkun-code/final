@@ -5,7 +5,7 @@ class Setting extends Controller
     {
         $role = $_SESSION['role'];
 
-        $this->view('layouts/head');
+        $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
@@ -23,6 +23,6 @@ class Setting extends Controller
 
         $this->view('setting/index', $data);
 
-        $this->view('layouts/footer');
+        $this->view('layouts/footer/footer');
     }
 }

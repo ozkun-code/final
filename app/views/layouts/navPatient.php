@@ -23,54 +23,46 @@
         <ul class="menu-inner py-1">
           <!-- Dashboard -->
           <li class="menu-item">
-            <a href="index.html" class="menu-link">
+            <a href="<?php BASEURL; ?>/dashboard" class="menu-link">
               <i class="menu-icon tf-icons bx bx-home-circle"></i>
               <div data-i18n="Analytics">Dashboard patient</div>
             </a>
           </li>
           <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">KLINIK</span>
+            <span class="menu-header-text">Patient</span>
           </li>
-          <!-- Appointments -->
-          <li class="menu-item">
-            <a href="appointments.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-calendar-plus"></i>
-              <div data-i18n="Appointments">Appointments</div>
-            </a>
-          </li>
-          <!-- Appointments list -->
-          <li class="menu-item">
-            <a href="appointments.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-calendar"></i>
-              <div data-i18n="Appointments">Appointments List</div>
-            </a>
-          </li>
-
-          <!-- Patients -->
           <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-              <i class="menu-icon tf-icons bx bx-user"></i>
-              <div data-i18n="Layouts">Patients</div>
+              <i class="menu-icon tf-icons bx bx-dna"></i>
+              <div data-i18n="Misc">diagnosis
+              </div>
             </a>
-
             <ul class="menu-sub">
               <li class="menu-item">
-                <a href="layouts-without-menu.html" class="menu-link">
-                  <div data-i18n="Without menu">List Of Patients</div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="layouts-without-navbar.html" class="menu-link">
-                  <div data-i18n="Without navbar">Add New Patients</div>
+                <a href="<?= BASEURL; ?>" class="menu-link">
+                  <div data-i18n="Error">diagnostic history
+                  </div>
                 </a>
               </li>
             </ul>
           </li>
-          <!-- Appointments list -->
           <li class="menu-item">
-            <a href="appointments.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-notepad"></i>
-              <div data-i18n="Appointments">Prescription</div>
+            <a href="cards-basic.html" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-food-menu"></i>
+              <div data-i18n="Basic">Data Transaction</div>
+            </a>
+          </li>
+          <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
+          <li class="menu-item">
+            <a href="<?= BASEURL; ?>/setting" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-cog"></i>
+              <div data-i18n="Basic">Setting</div>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a href="cards-basic.html" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-log-out"></i>
+              <div data-i18n="Basic">Logout</div>
             </a>
           </li>
 
