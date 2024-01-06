@@ -14,31 +14,9 @@
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
               <div class="card-header flex-column flex-md-row">
                 <div class="head-label text-center">
-                  <script>
-                    function submitForm() {
-                      var searchValue = document.getElementById('search').value;
-                      var form = document.getElementById('searchForm');
-                      form.action = "<?= BASEURL; ?>/patients/" + searchValue;
-                      form.submit();
-                    }
-                  </script>
-
-                  <form class="d-flex" id="searchForm" onsubmit="event.preventDefault(); submitForm();">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
+                  
                 </div>
-                <div class="dt-action-buttons text-end pt-3 pt-md-0">
-                  <div class="dt-buttons">
-                    <a href="<?= BASEURL; ?>/patients/create/" class="dt-button create-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0">
-                      <span>
-                        <i class="bx bx-plus me-sm-1"></i>
-                        <span class="d-none d-sm-inline-block">Add New patients</span>
-                      </span>
-                    </a>
-
-                  </div>
-                </div>
+                
               </div>
               <table class="datatables-basic table border-top dataTable no-footer dtr-column" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style="width: 1163px;">
                 <thead>

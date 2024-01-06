@@ -1,12 +1,13 @@
 <?php
 class Admin extends Controller
 {
+   
     public function index($name = null)
-    {
+    {   
 
         $role = $_SESSION['role'];
 
-        $this->view('layouts/head');
+        $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
@@ -22,13 +23,13 @@ class Admin extends Controller
 
         $this->view('admin/index', $data);
 
-        $this->view('layouts/footer');
+        $this->view('layouts/footer/footer');
     }
     public function create()
     {
         $role = $_SESSION['role'];
 
-        $this->view('layouts/head');
+        $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
@@ -39,7 +40,7 @@ class Admin extends Controller
 
         $this->view('admin/create', $data);
 
-        $this->view('layouts/footer');
+        $this->view('layouts/footer/footer');
     }
 
 
@@ -82,7 +83,7 @@ class Admin extends Controller
     {
 
         $role = $_SESSION['role'];
-        $this->view('layouts/head');
+        $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
@@ -95,7 +96,7 @@ class Admin extends Controller
 
         $this->view('admin/edit', $admin);
 
-        $this->view('layouts/footer');
+        $this->view('layouts/footer/footer');
     }
 
     public function updateAdmin($id)

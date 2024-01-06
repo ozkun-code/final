@@ -2,6 +2,13 @@
 
 class Register extends Controller
 {
+    protected $data = array();
+
+    public function __construct()
+    {
+        // Menetapkan nilai di dalam konstruktor
+        $this->data['nama_controller'] = 'register';
+    }
     public function index()
     {
         $this->view('register/index');

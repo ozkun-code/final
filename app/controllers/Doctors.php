@@ -1,11 +1,12 @@
 <?php
 class Doctors extends Controller
 {
+
     public function index($name = null)
     {
         $role = $_SESSION['role'];
 
-        $this->view('layouts/head');
+        $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
@@ -22,7 +23,7 @@ class Doctors extends Controller
 
         $this->view('doctors/index', $data);
 
-        $this->view('layouts/footer');
+        $this->view('layouts/footer/footer');
     }
 
 
@@ -33,7 +34,7 @@ class Doctors extends Controller
     {
         $role = $_SESSION['role'];
 
-        $this->view('layouts/head');
+        $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
@@ -44,7 +45,7 @@ class Doctors extends Controller
 
         $this->view('doctors/create', $data);
 
-        $this->view('layouts/footer');
+        $this->view('layouts/footer/footer');
     }
 
 
@@ -87,7 +88,7 @@ class Doctors extends Controller
     {
 
         $role = $_SESSION['role'];
-        $this->view('layouts/head');
+        $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
@@ -100,7 +101,7 @@ class Doctors extends Controller
 
         $this->view('doctors/edit', $doctor);
 
-        $this->view('layouts/footer');
+        $this->view('layouts/footer/footer');
     }
 
     public function updateDoctor($id)

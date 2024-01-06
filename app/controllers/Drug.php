@@ -1,12 +1,19 @@
 <?php
 class Drug extends Controller
 {
+    protected $data = array();
+
+    public function __construct()
+    {
+        // Menetapkan nilai di dalam konstruktor
+        $this->data['nama_controller'] = 'drugs';
+    }
     public function index($name = null)
     {
 
         $role = $_SESSION['role'];
 
-        $this->view('layouts/head');
+        $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
@@ -22,13 +29,13 @@ class Drug extends Controller
 
         $this->view('drug/index', $data);
 
-        $this->view('layouts/footer');
+        $this->view('layouts/footer/footer');
     }
     public function create()
     {
         $role = $_SESSION['role'];
 
-        $this->view('layouts/head');
+        $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
@@ -39,7 +46,7 @@ class Drug extends Controller
 
         $this->view('drug/create', $data);
 
-        $this->view('layouts/footer');
+        $this->view('layouts/footer/footer');
     }
 
 
@@ -83,7 +90,7 @@ class Drug extends Controller
     {
 
         $role = $_SESSION['role'];
-        $this->view('layouts/head');
+        $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
@@ -96,7 +103,7 @@ class Drug extends Controller
 
         $this->view('drug/edit', $drug);
 
-        $this->view('layouts/footer');
+        $this->view('layouts/footer/footer');
     }
     public function updateDrug($id)
     {

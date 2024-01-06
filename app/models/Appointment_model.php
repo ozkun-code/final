@@ -1,5 +1,7 @@
 <?php
+
 class AppointmentModel extends Database {
+
     private $table = 'appointments';
 
     public function getAllAppointments() {
@@ -41,19 +43,39 @@ class AppointmentModel extends Database {
         return $this->rowCount();
     }
 
-    public function getAppointmentsByDateAndTime($date, $time) {
-        $this->query('SELECT * FROM ' . $this->table . ' WHERE date = :date AND time = :time');
-        $this->bind(':date', $date);
-        $this->bind(':time', $time);
-        $results = $this->resultSet();
-        return $results;
-    }
     public function getBookedSlotsByDate($date) {
-        $this->query('SELECT * FROM ' . $this->table . ' WHERE date = :date');
+        $this->query('SELECT
+                    time
+                FROM
+                    appointments
+                WHERE
+                    date = :date
+                ORDER BY
+                    time');
         $this->bind(':date', $date);
         return $this->resultSet();
     }
 
-    
+    public function getAvailableTimeslots($date) {
+        // Buat array timeslot
+        $timeslots = [
+            '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+            '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30',
+            '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00'
+          ];
+
+        // Perbarui array timeslots
+        foreach ($this->getBookedSlotsByDate($date) as $bookedSlot) {
+            $bookedTime = $bookedSlot['time']; // Asumsikan kolom 'time' berisi waktu dalam format "HH:mm"
+
+            // Hapus timeslot yang sudah dijadwalkan dari array
+            $key = array_search($bookedTime, $timeslots);
+            if ($key !== false) {
+                unset($timeslots[$key]);
+            }
+        }
+
+        // Kembalikan array timeslots yang diperbarui
+        return $timeslots;
+    }
 }
-?>

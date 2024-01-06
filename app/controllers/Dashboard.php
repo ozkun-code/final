@@ -1,6 +1,7 @@
 <?php
 class Dashboard extends Controller
 {
+   
     public function index()
     {
 
@@ -9,8 +10,9 @@ class Dashboard extends Controller
             exit();
         }
         $role = $_SESSION['role'];
+       
 
-        $this->view('layouts/head');
+        $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
@@ -20,7 +22,7 @@ class Dashboard extends Controller
         // Tampilkan konten
         $this->view('Dashboard/index');
 
-        $this->view('layouts/footer');
+        $this->view('layouts/footer/footer');
 
 
 
