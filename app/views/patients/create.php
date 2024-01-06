@@ -49,8 +49,8 @@
                             </div>
                             <div class="col">
                             <div class="mb-3">
-            <label for="flatpickr-date" class="form-label">Date Picker</label>
-            <input type="text" class="form-control flatpickr-input" placeholder="YYYY-MM-DD" id="flatpickr-date" readonly="readonly">
+                            <label for="date_of_birth" class="col-md-2 col-form-label">Date</label>
+                            <input class="form-control" type="date" value="2021-06-18" id="date_of_birth">
           </div>
                         </div>
                         
