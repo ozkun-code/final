@@ -37,12 +37,26 @@ class Patients extends Controller
         $navView = $loginModel->getNavView($role);
         $this->view($navView);
 
-        $PatientModel = new PatientModel();
-        $data['Patients'] = $PatientModel->getAllpatient();
+        $patientModel = new PatientModel();
+        $data['kecamatan'] = $patientModel->getAllKecamatan();
 
-        $this->view('Patients/create', $data);
+        // Mendapatkan id kecamatan pertama sebagai default
+        $defaultKecamatanId = isset($data['kecamatan'][0]['id']) ? $data['kecamatan'][0]['id'] : null;
+
+        // Mendapatkan desa berdasarkan kecamatan_id
+        $data['desa'] = $defaultKecamatanId ? $patientModel->getDesaByKecamatanId($defaultKecamatanId) : [];
+
+        $this->view('patients/create', $data);
 
         $this->view('layouts/footer/footer');
+    }
+    public function getVillagesBySubdistrictId($subdistrictId)
+    {
+        $patientModel = new PatientModel();
+        $villages = $patientModel->getVillagesBySubdistrictId($subdistrictId);
+
+        // Ubah data desa ke dalam format JSON
+        echo json_encode($villages);
     }
 
     public function delete($id)
