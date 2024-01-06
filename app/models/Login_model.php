@@ -42,8 +42,8 @@ class LoginModel extends Database
                 return 'layouts/navSuperadmin';
             case 'admin':
                 return 'layouts/navAdmin';
-            case 'Doctor':
-                return 'layouts/navDoctor';
+            case 'doctor':
+                return 'layouts/navDoctors';
             default:
                 return 'layouts/navPatient';
         }
