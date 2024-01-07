@@ -1,13 +1,16 @@
 <?php
-session_start();
 
-// Hapus cookie sesi
-setcookie(session_name(), '', time() - 3600, '/');
+class Logout extends Controller
+{
+    public function index()
+    {
+        // Check if a session is active
+        if (session_status() == PHP_SESSION_ACTIVE) {
+            // If active, then destroy the session
+            session_destroy();
+        }
 
-// Hapus variabel sesi
-unset($_SESSION['username']);
-unset($_SESSION['login']);
-session_destroy();
-
-// Redirect ke halaman login
-header("Location: login.php?pesan=keluar");
+        // Redirect to the home page
+        $this->view('home/index');
+    }
+}
