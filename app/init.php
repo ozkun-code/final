@@ -11,7 +11,8 @@ require_once 'models/Patients_model.php';
 require_once 'models/Admin_model.php';
 require_once 'models/Drug_model.php';
 require_once 'models/Setting_model.php';
-require_once 'models/Appointment_model.php';
+require_once 'models/Diagnoses_model.php';
+require_once 'models/MedicalInformationModel.php';
 
 
 

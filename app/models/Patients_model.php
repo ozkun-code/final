@@ -12,11 +12,16 @@ class PatientModel extends Database
     }
 
     public function getPatientById($id)
-    {
-        $this->query('SELECT * FROM ' . $this->table . ' WHERE id = :id');
-        $this->bind(':id', $id);
-        return $this->single();
-    }
+{
+    $this->query('SELECT patients.*, kecamatan.name as kecamatan_name, desa.name as desa_name 
+                  FROM ' . $this->table . ' 
+                  JOIN kecamatan ON patients.kecamatan_id = kecamatan.id 
+                  JOIN desa ON patients.desa_id = desa.id 
+                  WHERE patients.id = :id');
+    $this->bind(':id', $id);
+    return $this->single();
+}
+
 
     public function createPatient($patient, $userId)
     {

@@ -52,11 +52,11 @@
                       </td>
                       <td class="" style="">
                         <div class="d-inline-block">
-                          <a href="<?= BASEURL; ?>/patients/detail/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit">
-                            <i class="bx bxs-user-detail" title="detail patient"></i>
+                          <a href="<?= BASEURL; ?>/diagnoses/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit">
+                            <i class="bx bx-history" title="history diagnosa"></i>
                           </a>
-                          <a href="<?= BASEURL; ?>/patients/edit/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit">
-                            <i class="bx bxs-edit" title="edit patient"></i>
+                          <a href="<?= BASEURL; ?>/patients/detail/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit">
+                            <i class="bx bx-edit-alt" title="edit patients"></i>
                           </a>
                           <a href="#" class="btn btn-sm btn-icon delete-record" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $patient['id']; ?>">
                             <i class="bx bxs-trash" title="delete patient"></i>
