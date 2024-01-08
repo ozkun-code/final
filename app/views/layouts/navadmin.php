@@ -96,7 +96,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a href="<?= BASEURL; ?>/drug/create" class="menu-link">
+                <a href="<?= BASEURL; ?>/transaction" class="menu-link">
                   <div data-i18n="Without navbar">Invoice</div>
                 </a>
               </li>
