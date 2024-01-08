@@ -8,6 +8,5 @@ class Controller {
         require_once '../app/views/'. $view . '.php';
 
     }
-
 }
 
