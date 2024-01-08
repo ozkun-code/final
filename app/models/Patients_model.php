@@ -3,6 +3,8 @@ class PatientModel extends Database
 {
 
     private $table = 'patients';
+    private $table1 = 'kecamatan';
+    private $table2 = 'desa';
 
     public function getAllPatient()
     {
@@ -65,6 +67,24 @@ class PatientModel extends Database
                   JOIN users ON patients.user_id = users.id 
                   WHERE patients.first_name LIKE :name OR patients.last_name LIKE :name');
         $this->bind(':name', '%' . $name . '%');
+        return $this->resultSet();
+    }
+    public function getAllKecamatan()
+    {
+        $this->query('SELECT * FROM ' . $this->table1);
+        return $this->resultSet();
+    }
+    public function getDesaByKecamatanId($kecamatanId)
+    {
+        $this->query('SELECT * FROM ' . $this->table2 . ' WHERE kecamatan_id = :kecamatan_id');
+        $this->bind(':kecamatan_id', $kecamatanId);
+        return $this->resultSet();
+    }
+    // Pada file model (misalnya PatientModel.php)
+    public function getVillagesBySubdistrictId($subdistrictId)
+    {
+        $this->query('SELECT * FROM ' . $this->table2 . ' WHERE kecamatan_id = :kecamatan_id');
+        $this->bind(':kecamatan_id', $subdistrictId);
         return $this->resultSet();
     }
 }

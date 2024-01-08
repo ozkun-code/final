@@ -37,7 +37,6 @@
               <i class="menu-icon tf-icons bx bx-user"></i>
               <div data-i18n="Layouts">Patients</div>
             </a>
-
             <ul class="menu-sub">
               <li class="menu-item">
                 <a href="<?= BASEURL; ?>/patients" class="menu-link">
@@ -47,6 +46,19 @@
               <li class="menu-item">
                 <a href="<?= BASEURL; ?>/patients/create" class="menu-link">
                   <div data-i18n="Without navbar">Add New Patients</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-heart"></i>
+              <div data-i18n="Authentications">Doctors</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="<?= BASEURL; ?>/doctors" class="menu-link">
+                  <div data-i18n="Basic">List Doctors</div>
                 </a>
               </li>
             </ul>
@@ -72,10 +84,23 @@
           </li>
           <!-- Appointments list -->
           <li class="menu-item">
-            <a href="appointments.html" class="menu-link">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class="menu-icon tf-icons bx bx-notepad"></i>
-              <div data-i18n="Appointments">Prescription</div>
+              <div data-i18n="Layouts">Transactions
+              </div>
             </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="<?= BASEURL; ?>/drug" class="menu-link">
+                  <div data-i18n="Without menu">List Of Transactions</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="<?= BASEURL; ?>/drug/create" class="menu-link">
+                  <div data-i18n="Without navbar">Invoice</div>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
           <li class="menu-item">
@@ -85,7 +110,7 @@
             </a>
           </li>
           <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+            <a href="<?= BASEURL; ?>/logout" class="menu-link">
               <i class="menu-icon tf-icons bx bx-log-out"></i>
               <div data-i18n="Basic">Logout</div>
             </a>

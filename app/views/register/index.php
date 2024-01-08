@@ -86,10 +86,6 @@
                                     <input type="password" class="form-control" id="password" name="password" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="password">Confirm Password:</label>
-                                    <input type="password" class="form-control" id="password" name="password" required>
-                                </div>
-                                <div class="mb-3">
                                     <label class="form-label" for="gender">Gender:</label><br>
                                     <label>Male</label>
                                     <input type="radio" name="gender" id="male" value="male" checked>
@@ -97,67 +93,122 @@
                                     <input type="radio" name="gender" id="female" value="female">
                                     </fieldset>
                                 </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="date_of_birth" class="col-md-2 col-form-label">Date</label>
+                                        <input class="form-control" type="date" value="" id="date_of_birth" name="date_of_birth">
+                                    </div>
+                                </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="contact">Contact:</label>
                                     <input type="text" class="form-control" id="contact" name="contact" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="address">Address:</label>
-                                    <textarea class="form-control" id="address" name="address" required></textarea><br>
+                                    <label class="form-label" for="address">Address:</label><input type="text" class="form-control" id="address" name="address" required>
+                                </div>
+                                <?php Flasher::flash(); ?>
+                                <form action="<?= BASEURL; ?>/patients/createactive" method="post">
+                                    <!-- ... (Form fields above) ... -->
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="subdistrict">Subdistrict:</label>
+                                                <select class="form-select" id="subdistrict" name="subdistrict" required>
+                                                    <?php foreach ($data['kecamatan'] as $kecamatan) : ?>
+                                                        <option value="<?php echo $kecamatan['id']; ?>"><?php echo $kecamatan['nama_kecamatan']; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="village">Village:</label>
+                                                <select class="form-select" id="village" name="village" required>
+                                                    <!-- Options for village will be dynamically populated using JavaScript -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="mb-3">
-                                        <label class="form-label" for="date_of_birth">date 0f birth:</label><br>
-                                        <input id="date_of_birth" name="date_of_birth" type="date">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
+                                            <label class="form-check-label" for="terms-conditions">
+                                                I agree to
+                                                <a href="javascript:void(0);">privacy policy & terms</a>
+                                            </label>
+                                        </div>
+                                        <button class="btn btn-primary d-grid w-100">Sign up</button>
                                     </div>
 
-                                </div>
-                            </form>
+                                    <p class="text-center">
+                                        <span>Already have an account?</span>
+                                        <a href="<?= BASEURL; ?>/login">
+                                            <span>Sign in instead</span>
+                                        </a>
+                                    </p>
+                                </form>
                         </div>
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
-                                <label class="form-check-label" for="terms-conditions">
-                                    I agree to
-                                    <a href="javascript:void(0);">privacy policy & terms</a>
-                                </label>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary d-grid w-100">Sign up</button>
-                        </form>
-
-                        <p class="text-center">
-                            <span>Already have an account?</span>
-                            <a href="<?= BASEURL; ?>/login">
-                                <span>Sign in instead</span>
-                            </a>
-                        </p>
-
                     </div>
-                    <!-- Register Card -->
                 </div>
+                <!-- Register Card -->
             </div>
         </div>
+    </div>
 
-        <!-- / Content -->
+    <!-- / Content -->
 
-        <!-- Core JS -->
-        <!-- build:js assets/vendor/js/core.js -->
-        <script src="https://www.rapidexpress.pk/vendor/libs/jquery/jquery.js"></script>
-        <script src="https://www.rapidexpress.pk/vendor/libs/popper/popper.js"></script>
-        <script src="https://www.rapidexpress.pk/vendor/js/bootstrap.js"></script>
-        <script src="https://www.rapidexpress.pk/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="https://www.rapidexpress.pk/vendor/libs/jquery/jquery.js"></script>
+    <script src="https://www.rapidexpress.pk/vendor/libs/popper/popper.js"></script>
+    <script src="https://www.rapidexpress.pk/vendor/js/bootstrap.js"></script>
+    <script src="https://www.rapidexpress.pk/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-        <script src="https://www.rapidexpress.pk/vendor/js/menu.js"></script>
-        <!-- endbuild -->
+    <script src="https://www.rapidexpress.pk/vendor/js/menu.js"></script>
+    <!-- endbuild -->
 
-        <!-- Vendors JS -->
+    <!-- Vendors JS -->
 
-        <!-- Main JS -->
-        <script src="https://www.rapidexpress.pk/js/main.js"></script>
+    <!-- Main JS -->
+    <script src="https://www.rapidexpress.pk/js/main.js"></script>
 
-        <!-- Page JS -->
+    <!-- Page JS -->
 
-        <!-- Place this tag in your head or just before your close body tag. -->
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        // Dapatkan elemen select kecamatan dan desa
+        var subdistrictSelect = document.getElementById("subdistrict");
+        var villageSelect = document.getElementById("village");
+
+        // Fungsi untuk memperbarui pilihan desa berdasarkan kecamatan yang dipilih
+        function updateVillageOptions() {
+            var selectedSubdistrictId = subdistrictSelect.value;
+
+            // Hapus semua opsi desa yang ada
+            villageSelect.innerHTML = "";
+
+            // Ambil data desa berdasarkan kecamatan_id menggunakan AJAX atau fetch API
+            // Contoh sederhana menggunakan fetch API
+            fetch("<?= BASEURL; ?>/patients/getVillagesBySubdistrictId/" + selectedSubdistrictId)
+                .then(response => response.json())
+                .then(data => {
+                    // Tambahkan opsi desa ke dalam elemen select desa
+                    data.forEach(village => {
+                        var option = new Option(village.nama_desa, village.id);
+                        villageSelect.add(option);
+                    });
+                })
+                .catch(error => console.error("Error fetching villages:", error));
+        }
+
+        // Panggil fungsi untuk pertama kali
+        updateVillageOptions();
+
+        // Tambahkan event listener untuk memperbarui opsi desa ketika pilihan kecamatan berubah
+        subdistrictSelect.addEventListener("change", updateVillageOptions);
+    </script>
 
 </body>
 
