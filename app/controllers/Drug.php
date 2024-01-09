@@ -1,13 +1,6 @@
 <?php
 class Drug extends Controller
 {
-    protected $data = array();
-
-    public function __construct()
-    {
-        // Menetapkan nilai di dalam konstruktor
-        $this->data['nama_controller'] = 'drugs';
-    }
     public function index($name = null)
     {
 
@@ -20,14 +13,9 @@ class Drug extends Controller
         $this->view($navView);
 
         $drugModel = new DrugModel();
-        // Cek apakah ada query pencarian
-        if ($name) {
-            $data['drugs'] = $drugModel->searchDrug($name);
-        } else {
-            $data['drugs'] = $drugModel->getAllDrug();
-        }
-
-        $this->view('drug/index', $data);
+        $data['drugs'] = $drugModel->getAllDrug();
+   
+        $this->view('drug/index', ['data' => $data]);
 
         $this->view('layouts/footer/footer');
     }
@@ -128,4 +116,31 @@ class Drug extends Controller
             exit;
         }
     }
+        public function serverSide()
+    {
+        // Ambil parameter dari permintaan DataTables
+        $draw = $_POST['draw'];
+        $start = $_POST['start'];
+        $length = $_POST['length'];
+        $search = $_POST['search']['value'];
+
+        // Query untuk mengambil data dari database sesuai dengan parameter DataTables
+        $drugModel = new DrugModel();
+        $data['drugs'] = $drugModel->getDataTableData($start, $length, $search);
+
+        // Query untuk menghitung total data yang sesuai dengan pencarian
+        $total = $drugModel->countDataTableData($search);
+
+        // Format respons yang diharapkan oleh DataTables
+        $response = array(
+            'draw' => intval($draw),
+            'recordsTotal' => $total,
+            'recordsFiltered' => $total,
+            'data' => $data['drugs'],
+        );
+
+        // Konversi respons ke format JSON dan kirimkan
+        echo json_encode($response);
+    }
+
 }

@@ -10,7 +10,7 @@
             <span class="app-brand-logo demo">
               <img src="<?= BASEURL; ?>/assets/img/icons/icon.svg" width="45" />
             </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">SEECARE</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">SeeCare</span>
           </a>
 
           <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -25,7 +25,7 @@
           <li class="menu-item">
             <a href="<?php BASEURL; ?>/dashboard" class="menu-link">
               <i class="menu-icon tf-icons bx bx-home-circle"></i>
-              <div data-i18n="Dashboards">Dashboards</div>
+              <div data-i18n="Dashboards">Dashboards Owner</div>
             </a>
 
           </li>

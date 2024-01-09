@@ -25,6 +25,7 @@ class Admin extends Controller
 
         $this->view('layouts/footer/footer');
     }
+
     public function create()
     {
         $role = $_SESSION['role'];
@@ -43,10 +44,8 @@ class Admin extends Controller
         $this->view('layouts/footer/footer');
     }
 
-
     public function createactive()
     {
-
         $userModel = new LoginModel();
         $email = $_POST['email'];
         $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -81,7 +80,6 @@ class Admin extends Controller
 
     public function edit($id)
     {
-
         $role = $_SESSION['role'];
         $this->view('layouts/head/head');
 
@@ -89,7 +87,6 @@ class Admin extends Controller
         $navView = $loginModel->getNavView($role);
 
         $this->view($navView);
-
 
         $adminModel = new AdminModel();
         $admin = $adminModel->getAdminById($id);
@@ -101,14 +98,13 @@ class Admin extends Controller
 
     public function updateAdmin($id)
     {
-        // Create instance of Admin model
         $adminModel = new AdminModel();
 
         $data = [
             'first_name' => $_POST['first_name'],
             'last_name' => $_POST['last_name'],
             'contact' => $_POST['contact'],
-            'specialty' => $_POST['specialty'], // Set default value for specialty
+            'specialty' => $_POST['specialty'],
         ];
 
         if ($adminModel->updateAdmin($id, $data) > 0) {
@@ -121,17 +117,19 @@ class Admin extends Controller
             exit;
         }
     }
+
     public function delete($id)
     {
         $adminModel = new AdminModel();
         if ($adminModel->deleteAdmin($id) > 0) {
-            Flasher::setFlash('Admin berhasil', 'di hapus', 'success');
+            Flasher::setFlash('Admin berhasil', 'di nonaktifkan', 'success');
             header('Location: ' . BASEURL . '/admin');
             exit;
         } else {
-            Flasher::setFlash('Admin gagal', 'di hapus', 'danger');
+            Flasher::setFlash('Admin gagal', 'di nonaktifkan', 'danger');
             header('Location: ' . BASEURL . '/admin');
             exit;
         }
     }
 }
+?>

@@ -61,6 +61,7 @@
 
     <!-- Main JS -->
     <script src="<?= BASEURL; ?>/assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Page JS -->
     <script src="<?= BASEURL; ?>/assets/js/dashboards-analytics.js"></script>

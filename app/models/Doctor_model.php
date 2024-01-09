@@ -4,7 +4,7 @@ class DoctorModel extends Database {
 
 
     public function getAllDoctor() {
-        $this->query('SELECT doctors.id, doctors.first_name, doctors.last_name , doctors.specialty,doctors.contact, users.email FROM ' . $this->table . ' JOIN users ON doctors.user_id = users.id');
+        $this->query('SELECT doctors.id, doctors.first_name, doctors.last_name , doctors.specialty,doctors.contact, doctors.status_account, users.email FROM ' . $this->table . ' JOIN users ON doctors.user_id = users.id');
 
         return $this->resultSet();
     }
@@ -17,12 +17,13 @@ class DoctorModel extends Database {
 
     public function createDoctor($data, $userId) {
 
-        $this->query('INSERT INTO ' . $this->table . ' (user_id, first_name, last_name, contact, specialty) VALUES (:user_id, :first_name, :last_name, :contact, :specialty)');
+        $this->query('INSERT INTO ' . $this->table . ' (user_id, first_name, last_name, contact, specialty, status_account) VALUES (:user_id, :first_name, :last_name, :contact, :specialty, :status_account)');
         $this->bind(':user_id', $userId);
         $this->bind(':first_name', $data['first_name']);
         $this->bind(':last_name', $data['last_name']);
         $this->bind(':contact', $data['contact']);
         $this->bind(':specialty', $data['specialty']);
+        $this->bind(':status_account', true);
         $this->execute();
         return $this->rowCount();
     }
@@ -42,19 +43,13 @@ class DoctorModel extends Database {
 
 
     public function deleteDoctor($id) {
-        $this->query('DELETE FROM ' . $this->table . ' WHERE id = :id');
+        $this->query('UPDATE ' . $this->table . ' SET status_account = FALSE WHERE id = :id');
         $this->bind(':id', $id);
         $this->execute();
         return $this->rowCount();
     }
     
   
-    public function searchDoctor($name) {
-        $this->query('SELECT doctors.id, doctors.first_name, doctors.last_name, doctors.specialty, doctors.contact, users.email FROM ' . $this->table . ' JOIN users ON doctors.user_id = users.id WHERE doctors.first_name LIKE :name OR doctors.last_name LIKE :name');
-        $this->bind(':name', '%' . $name . '%');
-        return $this->resultSet();
-    }
-    
 }
 
 ?>

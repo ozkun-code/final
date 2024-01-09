@@ -48,7 +48,7 @@
                             </div>
                             <div class="col">
                                 <div class="mb-3">
-                                    <label for="date_of_birth" class="col-md-2 col-form-label">Date</label>
+                                    <label for="date_of_birth" class="col-md-2 col-form-label">Date of Birth</label>
                                     <input class="form-control" type="date" value="2021-06-18" id="date_of_birth" name="date_of_birth">
                                 </div>
                             </div>
@@ -68,19 +68,19 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="subdistrict">Subdistrict:</label>
-                                        <select class="form-select" id="subdistrict" name="subdistrict" required>
-                                            <?php foreach ($data['kecamatan'] as $kecamatan) : ?>
-                                                <option value="<?php echo $kecamatan['id']; ?>"><?php echo $kecamatan['nama_kecamatan']; ?></option>
-                                            <?php endforeach; ?>
+                                        <label class="form-label" for="kecamatan_id">Subdistrict:</label>
+                                        <select class="form-select" id="kecamatan_id" name="kecamatan_id" required>
+                                        <?php foreach ($data['kecamatan'] as $kecamatan) : ?>
+    <option value="<?= $kecamatan['id']; ?>"><?= $kecamatan['name']; ?></option>
+<?php endforeach; ?>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col">
                                     <div class="mb-3">
-                                        <label class="form-label" for="village">Village:</label>
-                                        <select class="form-select" id="village" name="village" required>
+                                        <label class="form-label" for="desa_id">Village:</label>
+                                        <select class="form-select" id="desa_id" name="desa_id" required>
                                             <!-- Options for village will be dynamically populated using JavaScript -->
                                         </select>
                                     </div>
@@ -97,8 +97,8 @@
     <!-- / Content -->
     <script>
         // Dapatkan elemen select kecamatan dan desa
-        var subdistrictSelect = document.getElementById("subdistrict");
-        var villageSelect = document.getElementById("village");
+        var subdistrictSelect = document.getElementById("kecamatan_id");
+        var villageSelect = document.getElementById("desa_id");
 
         // Fungsi untuk memperbarui pilihan desa berdasarkan kecamatan yang dipilih
         function updateVillageOptions() {
@@ -114,7 +114,7 @@
                 .then(data => {
                     // Tambahkan opsi desa ke dalam elemen select desa
                     data.forEach(village => {
-                        var option = new Option(village.nama_desa, village.id);
+                        var option = new Option(village.name, village.id);
                         villageSelect.add(option);
                     });
                 })

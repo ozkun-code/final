@@ -16,35 +16,7 @@
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
               <div class="card-header flex-column flex-md-row">
                 <div class="head-label text-center">
-                <script>
-                  function submitForm() {
-                      var searchValue = document.getElementById('search').value;
-                      var form = document.getElementById('searchForm');
-                      form.action = "<?= BASEURL; ?>/doctors/" + searchValue;
-                      form.submit();
-                  }
-                  </script>
-
-                  <form class="d-flex" id="searchForm" onsubmit="event.preventDefault(); submitForm();">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" id="search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
-
-
           </div>
-
-
-                <div class="dt-action-buttons text-end pt-3 pt-md-0">
-                  <div class="dt-buttons">
-                    <a href="<?= BASEURL; ?>/doctors/create/" class="dt-button create-new btn btn-primary" tabindex="0" aria-controls="DataTables_Table_0">
-                      <span>
-                        <i class="bx bx-plus me-sm-1"></i>
-                        <span class="d-none d-sm-inline-block">Add New Doctors</span>
-                      </span>
-                    </a>
-
-                  </div>
-                </div>
               </div>
               <div class="card-body text-center">
                 <?php Flasher::flash(); ?>
@@ -52,33 +24,20 @@
               <table class="datatables-basic table border-top dataTable no-footer dtr-column" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style="width: 1163px;">
                 <thead>
                   <tr>
-                    <th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1" style="width: 0px; display: none;" aria-label=""></th>
-                    <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all" rowspan="1" colspan="1" style="width: 18px;" data-col="1" aria-label="">
-                      <input type="checkbox" class="form-check-input">
-                    </th>
-                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 82px;">ID</th>
+                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 20px;">No.</th>
                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Nama</th>
-                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Email</th>
-                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Contact</th>
-                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 112px;">specialty</th>
+                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;">Email</th>
+                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 50px;">Contact</th>
+                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 62px;">specialty</th>
                     <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 66px;">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($data['doctors'] as $doctor) : ?>
+                  <?php $number = 1; foreach ($data['doctors'] as $doctor) : ?>
+                    <?php if ($doctor['status_account']) : ?>
                     <tr class="odd">
-                      <td class="control dtr-hidden" tabindex="0" style="display: none;"></td>
-                      <td class="  dt-checkboxes-cell">
-                        <input type="checkbox" class="dt-checkboxes form-check-input">
-                      </td>
-                      <td>
-                        <div class="d-flex justify-content-start align-items-center user-name">
-                          <div class="d-flex flex-column">
-                            <span class="emp_name text-truncate"><?= $doctor['id'] ?></span>
-                          </div>
-                        </div>
-                      </td>
-                      <td><?= ucfirst($doctor['first_name']) . ' ' . ucfirst($doctor['last_name']) ?></td>
+                      <td><?= $number++; ?></td>
+                      <td>dr. <?= ucfirst($doctor['first_name']) . ' ' . ucfirst($doctor['last_name']) ?></td>
                       <td><?= $doctor['email'] ?></td>
                       <td><?= $doctor['contact'] ?></td>
                       <td class="" style="">
@@ -114,6 +73,7 @@
                     </div>
 
                 </tbody>
+                <?php endif; ?>
               <?php endforeach; ?>
               </table>
 

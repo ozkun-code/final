@@ -25,37 +25,53 @@ class PatientModel extends Database
 }
 
 
-    public function createPatient($patient, $userId)
-    {
-        $this->query('INSERT INTO ' . $this->table . ' (user_id, first_name, last_name, contact, address, date_of_birth, gender) VALUES (:user_id, :first_name, :last_name, :contact, :address, :date_of_birth, :gender)');
-        $this->bind(':user_id', $userId);
-        $this->bind(':first_name', $patient['first_name']);
-        $this->bind(':last_name', $patient['last_name']);
-        $this->bind(':contact', $patient['contact']);
-        $this->bind(':address', $patient['address']);
-        $this->bind(':gender', $patient['gender']);
-        $this->bind(':date_of_birth', $patient['date_of_birth']);
-        $this->execute();
-        return $this->rowCount();
-    }
+public function createPatient($patient, $userId)
+{
+    $this->query('INSERT INTO ' . $this->table . ' (user_id, kecamatan_id, desa_id, first_name, last_name, gender, contact, address, date_of_birth, status_account) VALUES (:user_id, :kecamatan_id, :desa_id, :first_name, :last_name, :gender, :contact, :address, :date_of_birth, :status_account)');
+    
+    $this->bind(':user_id', $userId);
+    $this->bind(':kecamatan_id', $patient['kecamatan_id']);
+    $this->bind(':desa_id', $patient['desa_id']);
+    $this->bind(':first_name', $patient['first_name']);
+    $this->bind(':last_name', $patient['last_name']);
+    $this->bind(':gender', $patient['gender']);
+    $this->bind(':contact', $patient['contact']);
+    $this->bind(':address', $patient['address']);
+    $this->bind(':date_of_birth', $patient['date_of_birth']);
+    $this->bind(':status_account',true);
+
+    $this->execute();
+    
+    return $this->rowCount();
+}
 
 
-    public function updatePatient($id, $patient)
-    {
-        $this->query('UPDATE ' . $this->table . ' SET first_name = :first_name, last_name = :last_name, contact = :contact, addres = :addres, date_of_birth = :date_of_birth WHERE id = :id');
-        $this->bind(':id', $id);
-        $this->bind(':first_name', $patient['first_name']);
-        $this->bind(':last_name', $patient['last_name']);
-        $this->bind(':contact', $patient['contact']);
-        $this->bind(':address', $patient['address']);
-        $this->bind(':date_of_birth', $patient['date_of_birth']);
-        $this->execute();
-        return $this->rowCount();
-    }
+
+public function updatePatient($id, $patient)
+{
+    $this->query('UPDATE ' . $this->table . ' SET user_id = :user_id, kecamatan_id = :kecamatan_id, desa_id = :desa_id, first_name = :first_name, last_name = :last_name, gender = :gender, contact = :contact, address = :address, date_of_birth = :date_of_birth, status_account = :status_account WHERE id = :id');
+    
+    $this->bind(':id', $id);
+    $this->bind(':user_id', $patient['user_id']);
+    $this->bind(':kecamatan_id', $patient['kecamatan_id']);
+    $this->bind(':desa_id', $patient['desa_id']);
+    $this->bind(':first_name', $patient['first_name']);
+    $this->bind(':last_name', $patient['last_name']);
+    $this->bind(':gender', $patient['gender']);
+    $this->bind(':contact', $patient['contact']);
+    $this->bind(':address', $patient['address']);
+    $this->bind(':date_of_birth', $patient['date_of_birth']);
+    $this->bind(':status_account', true);
+
+    $this->execute();
+    
+    return $this->rowCount();
+}
+
 
     public function deletePatient($id)
     {
-        $this->query('DELETE FROM ' . $this->table . ' WHERE id = :id');
+        $this->query('UPDATE ' . $this->table . ' SET status_account = FALSE WHERE id = :id');
         $this->bind(':id', $id);
         $this->execute();
         return $this->rowCount();

@@ -19,16 +19,12 @@
                            
                         </div>
                         <div class="card-body text-center">
-                            <?php Flasher::flash(); ?>
                         </div>
                         <table class="datatables-basic table border-top dataTable no-footer dtr-column" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style="width: 1163px;">
                             <thead>
                                 <tr>
                                     <th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1" style="width: 0px; display: none;" aria-label=""></th>
-                                    <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all" rowspan="1" colspan="1" style="width: 18px;" data-col="1" aria-label="">
-                                        <input type="checkbox" class="form-check-input">
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 82px;">ID</th>
+                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 25px;">No.</t>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Nama</th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Email</th>
                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Contact</th>
@@ -36,19 +32,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data['admins'] as $admin) : ?>
+                                <?php $number = 1; foreach ($data['admins'] as $admin) : ?>
+                                    <?php if ($admin['status_account']) : ?>
                                     <tr class="odd">
                                         <td class="control dtr-hidden" tabindex="0" style="display: none;"></td>
-                                        <td class="  dt-checkboxes-cell">
-                                            <input type="checkbox" class="dt-checkboxes form-check-input">
-                                        </td>
-                                        <td>
-                                            <div class="d-flex justify-content-start align-items-center user-name">
-                                                <div class="d-flex flex-column">
-                                                    <span class="emp_name text-truncate"><?= $admin['id'] ?></span>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td><?= $number++; ?></td>
                                         <td><?= ucfirst($admin['first_name']) . ' ' . ucfirst($admin['last_name']) ?></td>
                                         <td><?= $admin['email'] ?></td>
                                         <td><?= $admin['contact'] ?></td>
@@ -82,6 +70,7 @@
                                     </div>
 
                             </tbody>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                         </table>
 
