@@ -55,23 +55,5 @@ class DrugModel extends Database
         $this->bind(':name', '%' . $name . '%');
         return $this->resultSet();
     }
-    public function getDataTableData($start, $length, $search)
-    {
-        $query = "SELECT * FROM " . $this->table . " WHERE nama_obat LIKE '%$search%' LIMIT $start, $length";
-        $this->query($query);
-        $data = $this->resultSet();
     
-        return $data;
-    }
-    
-    public function countDataTableData($search)
-    {
-        $query = "SELECT COUNT(*) as total FROM " . $this->table . " WHERE nama_obat LIKE '%$search%'";
-        $this->query($query);
-        $total = $this->single()['total'];
-    
-        return $total;
-    }
-    
-
 }
