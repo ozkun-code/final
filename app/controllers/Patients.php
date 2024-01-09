@@ -4,8 +4,10 @@ class Patients extends Controller
 
     public function index($name = null)
     {
-        $role = $_SESSION['role'];
+        // Check if 'role' key is set in the $_SESSION array
+        $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
 
+        // Rest of your code remains unchanged...
         $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
@@ -160,26 +162,25 @@ class Patients extends Controller
         }
     }
     public function detail($id)
-{
+    {
 
-    $role = $_SESSION['role'];
+        $role = $_SESSION['role'];
         $this->view('layouts/head/head');
 
         $loginModel = new LoginModel();
         $navView = $loginModel->getNavView($role);
 
         $this->view($navView);
-    // Dapatkan data pasien dari model
-    $patientModel = new PatientModel();
-    $patient = $patientModel->getPatientById($id);
+        // Dapatkan data pasien dari model
+        $patientModel = new PatientModel();
+        $patient = $patientModel->getPatientById($id);
 
-    // Dapatkan informasi medis dari model
-    $medicalModel = new MedicalInformationModel();
-    $medical = $medicalModel->getMedicalInformationByPatientId($id);
+        // Dapatkan informasi medis dari model
+        $medicalModel = new MedicalInformationModel();
+        $medical = $medicalModel->getMedicalInformationByPatientId($id);
 
-    // Tampilkan view dengan data pasien dan informasi medis
-    $this->view('patients/detail', ['patient' => $patient, 'medical' => $medical]);
-    $this->view('layouts/footer/footer');
-}
-
+        // Tampilkan view dengan data pasien dan informasi medis
+        $this->view('patients/detail', ['patient' => $patient, 'medical' => $medical]);
+        $this->view('layouts/footer/footer');
+    }
 }
