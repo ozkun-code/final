@@ -35,8 +35,8 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/apex-charts/apex-charts.css" />\
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/bootstrap-select/bootstrap-select.css">
+
 
     <!-- Page CSS -->
 

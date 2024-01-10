@@ -55,5 +55,17 @@ class DrugModel extends Database
         $this->bind(':name', '%' . $name . '%');
         return $this->resultSet();
     }
+    public function getObatById($id)
+    {
+        $this->query('SELECT harga_jual FROM ' . $this->table . ' WHERE id = :id');
+        $this->bind(':id', $id);
+        return $this->resultSet();
+    }
+    public function getAllDrugsSD()
+{
+    $this->query('SELECT id, nama_obat, harga_jual FROM ' . $this->table);
+    return $this->resultSet();
+}
+
     
 }

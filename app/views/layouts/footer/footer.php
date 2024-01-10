@@ -61,9 +61,9 @@
 
     <!-- Main JS -->
     <script src="<?= BASEURL; ?>/assets/js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+   
     <!-- Page JS -->
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
     <script src="<?= BASEURL; ?>/assets/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->

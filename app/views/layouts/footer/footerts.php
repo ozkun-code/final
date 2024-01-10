@@ -63,15 +63,19 @@
 <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/cleavejs/cleave.js"></script>
 <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/cleavejs/cleave-phone.js"></script>
 <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
+<script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
+
 
   <!-- Main JS -->
-  <script src="<?= BASEURL; ?>/assets/js/main.js"></script>
-  
-
-  <!-- Page JS -->
   <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/js/offcanvas-send-invoice.js"></script>
 <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/js/app-invoice-add.js"></script>
-  
+
+
+
+
+
+
+
 </body>
 
 </html>

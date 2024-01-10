@@ -15,6 +15,13 @@ class AdminModel extends Database
         $this->bind(':id', $id);
         return $this->single();
     }
+    public function getAdminByUserId($user_id)
+{
+    $this->query('SELECT * FROM ' . $this->table . ' WHERE user_id = :user_id');
+    $this->bind(':user_id', $user_id);
+    return $this->single();
+}
+
 
     public function createAdmin($data, $userId)
     {

@@ -21,11 +21,7 @@
               <table class="datatables-basic table border-top dataTable no-footer dtr-column" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style="width: 1163px;">
                 <thead>
                   <tr>
-                    <th class="control sorting_disabled dtr-hidden" rowspan="1" colspan="1" style="width: 0px; display: none;" aria-label=""></th>
-                    <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all" rowspan="1" colspan="1" style="width: 10px;" data-col="1" aria-label="">
-                      <input type="checkbox" class="form-check-input">
-                    </th>
-                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 20px;">ID</th>
+                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 20px;">No.</th>
                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Nama</th>
                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 100px;">Email</th>
                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 80px;">Contact</th>
@@ -33,19 +29,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach ($data['patients'] as $patient) : ?>
+                  <?php $number = 1; foreach ($data['patients'] as $patient) : ?>
                     <tr class="odd">
-                      <td class="control dtr-hidden" tabindex="0" style="display: none;"></td>
-                      <td class="  dt-checkboxes-cell">
-                        <input type="checkbox" class="dt-checkboxes form-check-input">
-                      </td>
-                      <td>
-                        <div class="d-flex justify-content-start align-items-center user-name">
-                          <div class="d-flex flex-column">
-                            <span class="emp_name text-truncate"><?= $patient['id'] ?></span>
-                          </div>
-                        </div>
-                      </td>
+                      <td><?= $number++; ?></td>
                       <td><?= ucfirst($patient['first_name']) . ' ' . ucfirst($patient['last_name']) ?></td>
                       <td><?= $patient['email'] ?></td>
                       <td><?= $patient['contact'] ?></td>
