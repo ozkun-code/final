@@ -84,7 +84,7 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a href="<?= BASEURL; ?>/admin/create" class="menu-link">
+                <a href="<?= BASEURL; ?>/drug/create" class="menu-link">
                   <div data-i18n="Under Maintenance">Add Drug</div>
                 </a>
               </li>
@@ -101,14 +101,14 @@
           <li class="menu-header small text-uppercase"><span class="menu-header-text">Transactions</span></li>
           <!-- Cards -->
           <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+            <a href="<?= BASEURL; ?>/transaction" class="menu-link">
               <i class="menu-icon tf-icons bx bx-food-menu"></i>
               <div data-i18n="Basic">Data Transaction</div>
             </a>
           </li>
           <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
           <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
+            <a href="<?= BASEURL; ?>/setting" class="menu-link">
               <i class="menu-icon tf-icons bx bx-cog"></i>
               <div data-i18n="Basic">Setting</div>
             </a>

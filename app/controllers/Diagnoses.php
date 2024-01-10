@@ -2,32 +2,32 @@
 class Diagnoses extends Controller
 {
     public function index($patientId = null)
-{
-    if (!$patientId) {
-        header('Location: ' . BASEURL . '/');
+    {
+        if (!$patientId) {
+            header('Location: ' . BASEURL . '/');
             exit;
+        }
+
+        $role = $_SESSION['role'];
+
+        $this->view('layouts/head/head');
+
+        $loginModel = new LoginModel();
+        $navView = $loginModel->getNavView($role);
+        $this->view($navView);
+
+        $diagnosisModel = new DiagnosisModel();
+
+        if ($patientId) {
+            $diagnoses = $diagnosisModel->getDiagnosesByPatientId($patientId);
+        } else {
+            $diagnoses = $diagnosisModel->getAllDiagnoses();
+        }
+
+        $this->view('diagnoses/index', ['diagnoses' => $diagnoses]);
+
+        $this->view('layouts/footer/footer');
     }
-
-    $role = $_SESSION['role'];
-
-    $this->view('layouts/head/head');
-
-    $loginModel = new LoginModel();
-    $navView = $loginModel->getNavView($role);
-    $this->view($navView);
-
-    $diagnosisModel = new DiagnosisModel();
-
-    if ($patientId) {
-        $diagnoses = $diagnosisModel->getDiagnosesByPatientId($patientId);
-    } else {
-        $diagnoses = $diagnosisModel->getAllDiagnoses();
-    }
-
-    $this->view('diagnoses/index', ['diagnoses' => $diagnoses]);
-
-    $this->view('layouts/footer/footer');
-}
 
 
     public function create()
@@ -55,6 +55,7 @@ class Diagnoses extends Controller
             'patient_id' => $_POST['patient_id'],
             'doctor_id' => $_POST['doctor_id'],
             'diagnosis' => $_POST['diagnosis'],
+            'diagnosis_information' => $_POST['diagnosis_information'],
             'date' => $_POST['date'],
         ];
 
@@ -86,5 +87,20 @@ class Diagnoses extends Controller
 
         $this->view('layouts/footer/footer');
     }
+
+    public function showDoctorName($doctorId)
+    {
+        $diagnosisModel = new DiagnosisModel();
+        $doctorName = $diagnosisModel->getDoctorNameById($doctorId);
+
+        $this->view('layouts/head/head');
+
+        $loginModel = new LoginModel();
+        $navView = $loginModel->getNavView($_SESSION['role']);
+        $this->view($navView);
+
+        $this->view('diagnoses/doctor_name', ['doctorName' => $doctorName]);
+
+        $this->view('layouts/footer/footer');
+    }
 }
-?>
