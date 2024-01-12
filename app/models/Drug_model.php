@@ -28,19 +28,19 @@ class DrugModel extends Database
         $this->bind(':harga_beli', $data['harga_beli']);
         $this->bind(':harga_jual', $data['harga_jual']);
         $this->execute();
-
+    
         $drugId = $this->lastInsertId();
-
+    
         $this->query('INSERT INTO ' . $this->tableDrugStock . ' (drug_id, quantity, expired_date, status) VALUES (:drug_id, :quantity, :expired_date, :status)');
         $this->bind(':drug_id', $drugId);
-        $this->bind(':quantity', $data['stok']);
-        $this->bind(':expired_date', $data['expired_date']); // Fix the typo here
-        $this->bind(':status', 'active');
+        $this->bind(':quantity', $data['quantity']); // Ubah dari 'stok' menjadi 'quantity'
+        $this->bind(':expired_date', $data['expired_date']);
+        $this->bind(':status', 1);
         $this->execute();
-
+    
         return $this->rowCount();
     }
-
+    
 
     public function updateDrug($id, $data)
     {

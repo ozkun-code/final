@@ -41,25 +41,27 @@ class Drug extends Controller
         $user_id = $_SESSION['user_id'];
         $userModel = new LoginModel();
         $adminModel = new AdminModel();
-        $userId = $userModel->lastInsertId(); // Dapatkan ID dari user yang baru saja dibuat
+        $userId = $userModel->lastInsertId(); // Assuming you want to use the last insert ID of the user
         $adminId = $adminModel->getAdminByUserId($user_id);
+        $adminId = $adminId['id'];
+        var_dump($adminId);
         $drugModel = new DrugModel();
         $data = [
             'nama_obat' => $_POST['nama_obat'],
             'harga_jual' => $_POST['harga_jual'],
             'harga_beli' => $_POST['harga_beli'],
             'quantity' => $_POST['quantity'],
-
             'expired_date' => $_POST['expired_date'],
         ];
-
+    
         if ($drugModel->createDrug($data, $adminId) > 0) {
             Flasher::setFlash('Drug berhasil', 'di tambahkan', 'success');
         }
-
-        header('Location: ' . BASEURL . '/drug');
+    
+        header('Location: ' . BASEURL . '/drug/new');
         exit;
     }
+    
 
 
     public function Stock()
