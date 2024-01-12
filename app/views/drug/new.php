@@ -19,14 +19,11 @@
                             <input type="text" class="form-control" id="nama_obat" name="nama_obat" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="harga_beli">purchase price :
-                            </label>
+                            <label class="form-label" for="harga_beli">Purchase price :</label>
                             <input type="text" class="form-control" id="harga_beli" name="harga_beli" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="harga_jual">selling price
-                                :
-                            </label>
+                            <label class="form-label" for="harga_jual">Selling price :</label>
                             <input type="text" class="form-control" id="harga_jual" name="harga_jual" required>
                         </div>
                         <div class="row">
@@ -43,13 +40,15 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Hidden input field to indicate the action -->
+                        <input type="hidden" name="action" value="addDrug">
+
                         <input type="submit" value="Add Drugs" class="btn btn-primary">
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
     <!-- / Content -->
-
 </div>

@@ -66,11 +66,11 @@ class Patients extends Controller
         $PatientModel = new PatientModel();
         if ($PatientModel->deletePatient($id) > 0) {
             Flasher::setFlash('Patient berhasil', 'di hapus', 'success');
-            header('Location: ' . BASEURL . '/Patients/create');
+            header('Location: ' . BASEURL . '/Patients');
             exit;
         } else {
             Flasher::setFlash('Patient gagal', 'di hapus', 'danger');
-            header('Location: ' . BASEURL . '/Patients/create');
+            header('Location: ' . BASEURL . '/Patients');
             exit;
         }
     }
@@ -174,6 +174,7 @@ class Patients extends Controller
         // Dapatkan data pasien dari model
         $patientModel = new PatientModel();
         $patient = $patientModel->getPatientById($id);
+        
 
         // Dapatkan informasi medis dari model
         $medicalModel = new MedicalInformationModel();

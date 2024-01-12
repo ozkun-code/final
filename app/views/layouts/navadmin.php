@@ -76,8 +76,13 @@
                 </a>
               </li>
               <li class="menu-item">
-                <a href="<?= BASEURL; ?>/drug/create" class="menu-link">
-                  <div data-i18n="Without navbar">Add New Drug</div>
+                <a href="<?= BASEURL; ?>/drug/new" class="menu-link">
+                  <div data-i18n="Under Maintenance">Add New Drug</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="<?= BASEURL; ?>/drug/stock" class="menu-link">
+                  <div data-i18n="Under Maintenance">Add Stock Drug</div>
                 </a>
               </li>
             </ul>

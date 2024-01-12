@@ -27,15 +27,19 @@
 
     <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/fonts/boxicons.css" />
 
-    <!-- Core CSS -->
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/css/demo.css" />
+   <!-- Core CSS -->
+   <link rel="stylesheet" href="http://final1.test/assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="http://final1.test/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="http://final1.test/assets/css/demo.css" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="<?= BASEURL; ?>/assets/vendor/libs/apex-charts/apex-charts.css" />\
+    <link rel="stylesheet" href="http://final1.test/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="http://final1.test/assets/vendor/libs/apex-charts/apex-charts.css" />\
     <link rel="stylesheet" type="text/css" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/bootstrap-select/bootstrap-select.css">
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css">
+<link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css">
+<link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/flatpickr/flatpickr.css" />
+
 
 
     <!-- Page CSS -->

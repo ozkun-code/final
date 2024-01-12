@@ -1,90 +1,71 @@
-    <!-- Content wrapper -->
-    <div class="content-wrapper">
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="py-3 mb-4">
+            <span class="text-muted fw-light">DataTables /</span> Drug
+        </h4>
 
-        <!-- Content -->
-        <div class="container-xxl flex-grow-1 container-p-y">
+        <!-- DataTable with Buttons -->
+        <div class="card">
+            <div class="tab-content doc-example-content" id="tab-tabContent" data-label="Example">
+                <div class="card-body text-center">
+                    <?php Flasher::flash(); ?>
+                </div>
+                <div class="tab-pane fade show active" id="basic-datatable-preview" role="tabpanel" aria-labelledby="basic-datatable-preview-tab">
+                    <div class="card">
+                        <div class="card-datatable table-responsive pt-0">
 
-            <h4 class="py-3 mb-4">
-                <span class="text-muted fw-light">DataTables /</span> Drug
-            </h4>
-
-            <!-- DataTable with Buttons -->
-            <div class="card">
-                <div class="card-datatable table-responsive">
-                    <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                        <div class="card-header flex-column flex-md-row">
-                            <div class="head-label text-center">
-                            </div>
-                        </div>
-                        <div class="card-body text-center">
-                            <?php Flasher::flash(); ?>
-                        </div>
-                        <table class="datatables-basic table border-top dataTable no-footer dtr-column" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style="width: 1163px;">
-                            <thead>
-                                <tr>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 82px;">No.</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Nama</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Harga jual</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Harga beli</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Stok</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Expayer date</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Actions</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $number = 1; foreach ($data['drugs'] as $drug) : ?>
-                                    <?php if ($drug['status']) : ?>
-                                    <tr class="odd">
-                                        <td class="control dtr-hidden" tabindex="0" style="display: none;"></td>
-                
-                                        <td><?= $number++; ?></td>
-                                        <td><?= $drug['nama_obat'] ?></td>
-                                        <td><?= $drug['harga_jual'] ?></td>
-                                        <td><?= $drug['harga_beli'] ?></td>
-                                        <td><?= $drug['stok'] ?></td>
-                                        <td><?= $drug['expired_date'] ?></td>
-                                        <td class="" style="">
-                                            <div class="d-inline-block">
-                                                <a href="<?= BASEURL; ?>/drug/detail/<?= $drug['id']; ?>" class="btn btn-sm btn-icon item-edit">
-                                                    <i class="bx bxs-user-detail" title="detail patient"></i>
-                                                </a>
-                                                <a href="<?= BASEURL; ?>/drug/edit/<?= $drug['id']; ?>" class="btn btn-sm btn-icon item-edit">
-                                                    <i class="bx bxs-edit" title="edit patient"></i>
-                                                </a>
-                                                <a href="#" class="btn btn-sm btn-icon delete-record" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $drug['id']; ?>">
-                                                    <i class="bx bxs-trash" title="delete patient"></i>
-                                                </a>
-                                            </div>
-                                        </td>
+                            <!-- Tabel untuk menampilkan data -->
+                            <table class="datatables-basic table border-top dataTable no-footer dtr-column" id="DataTables_Table1" aria-describedby="DataTables_Table_0_info" style="width: 1163px;">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Nama</th>
+                                        <th>Harga jual</th>
+                                        <th>Harga beli</th>
+                                        <th>Stok</th>
+                                        <th>Expired date</th>
+                                <!-- Kolom untuk tombol modal -->
                                     </tr>
-                                    <!-- Modal Hapus -->
-                                    <div class="modal fade" id="deleteModal<?= $drug['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteModalLabel" style="font-size: 20px;">Konfirmasi Hapus</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body" style="font-size: 20px;">
-                                                    Apakah Anda yakin ingin menghapus Obat <strong><?= ucfirst($drug['nama_obat']) . ' ' ?></strong> ini?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                    <a href="<?= BASEURL; ?>/drug/delete/<?= $drug['id']; ?>" class="btn btn-primary">Hapus</a>
+                                </thead>
+                                <tbody>
+                                    <?php $number = 1; foreach ($data['drugs'] as $drug) : ?>
+                                        <?php if ($drug['status']) : ?>
+                                            <tr class="odd">
+                                                <td><?= $number++; ?></td>
+                                                <td><?= $drug['nama_obat'] ?></td>
+                                                <td><?= $drug['harga_jual'] ?></td>
+                                                <td><?= $drug['harga_beli'] ?></td>
+                                                <td><?= $drug['total_stok'] ?></td>
+                                                <td>
+                                                    <!-- Tampilkan tombol modal -->
+                                                    <a href="#" class="btn btn-primary" data-toggle="modal">
+    Detail
+</a>
+
+                                                </td>
+                                            </tr>
+                                            <!-- Modal detail stok dan tanggal kedaluwarsa -->
+                                            <div class="modal fade" id="detailModal<?= $drug['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                            
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
 
-                            </tbody>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                        </table>
-
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+</div>

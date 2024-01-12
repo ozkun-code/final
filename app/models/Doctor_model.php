@@ -42,12 +42,25 @@ class DoctorModel extends Database {
 }
 
 
-    public function deleteDoctor($id) {
-        $this->query('UPDATE ' . $this->table . ' SET status_account = FALSE WHERE id = :id');
-        $this->bind(':id', $id);
-        $this->execute();
-        return $this->rowCount();
-    }
+public function deleteDoctor($doctor_id) {
+    // Dapatkan user_id dari tabel dokter berdasarkan doctor_id
+    $this->query('SELECT user_id FROM doctors WHERE id = :id');
+    $this->bind(':id', $doctor_id);
+    $user_id = $this->single();
+
+    // Update status di tabel dokter
+    $this->query('UPDATE doctors SET status_account = FALSE WHERE id = :id');
+    $this->bind(':id', $doctor_id);
+    $this->execute();
+
+    // Update status di tabel pengguna
+    $this->query('UPDATE users SET status_account = FALSE WHERE id = :id');
+    $this->bind(':id', $user_id['user_id']);
+    $this->execute();
+
+    return $this->rowCount();
+}
+
     
   
 }

@@ -7,15 +7,21 @@ class PatientModel extends Database
     private $table2 = 'desa';
 
     public function getAllPatient()
-    {
-        $this->query('SELECT patients.id, patients.first_name, patients.last_name , patients.date_of_birth, patients.contact, patients.address, users.email FROM ' . $this->table . ' JOIN users ON patients.user_id = users.id');
+{
+    $this->query('SELECT patients.id, patients.user_id, patients.kecamatan_id, patients.desa_id, patients.first_name, patients.last_name, patients.gender, patients.contact, patients.address, patients.date_of_birth,patients.status_account, kecamatan.name as kecamatan_name, desa.name as desa_name, users.id as user_id, users.email as user_email, users.password as user_password, users.role as user_role
+                  FROM ' . $this->table . ' 
+                  JOIN kecamatan ON patients.kecamatan_id = kecamatan.id 
+                  JOIN desa ON patients.desa_id = desa.id
+                  JOIN users ON patients.user_id = users.id');
 
-        return $this->resultSet();
-    }
+    return $this->resultSet();
+}
+
+    
 
     public function getPatientById($id)
 {
-    $this->query('SELECT patients.*, kecamatan.name as kecamatan_name, desa.name as desa_name 
+    $this->query('SELECT *, kecamatan.name as kecamatan_name, desa.name as desa_name 
                   FROM ' . $this->table . ' 
                   JOIN kecamatan ON patients.kecamatan_id = kecamatan.id 
                   JOIN desa ON patients.desa_id = desa.id 
@@ -69,13 +75,25 @@ public function updatePatient($id, $patient)
 }
 
 
-    public function deletePatient($id)
-    {
-        $this->query('UPDATE ' . $this->table . ' SET status_account = FALSE WHERE id = :id');
-        $this->bind(':id', $id);
-        $this->execute();
-        return $this->rowCount();
-    }
+public function deletePatient($patient_id) {
+    // Update status di tabel patient
+    $this->query('UPDATE patients SET status_account = FALSE WHERE id = :id');
+    $this->bind(':id', $patient_id);
+    $this->execute();
+
+    // Dapatkan user_id dari tabel patient berdasarkan patient_id
+    $this->query('SELECT user_id FROM patients WHERE id = :id');
+    $this->bind(':id', $patient_id);
+    $user_id = $this->single();
+
+    // Update status di tabel users
+    $this->query('UPDATE users SET status_account = FALSE WHERE id = :id');
+    $this->bind(':id', $user_id['user_id']);
+    $this->execute();
+
+    return $this->rowCount();
+}
+
     public function searchPatient($name)
     {
         $this->query('SELECT patients.id, patients.first_name, patients.last_name, patients.date_of_birth, patients.contact, patients.address, users.email 

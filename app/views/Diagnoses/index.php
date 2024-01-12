@@ -54,7 +54,7 @@
                                     </td>
                                     <td>
                                     
-                                    <a href="<?= BASEURL; ?>/transaction/<?= $diagnosis['id']; ?>" class="btn btn-secondary">Invoice</a>
+                                    <a href="#" class="btn btn-secondary invoice-button" data-diagnosis-id="<?= $diagnosis['id']; ?>">Invoice</a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -115,3 +115,59 @@
         </div>
     </div>
 </div>
+<!-- Modal konfirmasi jumlah looping -->
+<div class="modal fade" id="confirmLoopingModal" tabindex="-1" aria-labelledby="confirmLoopingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmLoopingModalLabel">Confirm the amount of medication</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Enter amount:</p>
+                <input type="number" class="form-control" id="confirmLoopingCount" placeholder="Enter amount" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="confirmLoopingBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tambahkan bagian berikut di bagian bawah halaman sebelum tag </body> -->
+<!-- Tambahkan bagian berikut di bagian bawah halaman sebelum tag </body> -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var invoiceButtons = document.querySelectorAll('.invoice-button');
+
+    invoiceButtons.forEach(function (button) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var diagnosisId = button.getAttribute('data-diagnosis-id');
+
+        // Tampilkan modal konfirmasi jumlah looping
+        $('#confirmLoopingModal').modal('show');
+
+        // Tangani klik pada tombol konfirmasi di dalam modal
+        document.getElementById('confirmLoopingBtn').addEventListener('click', function () {
+          // Dapatkan nilai jumlah looping dari input
+          var loopingCount = document.getElementById('confirmLoopingCount').value;
+
+          // Jika pengguna memasukkan nilai dan tidak membatalkan
+          if (loopingCount !== '') {
+            // Redirect ke halaman invoice dengan menyertakan parameter jumlah looping dan ID diagnosa
+            var invoiceUrl = "<?= BASEURL; ?>/transaction/" + diagnosisId + "/" + encodeURIComponent(loopingCount);
+            window.location.href = invoiceUrl;
+          }
+
+          // Tutup modal konfirmasi
+          $('#confirmLoopingModal').modal('hide');
+        });
+      });
+    });
+  });
+</script>
+
+

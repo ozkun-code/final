@@ -63,8 +63,22 @@
     <script src="<?= BASEURL; ?>/assets/js/main.js"></script>
    
     <!-- Page JS -->
-    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
+    
+    
     <script src="<?= BASEURL; ?>/assets/js/dashboards-analytics.js"></script>
+ <!-- Pastikan sudah memuat jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+<!-- Pastikan sudah memuat DataTables dan Bootstrap 5 JS -->
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#DataTables_Table1').DataTable();
+    });
+</script>
+
+
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

@@ -2,7 +2,7 @@
 class Transaction extends Controller
 {
    
-    public function index($diagnosisId = null)
+    public function index($diagnosisId = null, $loopingCount = 1)
 {
     // Cek sesi role
     $diagnosisId = $diagnosisId ?: header('Location: ' . BASEURL . '/list');
@@ -23,31 +23,42 @@ class Transaction extends Controller
 
     $navView = $loginModel->getNavView($role);
     $adminData = $adminModel->getAdminByUserId($user_id);
-    $drugData = $drugModel->getAllDrug();
+    $drugData = $drugModel->getAllDrugs();
 
     $this->view($navView);
-    
-
 
     // Jika terdapat parameter ID diagnosa, ambil dan tampilkan informasi diagnosa dan pasien
     if ($diagnosisId !== null) {
         if (is_numeric($diagnosisId) && $diagnosisId > 0) {
-        $diagnosisModel = new DiagnosisModel();
+            $diagnosisModel = new DiagnosisModel();
             $diagnosisData = $diagnosisModel->getDiagnosisById($diagnosisId);
+
             if ($diagnosisData) {
                 $patientModel = new PatientModel();
                 $patientData = $patientModel->getPatientById($diagnosisData['patient_id']);
-                $this->view('Transaction/index', ['diagnosisData' => $diagnosisData, 'patientData' => $patientData, 'adminData' => $adminData, 'drugData' => $drugData]);
-                $this->view('layouts/footer/footer',);
+
+                $this->view('Transaction/index', [
+                    'diagnosisData' => $diagnosisData,
+                    'patientData' => $patientData,
+                    'adminData' => $adminData,
+                    'drugData' => $drugData,
+                    'loopingCount' => $loopingCount,
+                ]);
+
+                $this->view('layouts/footer/footer');
                 return;
             }
         }
     }
 
     // Tampilkan konten biasa jika tidak ada parameter ID diagnosa atau data tidak ditemukan
-    $this->view('Transaction/index');
-    $this->view('layouts/footer/footerts' );
+    $this->view('Transaction/index', [
+        'loopingCount' => $loopingCount,
+    ]);
+
+    $this->view('layouts/footer/footerts');
 }
+
     public function print()
     {
 

@@ -47,13 +47,25 @@ class AdminModel extends Database
         return $this->rowCount();
     }
 
-    public function deleteAdmin($id)
-    {
-        $this->query('UPDATE ' . $this->table . ' SET status_account = FALSE WHERE id = :id');
-        $this->bind(':id', $id);
-        $this->execute();
-        return $this->rowCount();
+    public function deleteAdmin($admin_id) {
+        // Update status di tabel admin
+        $this->query('UPDATE admins SET status_account = FALSE WHERE id = :id');
+    $this->bind(':id', $admin_id);
+    $this->execute();
+
+    // Dapatkan user_id dari tabel patient berdasarkan admin_id
+    $this->query('SELECT user_id FROM admins WHERE id = :id');
+    $this->bind(':id', $admin_id);
+    $user_id = $this->single();
+
+    // Update status di tabel users
+    $this->query('UPDATE users SET status_account = FALSE WHERE id = :id');
+    $this->bind(':id', $user_id['user_id']);
+    $this->execute();
+
+    return $this->rowCount();
     }
+    
 
 }
 ?>
