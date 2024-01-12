@@ -12,6 +12,7 @@ require_once 'models/Admin_model.php';
 require_once 'models/Drug_model.php';
 require_once 'models/Setting_model.php';
 require_once 'models/Diagnoses_model.php';
+require_once 'models/Transaction_model.php';
 require_once 'models/MedicalInformationModel.php';
 
 
