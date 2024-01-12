@@ -13,7 +13,7 @@
                     <?php Flasher::flash(); ?>
                 </div>
                 <div class="card-body">
-                    <form action="<?= BASEURL; ?>/drug/createactive" method="post">
+                    <form action="<?= BASEURL; ?>/drug/createNewDrugAction" method="post">
                         <div class="mb-3">
                             <label class="form-label" for="nama_obat">Name of Drug :</label>
                             <input type="text" class="form-control" id="nama_obat" name="nama_obat" required>
@@ -36,11 +36,13 @@
                             <div class="col">
                                 <div class="mb-3">
                                     <label class="form-label" for="expired_date">Expired Date :</label><br>
+
                                     <input id="expired_date" name="expired_date" type="date"class="form-control">
+
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Hidden input field to indicate the action -->
                         <input type="hidden" name="action" value="addDrug">
 

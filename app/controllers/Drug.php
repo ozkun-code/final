@@ -13,7 +13,7 @@ class Drug extends Controller
 
         $drugModel = new DrugModel();
         $data['drugs'] = $drugModel->getAllDrugs();
-        
+
         $this->view('drug/index', $data);
 
         $this->view('layouts/footer/footer');
@@ -38,16 +38,18 @@ class Drug extends Controller
 
     public function createNewDrugAction()
     {
+        $user_id = $_SESSION['user_id'];
         $userModel = new LoginModel();
+        $adminModel = new AdminModel();
         $userId = $userModel->lastInsertId(); // Dapatkan ID dari user yang baru saja dibuat
-        $adminId = $_SESSION['admin_id'];
-
+        $adminId = $adminModel->getAdminByUserId($user_id);
         $drugModel = new DrugModel();
         $data = [
             'nama_obat' => $_POST['nama_obat'],
             'harga_jual' => $_POST['harga_jual'],
             'harga_beli' => $_POST['harga_beli'],
             'quantity' => $_POST['quantity'],
+
             'expired_date' => $_POST['expired_date'],
         ];
 
@@ -55,9 +57,10 @@ class Drug extends Controller
             Flasher::setFlash('Drug berhasil', 'di tambahkan', 'success');
         }
 
-        header('Location: ' . BASEURL . '/drug/createNewDrug');
+        header('Location: ' . BASEURL . '/drug');
         exit;
     }
+
 
     public function Stock()
     {
@@ -83,7 +86,7 @@ class Drug extends Controller
         $userModel = new LoginModel();
         $adminModel = new AdminModel();
         $userId = $userModel->lastInsertId(); // Dapatkan ID dari user yang baru saja dibuat
-        $adminId =$adminModel->getAdminByUserId($user_id);
+        $adminId = $adminModel->getAdminByUserId($user_id);
         $drugModel = new DrugModel();
         $data = [
             'drug_id' => $_POST['drug_id'],
@@ -99,5 +102,3 @@ class Drug extends Controller
         exit;
     }
 }
-    
-
