@@ -47,7 +47,7 @@ class Drug extends Controller
             'nama_obat' => $_POST['nama_obat'],
             'harga_jual' => $_POST['harga_jual'],
             'harga_beli' => $_POST['harga_beli'],
-            'stok' => $_POST['stok'],
+            'quantity' => $_POST['quantity'],
             'expired_date' => $_POST['expired_date'],
         ];
 
@@ -95,7 +95,7 @@ class Drug extends Controller
             Flasher::setFlash('Stok berhasil ditambahkan', '', 'success');
         }
 
-        header('Location: ' . BASEURL . '/drug/addStock');
+        header('Location: ' . BASEURL . '/drug/Stock');
         exit;
     }
 }

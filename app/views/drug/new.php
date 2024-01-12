@@ -29,14 +29,14 @@
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
-                                    <label class="form-label" for="stok">Stok:</label>
-                                    <input type="text" class="form-control" id="stok" name="stok" required>
+                                    <label class="form-label" for="quantity">Stok:</label>
+                                    <input type="text" class="form-control" id="quantity" name="quantity" required>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="mb-3">
-                                    <label class="form-label" for="expayer_date">Expired Date :</label><br>
-                                    <input id="expayer_date" name="expayer_date" type="date">
+                                    <label class="form-label" for="expired_date">Expired Date :</label><br>
+                                    <input id="expired_date" name="expired_date" type="date"class="form-control">
                                 </div>
                             </div>
                         </div>
