@@ -10,7 +10,7 @@ class DrugModel extends Database
         $this->query('SELECT drug.id, drug.nama_obat, drug.harga_jual, drug.harga_beli, MAX(drug_stock.status) as status, SUM(drug_stock.quantity) as total_stok FROM ' . $this->tableDrug . ' LEFT JOIN ' . $this->tableDrugStock . ' ON drug.id = drug_stock.drug_id GROUP BY drug.id');
         return $this->resultSet();
     }
-    
+
 
 
     public function getDrugById($id)
@@ -34,12 +34,13 @@ class DrugModel extends Database
         $this->query('INSERT INTO ' . $this->tableDrugStock . ' (drug_id, quantity, expired_date, status) VALUES (:drug_id, :quantity, :expired_date, :status)');
         $this->bind(':drug_id', $drugId);
         $this->bind(':quantity', $data['stok']);
-        $this->bind(':expired_date', $data['expayer_date']);
+        $this->bind(':expired_date', $data['expired_date']); // Fix the typo here
         $this->bind(':status', 'active');
         $this->execute();
 
         return $this->rowCount();
     }
+
 
     public function updateDrug($id, $data)
     {
@@ -93,7 +94,10 @@ class DrugModel extends Database
     }
     public function addStock($drugId, $quantity, $expiredDate)
     {
-        // Mengasumsikan Anda memiliki tabel bernama 'drug_stock'
+        // Set a default value for quantity if it is null
+        $quantity = ($quantity !== null) ? $quantity : 0;
+
+        // Assuming you have a table named 'drug_stock'
         $this->query('INSERT INTO drug_stock (drug_id, quantity, expired_date) VALUES (:drug_id, :quantity, :expired_date)');
         $this->bind(':drug_id', $drugId);
         $this->bind(':quantity', $quantity);
@@ -101,5 +105,4 @@ class DrugModel extends Database
         $this->execute();
         return $this->rowCount();
     }
-
 }
