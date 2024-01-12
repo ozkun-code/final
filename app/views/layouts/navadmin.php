@@ -100,11 +100,6 @@
                   <div data-i18n="Without menu">List Of Transactions</div>
                 </a>
               </li>
-              <li class="menu-item">
-                <a href="<?= BASEURL; ?>/transaction" class="menu-link">
-                  <div data-i18n="Without navbar">Invoice</div>
-                </a>
-              </li>
             </ul>
           </li>
           <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>

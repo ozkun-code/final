@@ -1,9 +1,9 @@
 <?php
 class Admin extends Controller
 {
-   
+
     public function index($name = null)
-    {   
+    {
 
         $role = $_SESSION['role'];
 
@@ -132,4 +132,3 @@ class Admin extends Controller
         }
     }
 }
-?>
