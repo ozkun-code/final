@@ -96,7 +96,7 @@
             </a>
             <ul class="menu-sub">
               <li class="menu-item">
-                <a href="<?= BASEURL; ?>/drug" class="menu-link">
+                <a href="<?= BASEURL; ?>/transaction/list" class="menu-link">
                   <div data-i18n="Without menu">List Of Transactions</div>
                 </a>
               </li>

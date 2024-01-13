@@ -11,6 +11,7 @@
              <div class="col-md-6 mb-md-0 mb-4">
                <div class="d-flex svg-illustration mb-4 gap-2">
                  <span class="app-brand-logo demo">
+                  
                    <img src="<?= BASEURL; ?>/assets/img/icons/icon.svg" width="40" /> <?php $patient = $data['patientData']; ?> </span>
                  <span class="app-brand-text demo text-body fw-bold">SEECARE</span>
                </div>
@@ -24,12 +25,7 @@
                    <span class="h4 text-capitalize mb-0 text-nowrap">Invoice #</span>
                  </dt>
                  <dd class="col-sm-6 d-flex justify-content-md-end">
-                   <div class="w-px-150"> <?php
-                                          $date = new DateTime();
-                                          $timestamp = $date->format('YmdHis');
-                                          $patient_id = $patient['id'];
-                                          $invoice_id = $timestamp . '-' . $patient_id;
-                                          ?> <input type="text" class="form-control" disabled placeholder="<?= $invoice_id ?>" value="<?= $invoice_id ?>" id="invoiceId" />
+                   <div class="w-px-150"><input type="text" class="form-control" disabled placeholder="" value="AUTOSYSTEM" id="invoiceId" />
                    </div>
                  </dd>
                  <dt class="col-sm-6 mb-2 mb-sm-0 text-md-end">
@@ -52,6 +48,7 @@
                <p class="mb-1"> <?= $patient['kecamatan_name'] ?>, karawang , Indonesia </p>
                <p class="mb-0"> <?= $patient['contact'] ?> </p>
              </div>
+             <?php $looping = $data['loopingCount']; ?>
              <div class="col"> <?php $diagnosis = $data['diagnosisData']; ?> <h6>Diagnosis:</h6>
                <p> <?= $diagnosis['diagnosis'] ?> </p>
                <h6>Diagnosis Information :</h6>
@@ -59,32 +56,44 @@
              </div>
            </div>
            <hr class="mx-n4" />
-           <form class="source-item py-sm-3" action="<?= BASEURL; ?>/transaction/storeRecipe/<?= $invoice_id ?>" method="POST">
-             <div id="service-fee">
-               <?php $looping = $data['loopingCount']; ?> <?php for ($i = 0; $i < $looping; $i++) : ?> <div class="mb-3" data-repeater-list="group-a">
-                   <div class="repeater-wrapper pt-0 pt-md-0" data-repeater-item>
-                     <div class="d-flex border rounded position-relative pe-0">
-                       <div class="row w-100 m-0 p-3">
-                         <div class="mb-3 col-md-5"> <?php if ($i == 0) : ?> <label for="selectDrug<?= $i ?>" class="form-label">Select Drug </label> <?php endif; ?> <select id="selectDrug<?= $i ?>" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
-                             <option value="" selected>Select a drug...</option> <?php foreach ($data['drugData'] as $obat) : ?> <option value="<?= $obat['id'] ?>"> <?= $obat['nama_obat'] ?> </option> <?php endforeach; ?>
-                           </select>
-                         </div>
-                         <div class="col-md-3 col-12 mb-md-0 mb-3"> <?php if ($i == 0) : ?> <p class="mb-2 repeater-title">Qty</p><?php endif; ?><input type="number" id="qty<?= $i ?>" class="form-control invoice-item-qty" placeholder="1" min="1" max="50" />
-                         </div>
-                         <div class="col-md-4 col-12 pe-0" style="text-align: center;"> <?php if ($i == 0) : ?> <p class="mb-2 repeater-title">Total Price</p><?php endif; ?><p id="total_price<?= $i ?>" class="mb-0">
-                           </p>
-                         </div>
-                       </div>
-                     </div>
-                   </div>
-                 </div> <?php endfor; ?>
-               <button class="btn btn-secondary d-grid w-100 mb-3" type="submit">
-                 <span class="d-flex align-items-center justify-content-center text-nowrap">
-                   <i class="bx bx-action bx-xs me-1"></i>Save recipe
-                 </span>
-               </button>
-           </form>
-           <hr class="my-4 mx-n4" />
+           <form class="source-item py-sm-3" action="<?= BASEURL; ?>/transaction/storeRecipe/<?= $patient['id'] ?>/<?= $looping ?>" method="POST">
+    <div id="service-fee">
+        
+        <?php for ($i = 0; $i < $looping; $i++) : ?>
+            <div class="mb-3" data-repeater-list="group-a">
+                <div class="repeater-wrapper pt-0 pt-md-0" data-repeater-item>
+                    <div class="d-flex border rounded position-relative pe-0">
+                        <div class="row w-100 m-0 p-3">
+                            <div class="mb-3 col-md-5">
+                                <?php if ($i == 0) : ?>
+                                    <label for="selectDrug<?= $i ?>" class="form-label">Select Drug</label>
+                                <?php endif; ?>
+                                <select id="selectDrug<?= $i ?>" name="selectDrug<?= $i ?>" class="selectpicker w-100" data-style="btn-default" data-live-search="true">
+                                    <option value="" selected>Select a drug...</option>
+                                    <?php foreach ($data['drugData'] as $obat) : ?>
+                                        <option value="<?= $obat['id'] ?>"><?= $obat['nama_obat'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-3 col-12 mb-md-0 mb-3">
+                                <?php if ($i == 0) : ?>
+                                    <p class="mb-2 repeater-title">Qty</p>
+                                <?php endif; ?>
+                                <input type="number" id="qty<?= $i ?>" name="qty<?= $i ?>" class="form-control invoice-item-qty" placeholder="1" min="1" max="50" />
+                            </div>
+                            <div class="col-md-4 col-12 pe-0" style="text-align: center;">
+                                <?php if ($i == 0) : ?>
+                                    <p class="mb-2 repeater-title">Total Price</p>
+                                <?php endif; ?>
+                                <p id="total_price<?= $i ?>" name="total_price<?= $i ?>" class="mb-0"></p>
+                                <input type="hidden" id="total_price<?= $i ?>" name="total_price<?= $i ?>" value="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endfor; ?>
+                 <hr class="my-4 mx-n4" />
            <div class="row py-mb-0">
              <div class="col-md-6 mb-md-0 mb-3">
                <div class="d-flex align-items-center mb-3"> <?php $admin = $data['adminData']; ?> <label for="salesperson" class="form-label me-5 fw-medium">Salesperson:</label>
@@ -97,28 +106,25 @@
                  <hr />
                  <div class="d-flex justify-content-between">
                    <span class="w-px-100">Total:</span>
+                   <input type="hidden" id="total" name="total" value="" />
                    <span class="fw-medium">Rp.0</span>
                  </div>
                </div>
              </div>
-             <hr class="my-4" />
-             <div class="row">
-               <div class="col-12">
-                 <div class="mb-3">
-                   <label for="note" class="form-label fw-medium">Note:</label>
-                   <textarea class="form-control" rows="2" id="note" placeholder="Invoice note"></textarea>
-                 </div>
-               </div>
-             </div>
            </div>
+           <hr class="my-4 mx-n4" />
+           <div class="card-body text-center">
+                            <?php Flasher::flash(); ?>
+                        </div>
+               <button class="btn btn-secondary d-grid w-100 mb-3" type="submit">
+                 <span class="d-flex align-items-center justify-content-center text-nowrap">
+                   <i class="bx bx-action bx-xs me-1"></i>Save recipe
+                 </span>
+               </button>
+           </form>
          </div>
 
-         <button id="saveInvoiceBtn" class="btn btn-primary d-grid w-100 mb-3" data-bs-toggle="offcanvas" data-bs-target="#sendInvoiceOffcanvas">
-           <span class="d-flex align-items-center justify-content-center text-nowrap">
-             <i class="bx bx-paper-plane bx-xs me-1"></i>Save
-           </span>
-         </button>
-
+        
 
        </div>
 
@@ -174,6 +180,16 @@
        qtyElement.addEventListener("input", updatePrice);
      }
    </script>
+<script>
+    // Misalkan Anda memiliki variabel JavaScript dengan nilai total harga
+    var totalPrice = calculateTotalPrice(); // Ganti dengan fungsi Anda sendiri
+
+    // Temukan elemen input dengan id 'total_price0'
+    var inputElement = document.getElementById('total_price0');
+
+    // Atur nilai dari elemen input ini dengan nilai total harga
+    inputElement.value = totalPrice;
+</script>
 
  </div>
  <!-- /Offcanvas -->

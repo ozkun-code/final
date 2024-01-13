@@ -58,24 +58,102 @@ class Transaction extends Controller
 
         $this->view('layouts/footer/footerts');
     }
-    public function storeRecipe($invoice_id)
+    public function list()
     {
-        $transactionModel = new Transaction();
-        $looping = $_POST['loopingCount'];
-        for ($i = 0; $i < $looping; $i++) {
-            $drug_id = $_POST['drug_id'][$i];
-            $quantity = $_POST['quantity'][$i];
-            $price = $_POST['price'][$i];
-            $date = date('Y-m-d H:i:s');
 
-            $$transactionModel->saveToRecipe($drug_id, $quantity, $price, $date);
-        }
-        $patient_id = $_POST['patient_id'];
-        $total = $_POST['total'];
-        $date = date('Y-m-d H:i:s');
 
-        header('Location: ' . BASEURL . '/transaction/print');
+        $this->view('layouts/head/head');
+
+        $loginModel = new LoginModel();
+        $navView = $loginModel->getNavView($role);
+        $this->view($navView);
+        $transactionModel = new TransactionModel();
+        $data['invoice'] = $transactionModel->getAllTransactions();
+        
+        // Tampilkan konten
+        $this->view('Transaction/list',$data);
+
+        $this->view('layouts/footer/footer');
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+    public function storeRecipe($patient_id, $looping)
+    {
+        // Create an instance of the TransactionModel
+        $transactionModel = new TransactionModel();
+    
+        // Create an instance of the DrugModel
+        $drugModel = new DrugModel();
+    
+        // Get the current date
+        $date = date('Y-m-d'); 
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Array to store total for each item
+            $items = [];
+    
+            // Create an invoice
+            $invoiceId = $transactionModel->saveToInvoice($patient_id, $date, 0); // Pass 0 for the initial total
+    
+            // Check if the invoice was created successfully
+            if ($invoiceId > 0) {
+                // Loop through the items
+                for ($i = 0; $i < $looping; $i++) {
+                    $selectDrug = $_POST['selectDrug' . $i];
+                    $qty = $_POST['qty' . $i];
+    
+                    // Get drug price by id
+                    $hargaObat = $drugModel->getObatById($selectDrug);
+    
+                    // Assuming $hargaObat is an array, get the first element (assuming it's the price)
+                    $hargaObat = $hargaObat[0]['harga_jual'];
+    
+                    // Calculate total for this item
+                    $totalItem = $hargaObat * $qty;
+    
+                    // Add the total to the array
+                    $items[] = $totalItem;
+    
+                    // Save details to the recipe
+                    $transactionModel->saveToRecipe($invoiceId, $selectDrug, $patient_id, $qty, $hargaObat, $date);
+                }
+    
+                // Calculate the overall total
+                $total = array_sum($items);
+    
+                // Update the total in the invoice
+                $transactionModel->updateInvoiceTotal($invoiceId, $total);
+                Flasher::setFlash('Invoice berhasil', 'ditambahkan', 'success');
+            } else {
+                // Set Flash message for failure
+                Flasher::setFlash('Invoice gagal', 'ditambahkan', 'danger');
+            }
+    
+            // Redirect to the desired page
+            header('Location: ' . BASEURL . '/transaction/list');
+            exit;
+        }
+    }
+    
+    
+    
+
+
+
+    
+
 
 
     public function print()

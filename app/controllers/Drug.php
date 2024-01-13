@@ -81,6 +81,18 @@ class Drug extends Controller
 
         $this->view('layouts/footer/footer');
     }
+    public function getDrugPriceById($drugId)
+    {
+        $this->query('SELECT harga_jual FROM ' . $this->table . ' WHERE id = :id');
+        $this->bind(':id', $drugId);
+        $result = $this->single();
+
+        if ($result) {
+            return $result['harga_jual'];
+        } else {
+            return null; // Atau sesuaikan dengan logika Anda jika harga tidak ditemukan
+        }
+    }
 
     public function addStockAction()
     {
