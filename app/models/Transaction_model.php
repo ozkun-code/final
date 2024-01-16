@@ -1,6 +1,6 @@
 <?php
 
-class TransactionModel extends Database
+class Transaction_model extends Database
 {
     private $tableRecipe = 'recipe';
     private $tableInvoice = 'invoices';
@@ -34,12 +34,13 @@ public function updateInvoiceTotal($invoiceId, $total)
 }
 
 
-    public function saveToInvoice($patientId, $date, $total)
+    public function saveToInvoice($patientId, $date, $total,$diagnosis_id)
 {
-    $this->query('INSERT INTO ' . $this->tableInvoice . ' (patient_id, date, total) VALUES (:patientId, :date, :total)');
+    $this->query('INSERT INTO ' . $this->tableInvoice . ' (patient_id, date, total, diagnoses_id) VALUES (:patientId, :date, :total, :diagnosis_id)');
     $this->bind(':patientId', $patientId);
     $this->bind(':date', $date);
-    $this->bind(':total', $total); // Tambahkan ini, dan pastikan $total adalah integer
+    $this->bind(':total', $total);
+    $this->bind(':diagnosis_id', $diagnosis_id); // Tambahkan ini, dan pastikan $total adalah integer
 
     $this->execute();
     return $this->lastInsertId(); // Mengembalikan ID invoice yang baru dibuat

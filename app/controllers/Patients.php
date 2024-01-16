@@ -4,22 +4,18 @@ class Patients extends Controller
 
     public function index($name = null)
     {
-        // Check if 'role' key is set in the $_SESSION array
-        $role = isset($_SESSION['role']) ? $_SESSION['role'] : null;
-
-        // Rest of your code remains unchanged...
+       
+     
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
 
-        $patientModel = new PatientModel();
-        // Cek apakah ada query pencarian
+        
         if ($name) {
-            $data['patients'] = $patientModel->searchPatient($name);
+            $data['patients'] = $this->model('Patients_model')->searchPatient($name);
         } else {
-            $data['patients'] = $patientModel->getAllPatient();
+            $data['patients'] = $this->model('patients_model')->getAllPatient();
         }
 
         $this->view('patients/index', $data);
@@ -31,22 +27,17 @@ class Patients extends Controller
 
     public function create()
     {
-        $role = $_SESSION['role'];
 
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
-
-        $patientModel = new PatientModel();
-        $data['kecamatan'] = $patientModel->getAllKecamatan();
-
-        // Mendapatkan id kecamatan pertama sebagai default
+        
+        $data['kecamatan'] = $this->model('Patients_model')->getAllKecamatan();
         $defaultKecamatanId = isset($data['kecamatan'][0]['id']) ? $data['kecamatan'][0]['id'] : null;
 
-        // Mendapatkan desa berdasarkan kecamatan_id
-        $data['desa'] = $defaultKecamatanId ? $patientModel->getDesaByKecamatanId($defaultKecamatanId) : [];
+
+        $data['desa'] = $defaultKecamatanId ? $this->model('Patients_model')->getDesaByKecamatanId($defaultKecamatanId) : [];
 
         $this->view('patients/create', $data);
 
@@ -54,17 +45,16 @@ class Patients extends Controller
     }
     public function getVillagesBySubdistrictId($subdistrictId)
     {
-        $patientModel = new PatientModel();
-        $villages = $patientModel->getVillagesBySubdistrictId($subdistrictId);
 
-        // Ubah data desa ke dalam format JSON
+        $villages = $this->model('Patients_model')->getVillagesBySubdistrictId($subdistrictId);
+
         echo json_encode($villages);
     }
 
     public function delete($id)
     {
-        $PatientModel = new PatientModel();
-        if ($PatientModel->deletePatient($id) > 0) {
+       
+        if ($this->model('Patients_model')->deletePatient($id) > 0) {
             Flasher::setFlash('Patient berhasil', 'di hapus', 'success');
             header('Location: ' . BASEURL . '/Patients');
             exit;
@@ -78,20 +68,19 @@ class Patients extends Controller
     public function createactive()
     {
 
-        $userModel = new LoginModel();
+    
         $email = $_POST['email'];
         $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        if ($userModel->isEmailExists($email)) {
+        if ($this->model('Login_model')->isEmailExists($email)) {
 
             Flasher::setFlash('gagal', 'Email sudah terdaftar', 'danger');
             header('Location: ' . BASEURL . '/Patients/create');
             exit;
         }
 
-        $userModel->createUser($_POST['email'], $hashed_password, 'patient');
-        $userId = $userModel->lastInsertId(); // Dapatkan ID dari user yang baru saja dibuat
+        $this->model('Login_model')->createUser($_POST['email'], $hashed_password, 'patient');
+        $userId = $this->model('Login_model')->lastInsertId(); 
 
-        $PatientModel = new PatientModel();
         $data = [
             'kecamatan_id' => $_POST['kecamatan_id'],
             'desa_id' => $_POST['desa_id'],
@@ -104,7 +93,7 @@ class Patients extends Controller
             'gender' => $_POST['gender'],
         ];
 
-        if ($PatientModel->createPatient($data, $userId) > 0) {
+        if ($this->model('Patients_model')->createPatient($data, $userId) > 0) {
             Flasher::setFlash('Patient berhasil', 'di tambahkan', 'success');
             header('Location: ' . BASEURL . '/Patients/create');
             exit;
@@ -118,17 +107,13 @@ class Patients extends Controller
     public function edit($id)
     {
 
-        $role = $_SESSION['role'];
+       
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
-
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
 
-
-        $PatientModel = new PatientModel();
-        $patient = $PatientModel->getPatientById($id);
+        $patient = $this->model('Patients_model')->getPatientById($id);
 
         $this->view('Patients/edit', $patient);
 
@@ -137,7 +122,6 @@ class Patients extends Controller
 
     public function updatePatient($id)
     {
-        $PatientModel = new PatientModel();
 
         $data = [
             'kecamatan_id' => $_POST['kecamatan_id'],
@@ -151,7 +135,7 @@ class Patients extends Controller
             'gender' => $_POST['gender'],
         ];
 
-        if ($PatientModel->updatePatient($id, $data) > 0) {
+        if ($this->model('Patients_model')->updatePatient($id, $data) > 0) {
             Flasher::setFlash('Patient berhasil', 'di update', 'success');
             header('Location: ' . BASEURL . '/Patients/edit/' . $id);
             exit;
@@ -164,23 +148,14 @@ class Patients extends Controller
     public function detail($id)
     {
 
-        $role = $_SESSION['role'];
+        
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
-
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
-        // Dapatkan data pasien dari model
-        $patientModel = new PatientModel();
-        $patient = $patientModel->getPatientById($id);
-        
+        $patient = $this->model('Patients_model')->getPatientById($id);
+        $medical = $this->model('MedicalInformationModel')->getMedicalInformationByPatientId($id);
 
-        // Dapatkan informasi medis dari model
-        $medicalModel = new MedicalInformationModel();
-        $medical = $medicalModel->getMedicalInformationByPatientId($id);
-
-        // Tampilkan view dengan data pasien dan informasi medis
         $this->view('patients/detail', ['patient' => $patient, 'medical' => $medical]);
         $this->view('layouts/footer/footer');
     }

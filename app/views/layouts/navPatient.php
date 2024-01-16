@@ -39,7 +39,7 @@
             </a>
             <ul class="menu-sub">
               <li class="menu-item">
-                <a href="http://final1.test/diagnoses/3" class="menu-link">
+                <a href="http://final1.test/diagnosis/3" class="menu-link">
                   <div data-i18n="Error">diagnostic history
                   </div>
                 </a>

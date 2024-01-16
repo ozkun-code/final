@@ -4,21 +4,18 @@ class Admin extends Controller
 
     public function index($name = null)
     {
-
-        $role = $_SESSION['role'];
+        
 
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
 
-        $adminModel = new AdminModel();
         // Cek apakah ada query pencarian
         if ($name) {
-            $data['admins'] = $adminModel->searchAdmin($name);
+            $data['admins'] = $this->model('Admin_model')->searchAdmin($name);
         } else {
-            $data['admins'] = $adminModel->getAllAdmin();
+            $data['admins'] = $this->model('Admin_model')->getAllAdmin();
         }
 
         $this->view('admin/index', $data);
@@ -28,16 +25,14 @@ class Admin extends Controller
 
     public function create()
     {
-        $role = $_SESSION['role'];
+        
 
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
 
-        $adminModel = new AdminModel();
-        $data['admins'] = $adminModel->getAllAdmin();
+        $data['admins'] = $this->model('Admin_model')->getAllAdmin();
 
         $this->view('admin/create', $data);
 
@@ -46,20 +41,18 @@ class Admin extends Controller
 
     public function createactive()
     {
-        $userModel = new LoginModel();
         $email = $_POST['email'];
         $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        if ($userModel->isEmailExists($email)) {
+        if ($this->model('Login_model')->isEmailExists($email)) {
             // Jika ya, berikan pesan error
             Flasher::setFlash('gagal', 'Email sudah terdaftar', 'danger');
             header('Location: ' . BASEURL . '/admin/create');
             exit;
         }
 
-        $userModel->createUser($_POST['email'], $hashed_password, 'admin');
-        $userId = $userModel->lastInsertId(); // Dapatkan ID dari user yang baru saja dibuat
+        $this->model('Login_model')->createUser($_POST['email'], $hashed_password, 'admin');
+        $userId = $this->model('Login_model')->lastInsertId(); // Dapatkan ID dari user yang baru saja dibuat
 
-        $adminModel = new AdminModel();
         $data = [
             'first_name' => $_POST['first_name'],
             'last_name' => $_POST['last_name'],
@@ -67,7 +60,7 @@ class Admin extends Controller
             'specialty' => $_POST['specialty'], // Set default value for specialty
         ];
 
-        if ($adminModel->createAdmin($data, $userId) > 0) {
+        if ($this->model('Admin_model')->createAdmin($data, $userId) > 0) {
             Flasher::setFlash('Admin berhasil', 'di tambahkan', 'success');
             header('Location: ' . BASEURL . '/admin/create');
             exit;
@@ -80,16 +73,13 @@ class Admin extends Controller
 
     public function edit($id)
     {
-        $role = $_SESSION['role'];
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
-
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
 
-        $adminModel = new AdminModel();
-        $admin = $adminModel->getAdminById($id);
+
+        $admin = $this->model('Admin_model')->getAdminById($id);
 
         $this->view('admin/edit', $admin);
 
@@ -98,8 +88,6 @@ class Admin extends Controller
 
     public function updateAdmin($id)
     {
-        $adminModel = new AdminModel();
-
         $data = [
             'first_name' => $_POST['first_name'],
             'last_name' => $_POST['last_name'],
@@ -107,7 +95,7 @@ class Admin extends Controller
             'specialty' => $_POST['specialty'],
         ];
 
-        if ($adminModel->updateAdmin($id, $data) > 0) {
+        if ($this->model('Admin_model')->updateAdmin($id, $data) > 0) {
             Flasher::setFlash('Admin berhasil', 'di update', 'success');
             header('Location: ' . BASEURL . '/admin/edit/' . $id);
             exit;
@@ -120,8 +108,7 @@ class Admin extends Controller
 
     public function delete($id)
     {
-        $adminModel = new AdminModel();
-        if ($adminModel->deleteAdmin($id) > 0) {
+        if ($this->model('Admin_model')->deleteAdmin($id) > 0) {
             Flasher::setFlash('Admin berhasil', 'di nonaktifkan', 'success');
             header('Location: ' . BASEURL . '/admin');
             exit;

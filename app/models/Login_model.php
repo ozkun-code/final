@@ -1,6 +1,6 @@
 <?php
 
-class LoginModel extends Database
+class Login_model extends Database
 {
     private $table = 'users';
 

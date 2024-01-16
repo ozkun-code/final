@@ -4,21 +4,17 @@ class Doctors extends Controller
 
     public function index($name = null)
     {
-        $role = $_SESSION['role'];
 
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
-
-        $doctorModel = new DoctorModel();
 
         // Cek apakah ada query pencarian
         if ($name) {
-            $data['doctors'] = $doctorModel->searchDoctor($name);
+            $data['doctors'] = $this->model('Doctor_model')->searchDoctor($name);
         } else {
-            $data['doctors'] = $doctorModel->getAllDoctor();
+            $data['doctors'] = $this->model('Doctor_model')->getAllDoctor();
         }
 
         $this->view('doctors/index', $data);
@@ -26,46 +22,35 @@ class Doctors extends Controller
         $this->view('layouts/footer/footer');
     }
 
-
-
-
-
     public function create()
     {
-        $role = $_SESSION['role'];
+       
 
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
-
-        $doctorModel = new DoctorModel();
-        $data['doctors'] = $doctorModel->getAllDoctor();
+        $data['doctors'] = $this->model('Doctor_model')->getAllDoctor();
 
         $this->view('doctors/create', $data);
 
         $this->view('layouts/footer/footer');
     }
 
-
     public function createactive()
     {
-
-        $userModel = new LoginModel();
         $email = $_POST['email'];
         $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        if ($userModel->isEmailExists($email)) {
+        if ($this->model('Login_model')->isEmailExists($email)) {
             // Jika ya, berikan pesan error
             Flasher::setFlash('gagal', 'Email sudah terdaftar', 'danger');
             header('Location: ' . BASEURL . '/doctors/create');
             exit;
         }
 
-        $userModel->createUser($_POST['email'], $hashed_password, 'doctor');
-        $userId = $userModel->lastInsertId(); // Dapatkan ID dari user yang baru saja dibuat
+        $this->model('Login_model')->createUser($_POST['email'], $hashed_password, 'doctor');
+        $userId = $this->model('Login_model')->lastInsertId(); // Dapatkan ID dari user yang baru saja dibuat
 
-        $doctorModel = new DoctorModel();
         $data = [
             'first_name' => $_POST['first_name'],
             'last_name' => $_POST['last_name'],
@@ -73,7 +58,7 @@ class Doctors extends Controller
             'specialty' => $_POST['specialty'], // Set default value for specialty
         ];
 
-        if ($doctorModel->createDoctor($data, $userId) > 0) {
+        if ($this->model('Doctor_model')->createDoctor($data, $userId) > 0) {
             Flasher::setFlash('Doctor berhasil', 'di tambahkan', 'success');
             header('Location: ' . BASEURL . '/doctors/create');
             exit;
@@ -86,18 +71,15 @@ class Doctors extends Controller
 
     public function edit($id)
     {
-
-        $role = $_SESSION['role'];
+        
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
+        $this->view($navView);
 
         $this->view($navView);
 
-
-        $doctorModel = new DoctorModel();
-        $doctor = $doctorModel->getDoctorById($id);
+        $doctor = $this->model('Doctor_model')->getDoctorById($id);
 
         $this->view('doctors/edit', $doctor);
 
@@ -106,9 +88,6 @@ class Doctors extends Controller
 
     public function updateDoctor($id)
     {
-        // Create instance of Doctor model
-        $doctorModel = new DoctorModel();
-
         $data = [
             'first_name' => $_POST['first_name'],
             'last_name' => $_POST['last_name'],
@@ -116,7 +95,7 @@ class Doctors extends Controller
             'specialty' => $_POST['specialty'], // Set default value for specialty
         ];
 
-        if ($doctorModel->updateDoctor($id, $data) > 0) {
+        if ($this->model('Doctor_model')->updateDoctor($id, $data) > 0) {
             Flasher::setFlash('Doctor berhasil', 'di update', 'success');
             header('Location: ' . BASEURL . '/doctors/edit/' . $id);
             exit;
@@ -126,10 +105,10 @@ class Doctors extends Controller
             exit;
         }
     }
+
     public function delete($id)
     {
-        $doctorModel = new DoctorModel();
-        if ($doctorModel->deleteDoctor($id) > 0) {
+        if ($this->model('Doctor_model')->deleteDoctor($id) > 0) {
             Flasher::setFlash('Doctor berhasil', 'di hapus', 'success');
             header('Location: ' . BASEURL . '/doctors');
             exit;

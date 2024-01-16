@@ -15,8 +15,8 @@
                     <div class="card-header flex-column flex-md-row">
                         <div class="head-label text-center">
                         </div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDiagnosesModal">
-                            Add Diagnoses
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDiagnosisModal">
+                            Add Diagnosis
                         </button>
 
 
@@ -30,30 +30,33 @@
                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 82px;">No.</th>
                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Doctor Name</th>
                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Date</th>
-                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Diagnosis Information</th>
                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Diagnosis</th>
-                                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 66px;">Actions</th>
+                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Diagnosis Information</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 66px;">Recipe</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 66px;">invoice</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            <?php $number = 1; foreach ($data['diagnoses'] as $diagnosis) : ?>
+                            <?php $number = 1; foreach ($data['diagnosis'] as $diagnosis) : ?>
                                 <tr class="odd">
                                     <td><?= $number++; ?></td>
                                     <td>
                                         <?= ucfirst($diagnosis['first_name']) . ' ' . ucfirst($diagnosis['last_name']) ?>
                                     </td>
                                     <td>
-                                        <?= $diagnosis['date'] ?>
+                                        <?= $diagnosis['diagnosis_information'] ?>
                                     </td>
                                     <td>
-                                        <?= $diagnosis['diagnosis_information'] ?>
+                                        <?= $diagnosis['date'] ?>
                                     </td>
                                     <td>
                                         <?= $diagnosis['diagnosis'] ?>
                                     </td>
                                     <td>
-                                    
+                                    <a href="#" class="btn btn-secondary invoice-button" data-diagnosis-id="<?= $diagnosis['id']; ?>">Recipe</a>
+                                    </td>
+                                    <td>
                                     <a href="#" class="btn btn-secondary invoice-button" data-diagnosis-id="<?= $diagnosis['id']; ?>">Invoice</a>
                                     </td>
                                 </tr>
@@ -65,15 +68,15 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="addDiagnosesModal" tabindex="-1" aria-labelledby="addDiagnosesModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addDiagnosisModal" tabindex="-1" aria-labelledby="addDiagnosisModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addDiagnosesModalLabel">Add Diagnoses</h5>
+                    <h5 class="modal-title" id="addDiagnosisModalLabel">Add Diagnosis</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="<?= BASEURL; ?>/Diagnoses/createactive" method="post">
+                    <form action="<?= BASEURL; ?>/Diagnosis/createactive" method="post">
                         <div class="mb-3">
                             <label class="form-label" for="patient_id">Patient :</label>
                             <?php $patient = $data['patient']; ?>
@@ -107,7 +110,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <input type="submit" value="Add Diagnoses" class="btn btn-primary">
+                            <input type="submit" value="Add Diagnosis" class="btn btn-primary">
                         </div>
                     </form>
                 </div>

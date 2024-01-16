@@ -1,5 +1,5 @@
 <?php
-class AdminModel extends Database
+class Admin_model extends Database
 {
     private $table = 'admins';
 

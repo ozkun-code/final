@@ -1,5 +1,5 @@
 <?php 
-class DoctorModel extends Database {
+class Doctor_model extends Database {
     private $table = 'doctors';
 
 

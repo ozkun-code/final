@@ -4,23 +4,14 @@ class Dashboard extends Controller
    
     public function index()
     {
-
-        if (!isset($_SESSION['role'])) {
-            header('Location: ' . BASEURL . '/login/index');
-            exit();
-        }
-        $role = $_SESSION['role'];
        
 
         $this->view('layouts/head/head');
-
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
 
-
-        // Tampilkan konten
-        $this->view('Dashboard/index');
+        $this->view('dashboard/index');
 
         $this->view('layouts/footer/footer');
 

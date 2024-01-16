@@ -3,35 +3,28 @@ class Drug extends Controller
 {
     public function index()
     {
-        $role = $_SESSION['role'];
-
+       
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
 
-        $drugModel = new DrugModel();
-        $data['drugs'] = $drugModel->getAllDrugs();
-
+        $data['drugs'] = $this->model('Drug_model')->getAllDrugs();
         $this->view('drug/index', $data);
 
         $this->view('layouts/footer/footer');
     }
     public function New()
     {
-        $role = $_SESSION['role'];
+       
 
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
 
-        $drugModel = new DrugModel();
-        $data['drugs'] = $drugModel->getAllDrugs();
-
-        $this->view('drug/new', $data); // Assuming you have a separate view for creating new drugs
+        $data['drugs'] = $this->model('Doctor_model')->getAllDrugs();
+        $this->view('drug/new', $data);
 
         $this->view('layouts/footer/footer');
     }
@@ -39,13 +32,12 @@ class Drug extends Controller
     public function createNewDrugAction()
     {
         $user_id = $_SESSION['user_id'];
-        $userModel = new LoginModel();
-        $adminModel = new AdminModel();
-        $userId = $userModel->lastInsertId(); // Assuming you want to use the last insert ID of the user
-        $adminId = $adminModel->getAdminByUserId($user_id);
+        
+
+        $userId = $this->model('Login_model')->lastInsertId();
+        $adminId = $this->model('Admin_model')->getAdminByUserId($user_id);
         $adminId = $adminId['id'];
-        var_dump($adminId);
-        $drugModel = new DrugModel();
+   
         $data = [
             'nama_obat' => $_POST['nama_obat'],
             'harga_jual' => $_POST['harga_jual'],
@@ -54,7 +46,7 @@ class Drug extends Controller
             'expired_date' => $_POST['expired_date'],
         ];
     
-        if ($drugModel->createDrug($data, $adminId) > 0) {
+        if ($this->model('Drug_model')->createDrug($data, $adminId) > 0) {
             Flasher::setFlash('Drug berhasil', 'di tambahkan', 'success');
         }
     
@@ -66,49 +58,37 @@ class Drug extends Controller
 
     public function Stock()
     {
-        $role = $_SESSION['role'];
+        
 
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
 
-        $drugModel = new DrugModel();
-        $data['drugs'] = $drugModel->getAllDrugs();
+       
+        $data['drugs'] = $this->model('Drug_model')->getAllDrugs();
 
         $this->view('drug/stock', $data); // Assuming you have a separate view for adding stock
 
         $this->view('layouts/footer/footer');
     }
-    public function getDrugPriceById($drugId)
-    {
-        $this->query('SELECT harga_jual FROM ' . $this->table . ' WHERE id = :id');
-        $this->bind(':id', $drugId);
-        $result = $this->single();
-
-        if ($result) {
-            return $result['harga_jual'];
-        } else {
-            return null; // Atau sesuaikan dengan logika Anda jika harga tidak ditemukan
-        }
-    }
+   
 
     public function addStockAction()
     {
         $user_id = $_SESSION['user_id'];
-        $userModel = new LoginModel();
-        $adminModel = new AdminModel();
-        $userId = $userModel->lastInsertId(); // Dapatkan ID dari user yang baru saja dibuat
-        $adminId = $adminModel->getAdminByUserId($user_id);
-        $drugModel = new DrugModel();
+
+
+        $userId = $this->model('Login_model')->lastInsertId(); 
+        $adminId = $this->model('Admin_model')->getAdminByUserId($user_id);
+        
         $data = [
             'drug_id' => $_POST['drug_id'],
             'quantity' => $_POST['quantity'],
             'expired_date' => $_POST['expired_date'],
         ];
 
-        if ($drugModel->addStock($data['drug_id'], $data['quantity'], $data['expired_date']) > 0) {
+        if ($this->model('Drug_model')->addStock($data['drug_id'], $data['quantity'], $data['expired_date']) > 0) {
             Flasher::setFlash('Stok berhasil ditambahkan', '', 'success');
         }
 

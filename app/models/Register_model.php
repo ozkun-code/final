@@ -1,6 +1,6 @@
 <?php 
 
-class UserModel extends Database {
+class User_model extends Database {
     private $table = 'users';
 
     public function createUser($email, $password, $role) {

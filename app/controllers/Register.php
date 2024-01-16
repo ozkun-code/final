@@ -2,23 +2,13 @@
 
 class Register extends Controller
 {
-    protected $data = array();
 
-    public function __construct()
-    {
-        // Menetapkan nilai di dalam konstruktor
-        $this->data['nama_controller'] = 'register';
-    }
     public function index()
     {
-        $patientModel = new PatientModel();
-        $data['kecamatan'] = $patientModel->getAllKecamatan();
-
-        // Mendapatkan id kecamatan pertama sebagai default
+       
+        $data['kecamatan'] = $this->model('Patient_model')->getAllKecamatan();
         $defaultKecamatanId = isset($data['kecamatan'][0]['id']) ? $data['kecamatan'][0]['id'] : null;
-
-        // Mendapatkan desa berdasarkan kecamatan_id
-        $data['desa'] = $defaultKecamatanId ? $patientModel->getDesaByKecamatanId($defaultKecamatanId) : [];
+        $data['desa'] = $defaultKecamatanId ? $this->model('Patient_model')->getDesaByKecamatanId($defaultKecamatanId) : [];
 
         $this->view('register/index', $data);
     }
@@ -26,20 +16,19 @@ class Register extends Controller
     public function createactive()
     {
 
-        $userModel = new LoginModel();
+       
         $email = $_POST['email'];
         $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        if ($userModel->isEmailExists($email)) {
+        if ($this->model('Login_model')->isEmailExists($email)) {
 
             Flasher::setFlash('gagal', 'Email sudah terdaftar', 'danger');
             header('Location: ' . BASEURL . '/register');
             exit;
         }
 
-        $userModel->createUser($_POST['email'], $hashed_password, 'patient');
-        $userId = $userModel->lastInsertId(); // Dapatkan ID dari user yang baru saja dibuat
-
-        $PatientModel = new PatientModel();
+        $this->model('Login_model')->createUser($_POST['email'], $hashed_password, 'patient');
+        $userId = $this->model('Login_model')->lastInsertId(); 
+        
         $data = [
             'kecamatan_id' => $_POST['kecamatan_id'],
             'desa_id' => $_POST['desa_id'],
@@ -52,7 +41,7 @@ class Register extends Controller
             'gender' => $_POST['gender'],
         ];
 
-        if ($PatientModel->createPatient($data, $userId) > 0) {
+        if ($this->model('Patient_model')->createPatient($data, $userId) > 0) {
             Flasher::setFlash('Patient berhasil', 'di tambahkan silahkan login', 'success');
             header('Location: ' . BASEURL . '/register');
             exit;
@@ -65,19 +54,18 @@ class Register extends Controller
 
     public function process()
     {
-        $model = new UserModel();
+        
         $hashed_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $model->createUser($_POST['email'], $hashed_password, 'super_admin');
+        $this->model('User_model')->createUser($_POST['email'], $hashed_password, 'super_admin');
 
         header('Location: ' . BASEURL . '/login/index');
     }
    
     public function getVillagesBySubdistrictId($subdistrictId)
     {
-        $patientModel = new PatientModel();
-        $villages = $patientModel->getVillagesBySubdistrictId($subdistrictId);
+       
+        $villages = $this->model('Patient_model')->getVillagesBySubdistrictId($subdistrictId);
 
-        // Ubah data desa ke dalam format JSON
         echo json_encode($villages);
     }
 }

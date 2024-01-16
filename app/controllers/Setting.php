@@ -3,22 +3,18 @@ class Setting extends Controller
 {
     public function index($name = null)
     {
-        $role = $_SESSION['role'];
+       
 
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
 
-        $settingModel = new SettingModel();
 
-        // Initialize $data
         $data = [];
 
-        // Cek apakah ada query pencarian
         if ($name) {
-            $data['settings'] = $settingModel->getAllSetting();
+            $data['settings'] = $this->model('Setting_model')->getAllSetting();
         }
 
         $this->view('setting/index', $data);

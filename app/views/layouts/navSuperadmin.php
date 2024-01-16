@@ -111,13 +111,13 @@
               <div data-i18n="Basic">Data Transaction</div>
             </a>
           </li>
-           // <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
+           <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
           <li class="menu-item">
             <a href="<?= BASEURL; ?>/setting" class="menu-link">
               <i class="menu-icon tf-icons bx bx-cog"></i>
               <div data-i18n="Basic">Setting</div>
             </a>
-          </li> //
+          </li> 
           <li class="menu-item">
             <a href="<?= BASEURL; ?>/logout" class="menu-link">
               <i class="menu-icon tf-icons bx bx-log-out"></i>

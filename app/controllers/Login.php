@@ -12,8 +12,7 @@ class Login extends Controller
         // Atur session untuk kedaluwarsa setelah 30 menit
         $_SESSION['expiry'] = time() + (30 * 60);
     
-        $model = new LoginModel();
-        $user = $model->getUserByEmail($_POST['email']);
+        $user = $this->model('Login_model')->getUserByEmail($_POST['email']);
     
         if ($user) {
             if (password_verify($_POST['password'], $user['password'])) {
@@ -36,7 +35,7 @@ class Login extends Controller
                 header('Location: ' . BASEURL . '/login');
             }
         } else {
-            // Email belum terdaftar
+            // Email belum terdaftard
             Flasher::setFlash('gagal login', 'email belum terdaftar', 'danger');
             header('Location: ' . BASEURL . '/login');
         }
@@ -44,8 +43,8 @@ class Login extends Controller
     
 public function delete($id)
     {
-        $doctorModel = new DoctorModel();
-        if ($doctorModel->deleteDoctor($id) > 0){
+        
+        if ($this->model('Doctor_model')->deleteDoctor($id) > 0){
             Flasher::setFlash('berhasil', 'di hapus', 'success');
             header('Location: ' . BASEURL . '/doctors');
             exit;

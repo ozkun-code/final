@@ -7,9 +7,8 @@ class App
     protected $params = [];
     public function __construct()
     {
-        
         $url = $this->parseUrl();
-       
+
         if (isset($url[0]) && file_exists('../app/controllers/' . ucwords($url[0]) . ".php")) {
             $this->controller = ucwords($url[0]);
             unset($url[0]);
@@ -31,11 +30,9 @@ class App
 
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
-    
 
     public function parseUrl()
     {
-      
         if (isset($_GET['url'])) {
             $url = rtrim($_GET['url'], '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);

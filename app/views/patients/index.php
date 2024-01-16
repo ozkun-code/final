@@ -34,7 +34,7 @@
                                             <td><?= $patient['contact'] ?></td>
                                             <td class="" style="">
                                                 <div class="d-inline-block">
-                                                    <a href="<?= BASEURL; ?>/diagnoses/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit">
+                                                    <a href="<?= BASEURL; ?>/diagnosis/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit">
                                                         <i class="bx bx-history" title="history diagnosa"></i>
                                                     </a>
                                                     <a href="<?= BASEURL; ?>/patients/detail/<?= $patient['id']; ?>" class="btn btn-sm btn-icon item-edit">

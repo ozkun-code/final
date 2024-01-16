@@ -7,8 +7,9 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="http://final1.test/assets/img/favicon/favicon.ico" type="image/x-icon">
 
-    <title>See Care</title>
+    <title>SeeCare</title>
 
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,9 +43,9 @@ https://templatemo.com/tm-566-medic-care
 
         <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
             <div class="container">
-                <a class="navbar-brand mx-auto d-lg-none" href="index.html">
-                    SeeCare
-                    <strong class="d-block">care and protect you
+                <a class="navbar-brand mx-auto d-lg-none" href="">
+                    SeeCarea
+                    <strong class="d-block"> cares the most
                     </strong>
                 </a>
 
@@ -68,7 +69,7 @@ https://templatemo.com/tm-566-medic-care
 
                         <a class="navbar-brand d-none d-lg-block" href="index.html">
                             SeeCare
-                            <strong class="d-block">Care and Protect you
+                            <strong class="d-block">Cares The Most
                             </strong>
                         </a>
 
@@ -294,8 +295,10 @@ https://templatemo.com/tm-566-medic-care
         </section>
         <section class="section-padding" id="booking">
             <h2 class="text-center mb-lg-3 mb-2">Maps</h2>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.348203834089!2d107.40263707305657!3d-6.348941193640893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69715953ce0a4d%3A0x1f24b1a882ee398c!2sKlinik%20NUR%20ASY%20-%20SYIFA!5e0!3m2!1sid!2sid!4v1703946701352!5m2!1sid!2sid" width="600" height="450" style="padding:5%;  display: block; margin: 0 auto;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </section>
+            <div class="container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.348203834089!2d107.40263707305657!3d-6.348941193640893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69715953ce0a4d%3A0x1f24b1a882ee398c!2sKlinik%20NUR%20ASY%20-%20SYIFA!5e0!3m2!1sid!2sid!4v1703946701352!5m2!1sid!2sid" width="100%" height="450" style="padding:5%;  display: block; margin: 0 auto;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            </section>
 
     </main>
 

@@ -4,38 +4,24 @@ class Transaction extends Controller
 
     public function index($diagnosisId = null, $loopingCount = 1)
     {
-        // Cek sesi role
-        $diagnosisId = $diagnosisId ?: header('Location: ' . BASEURL . '/list');
-
-        if (!isset($_SESSION['role'])) {
-            header('Location: ' . BASEURL . '/login/index');
-            exit();
-        }
-
-        $role = $_SESSION['role'];
-        $user_id = $_SESSION['user_id'];
-
+        
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $adminModel = new AdminModel();
-        $drugModel  = new DrugModel();
-
-        $navView = $loginModel->getNavView($role);
-        $adminData = $adminModel->getAdminByUserId($user_id);
-        $drugData = $drugModel->getAllDrugs();
-
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
 
-        // Jika terdapat parameter ID diagnosa, ambil dan tampilkan informasi diagnosa dan pasien
+        $adminData = $this->model('Admin_model')->getAdminByUserId($_SESSION['user_id']);
+        $drugData = $this->model('Drug_model')->getAllDrugs();
+
+    
         if ($diagnosisId !== null) {
             if (is_numeric($diagnosisId) && $diagnosisId > 0) {
-                $diagnosisModel = new DiagnosisModel();
-                $diagnosisData = $diagnosisModel->getDiagnosisById($diagnosisId);
+
+                $diagnosisData = $this->model('Diagnosis_model')->getDiagnosisById($diagnosisId);
 
                 if ($diagnosisData) {
-                    $patientModel = new PatientModel();
-                    $patientData = $patientModel->getPatientById($diagnosisData['patient_id']);
+                   
+                    $patientData = $this->model('Patients_model')->getPatientById($diagnosisData['patient_id']);
 
                     $this->view('Transaction/index', [
                         'diagnosisData' => $diagnosisData,
@@ -51,7 +37,6 @@ class Transaction extends Controller
             }
         }
 
-        // Tampilkan konten biasa jika tidak ada parameter ID diagnosa atau data tidak ditemukan
         $this->view('Transaction/index', [
             'loopingCount' => $loopingCount,
         ]);
@@ -64,13 +49,12 @@ class Transaction extends Controller
 
         $this->view('layouts/head/head');
 
-        $loginModel = new LoginModel();
-        $navView = $loginModel->getNavView($role);
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
-        $transactionModel = new TransactionModel();
-        $data['invoice'] = $transactionModel->getAllTransactions();
+
+
+        $data['invoice'] = $this->model('Transaction_model')->getAllTransactions();
         
-        // Tampilkan konten
         $this->view('Transaction/list',$data);
 
         $this->view('layouts/footer/footer');
@@ -79,101 +63,112 @@ class Transaction extends Controller
 
     }
 
-
-
-
-
-
-
-
-
-
-
-    public function storeRecipe($patient_id, $looping)
+    public function storeRecipe($patient_id, $looping,$diagnosis_id)
     {
-        // Create an instance of the TransactionModel
-        $transactionModel = new TransactionModel();
     
-        // Create an instance of the DrugModel
-        $drugModel = new DrugModel();
     
-        // Get the current date
+       
+
         $date = date('Y-m-d'); 
     
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Array to store total for each item
             $items = [];
     
-            // Create an invoice
-            $invoiceId = $transactionModel->saveToInvoice($patient_id, $date, 0); // Pass 0 for the initial total
-    
-            // Check if the invoice was created successfully
+            $invoiceId = $this->model('Transaction_model')->saveToInvoice($patient_id, $date, 0,$diagnosis_id); 
+   
             if ($invoiceId > 0) {
-                // Loop through the items
                 for ($i = 0; $i < $looping; $i++) {
                     $selectDrug = $_POST['selectDrug' . $i];
                     $qty = $_POST['qty' . $i];
-    
-                    // Get drug price by id
-                    $hargaObat = $drugModel->getObatById($selectDrug);
-    
-                    // Assuming $hargaObat is an array, get the first element (assuming it's the price)
+
+                    $hargaObat = $this->model('Drug_model')->getObatById($selectDrug);
+
                     $hargaObat = $hargaObat[0]['harga_jual'];
-    
-                    // Calculate total for this item
+  
                     $totalItem = $hargaObat * $qty;
-    
-                    // Add the total to the array
+
                     $items[] = $totalItem;
-    
-                    // Save details to the recipe
-                    $transactionModel->saveToRecipe($invoiceId, $selectDrug, $patient_id, $qty, $hargaObat, $date);
+ 
+                    $this->model('Transaction_model')->saveToRecipe($invoiceId, $selectDrug, $patient_id, $qty, $hargaObat, $date);
                 }
     
-                // Calculate the overall total
+
                 $total = array_sum($items);
-    
-                // Update the total in the invoice
-                $transactionModel->updateInvoiceTotal($invoiceId, $total);
+
+                $this->model('Transaction_model')->updateInvoiceTotal($invoiceId, $total);
                 Flasher::setFlash('Invoice berhasil', 'ditambahkan', 'success');
             } else {
-                // Set Flash message for failure
+
                 Flasher::setFlash('Invoice gagal', 'ditambahkan', 'danger');
             }
-    
-            // Redirect to the desired page
-            header('Location: ' . BASEURL . '/transaction/list');
+
+            header('Location: ' . BASEURL . '/transaction/' . $diagnosis_id);
             exit;
         }
     }
     
-    
-    
+    public function indasdex($diagnosisId = null, $loopingCount = 1)
+    {
+        
+        $this->view('layouts/head/head');
 
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
+        $this->view($navView);
 
+        $adminData = $this->model('Admin_model')->getAdminByUserId($_SESSION['user_id']);
+        $drugData = $this->model('Drug_model')->getAllDrugs();
 
     
+        if ($diagnosisId !== null) {
+            if (is_numeric($diagnosisId) && $diagnosisId > 0) {
+
+                $diagnosisData = $this->model('Diagnosis_model')->getDiagnosisById($diagnosisId);
+
+                if ($diagnosisData) {
+                   
+                    $patientData = $this->model('Patients_model')->getPatientById($diagnosisData['patient_id']);
+
+                    $this->view('Transaction/index', [
+                        'diagnosisData' => $diagnosisData,
+                        'patientData' => $patientData,
+                        'adminData' => $adminData,
+                        'drugData' => $drugData,
+                        'loopingCount' => $loopingCount,
+                    ]);
+
+                    $this->view('layouts/footer/footer');
+                    return;
+                }
+            }
+        }
+
+        $this->view('Transaction/index', [
+            'loopingCount' => $loopingCount,
+        ]);
+
+        $this->view('layouts/footer/footerts');
+    }
 
 
 
     public function print()
     {
 
-        // Tampilkan konten
+   
         $this->view('Transaction/print');
     }
     public function getDrugPriceById($drugId)
     {
-        $drugModel = new DrugModel();
-        $drug = $drugModel->getObatById($drugId);
+
+        $drug = $this->model('Drug_model')->getObatById($drugId);
 
         // Ubah data obat ke dalam format JSON
         echo json_encode($drug);
     }
     public function getAllDrugs()
     {
-        $drugModel = new DrugModel();
-        $drugs = $drugModel->getAllDrugsSD();
+      
+        $drugs = $this->model('Drug_model')->getAllDrugsSD();
 
         // Ubah data obat ke dalam format JSON
         echo json_encode($drugs);

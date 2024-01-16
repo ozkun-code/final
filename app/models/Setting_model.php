@@ -1,5 +1,5 @@
 <?php
-class SettingModel extends Database
+class Settin_Model extends Database
 {
     private $table = 'account'; // Change the table name to 'admin'
 

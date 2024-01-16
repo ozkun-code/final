@@ -1,6 +1,6 @@
 <?php
 
-class DrugModel extends Database
+class Drug_model extends Database
 {
     private $tableDrug = 'drug';
     private $tableDrugStock = 'drug_stock';

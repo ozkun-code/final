@@ -1,6 +1,6 @@
 <?php
 
-class AppointmentModel extends Database {
+class Appointment_model extends Database {
 
     private $table = 'appointments';
 
