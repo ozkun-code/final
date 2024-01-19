@@ -31,9 +31,9 @@
                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Doctor Name</th>
                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Date</th>
                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Diagnosis</th>
-                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Diagnosis Information</th>
-                                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 66px;">Recipe</th>
-                                <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 66px;">invoice</th>
+                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 150px;">Symptoms:</th>
+                                <th class="sorting" rowspan="1" colspan="1" style="width: 66px;">Recipe</th>
+                                <th class="sorting" rowspan="1" colspan="1" style="width: 66px;">invoice</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,16 +45,22 @@
                                         <?= ucfirst($diagnosis['first_name']) . ' ' . ucfirst($diagnosis['last_name']) ?>
                                     </td>
                                     <td>
-                                        <?= $diagnosis['diagnosis_information'] ?>
-                                    </td>
-                                    <td>
                                         <?= $diagnosis['date'] ?>
                                     </td>
                                     <td>
                                         <?= $diagnosis['diagnosis'] ?>
                                     </td>
                                     <td>
-                                    <a href="#" class="btn btn-secondary invoice-button" data-diagnosis-id="<?= $diagnosis['id']; ?>">Recipe</a>
+                                        <?= $diagnosis['diagnosis_information'] ?>
+                                    </td>
+
+                                    
+                                    <td>
+                                    <a href="<?= BASEURL; ?>/drug/recipe/<?= $diagnosis['id']; ?>" class="btn btn-primary">
+                                  
+                                            <i class="bx bx-action bx-xs me-1"></i>Recipes
+                                        </span>
+                                    </a>
                                     </td>
                                     <td>
                                     <a href="#" class="btn btn-secondary invoice-button" data-diagnosis-id="<?= $diagnosis['id']; ?>">Invoice</a>
@@ -105,7 +111,7 @@
                             <input type="text" class="form-control" id="diagnosis" name="diagnosis" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="diagnosis_information">Diagnosis information :</label>
+                            <label class="form-label" for="diagnosis_information">Symptoms :</label>
                             <input type="text" class="form-control" id="diagnosis_information" name="diagnosis_information" required>
                         </div>
                         <div class="modal-footer">

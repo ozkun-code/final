@@ -19,10 +19,30 @@ class Transaction_model extends Database
     }
     public function getAllTransactions()
     {
-        $this->query('SELECT * FROM ' . $this->tableInvoice);
+        $this->query('SELECT invoices.id, invoices.patient_id, invoices.diagnoses_id, invoices.date, invoices.total, patients.first_name, patients.last_name
+        FROM invoices
+        INNER JOIN patients ON invoices.patient_id = patients.id;');
         return $this->resultSet();
     }
-    // Di dalam TransactionModel
+    public function getAllRecipes()
+    {
+        $this->query('SELECT * FROM ' . $this->tableRecipe);
+        return $this->resultSet();
+    }
+    public function getInvoicesByDiagnosisId($diagnosisId)
+{
+    $this->query('SELECT * FROM ' . $this->tableInvoice . ' WHERE diagnoses_id = :diagnosis_id');
+    $this->bind(':diagnosis_id', $diagnosisId);
+    return $this->resultSet();
+}
+
+public function getRecipesByInvoiceId($invoiceId)
+{
+    $this->query('SELECT * FROM ' . $this->tableRecipe . ' WHERE invoice_id = :invoice_id');
+    $this->bind(':invoice_id', $invoiceId);
+    return $this->resultSet();
+}
+
 
 public function updateInvoiceTotal($invoiceId, $total)
 {

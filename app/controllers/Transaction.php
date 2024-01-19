@@ -53,7 +53,9 @@ class Transaction extends Controller
         $this->view($navView);
 
 
-        $data['invoice'] = $this->model('Transaction_model')->getAllTransactions();
+        $data['invoices'] = $this->model('Transaction_model')->getAllTransactions();
+        var_dump($data['invoices']);
+        
         
         $this->view('Transaction/list',$data);
 
@@ -107,48 +109,7 @@ class Transaction extends Controller
         }
     }
     
-    public function indasdex($diagnosisId = null, $loopingCount = 1)
-    {
-        
-        $this->view('layouts/head/head');
-
-        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
-        $this->view($navView);
-
-        $adminData = $this->model('Admin_model')->getAdminByUserId($_SESSION['user_id']);
-        $drugData = $this->model('Drug_model')->getAllDrugs();
-
-    
-        if ($diagnosisId !== null) {
-            if (is_numeric($diagnosisId) && $diagnosisId > 0) {
-
-                $diagnosisData = $this->model('Diagnosis_model')->getDiagnosisById($diagnosisId);
-
-                if ($diagnosisData) {
-                   
-                    $patientData = $this->model('Patients_model')->getPatientById($diagnosisData['patient_id']);
-
-                    $this->view('Transaction/index', [
-                        'diagnosisData' => $diagnosisData,
-                        'patientData' => $patientData,
-                        'adminData' => $adminData,
-                        'drugData' => $drugData,
-                        'loopingCount' => $loopingCount,
-                    ]);
-
-                    $this->view('layouts/footer/footer');
-                    return;
-                }
-            }
-        }
-
-        $this->view('Transaction/index', [
-            'loopingCount' => $loopingCount,
-        ]);
-
-        $this->view('layouts/footer/footerts');
-    }
-
+   
 
 
     public function print()

@@ -95,4 +95,38 @@ class Drug extends Controller
         header('Location: ' . BASEURL . '/drug/Stock');
         exit;
     }
+    
+    public function recipe($diagnosisId = null)
+    {
+        $this->view('layouts/head/head');
+    
+        $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
+        $this->view($navView);
+    
+        if ($diagnosisId) {
+            $invoices = $this->model('Transaction_model')->getInvoicesByDiagnosisId($diagnosisId);
+    
+            if ($invoices) {
+                $recipes = [];
+                foreach ($invoices as $invoice) {
+                    $recipes[$invoice['id']] = $this->model('Transaction_model')->getRecipesByInvoiceId($invoice['id']);
+                }
+    
+                $data['invoices'] = $invoices;
+                $data['recipes'] = $recipes;
+                $this->view('drug/recipe', $data);
+            } else {
+                // Tampilkan pesan bahwa resep belum dibuat
+                $data['message'] = 'Resep belum dibuat untuk diagnosis ini.';
+                $this->view('drug/recipe', $data);
+            }
+        } else {
+            // Jika tidak ada diagnosis, tampilkan semua recipe
+            $data['recipes'] = $this->model('Transaction_model')->getAllRecipes();
+            $this->view('drug/recipe', $data);
+        }
+    
+        $this->view('layouts/footer/footer');
+    }
+    
 }

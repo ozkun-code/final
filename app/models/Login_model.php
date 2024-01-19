@@ -39,13 +39,13 @@ class Login_model extends Database
     {
         switch ($role) {
             case 'super_admin':
-                return 'layouts/navSuperadmin';
+                return 'layouts/navsuperadmin';
             case 'admin':
-                return 'layouts/navAdmin';
+                return 'layouts/navadmin';
             case 'doctor':
-                return 'layouts/navDoctors';
+                return 'layouts/navdoctors';
             default:
-                return 'layouts/navPatient';
+                return 'layouts/navpatient';
         }
     }
 }

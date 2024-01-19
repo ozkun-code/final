@@ -19,6 +19,7 @@
               <p class="mb-1">Purwasari, Karawang, 41371</p>
               <p class="mb-0">Jawa Barat, Indonesia</p>
             </div>
+
             <div class="col-md-6">
               <dl class="row mb-2">
                 <dt class="col-sm-6 mb-2 mb-sm-0 text-md-end">

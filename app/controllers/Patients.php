@@ -15,7 +15,7 @@ class Patients extends Controller
         if ($name) {
             $data['patients'] = $this->model('Patients_model')->searchPatient($name);
         } else {
-            $data['patients'] = $this->model('patients_model')->getAllPatient();
+            $data['patients'] = $this->model('Patients_model')->getAllPatient();
         }
 
         $this->view('patients/index', $data);
