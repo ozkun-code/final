@@ -91,13 +91,27 @@
                 <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
               </div>
             </form>
-
             <p class="text-center">
               <span>New on our platform?</span>
               <a href="<?= BASEURL; ?>/register">
                 <span>Create an account</span>
               </a>
             </p>
+
+            <div class="d-flex align-items-center">
+              <div class="flex-grow-1">
+                <p class="mb-0"><b>Admin:</b></p>
+                <p class="mb-0 email" data-email="admin@themesbrand.website">email - admin@themesbrand.website</p>
+                <p class="mb-1 pass" data-password="admin@123456">Pass - admin@123456</p>
+              </div>
+              <div class="flex-shrink-0">
+                <a href="javascript:void(0);" class="btn btn-primary login-btn" onclick="login(this)">Login</a>
+              </div>
+            </div>
+
+            <!-- Repeat similar changes for other user types -->
+
+            
           </div>
         </div>
         <!-- /Register -->
@@ -124,6 +138,18 @@
 
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <script>
+    function login(element) {
+        // Get the email and password from the clicked button's data attributes
+        var email = element.closest('.d-flex').querySelector('.email').getAttribute('data-email');
+        var password = element.closest('.d-flex').querySelector('.pass').getAttribute('data-password');
+
+        // Set the email and password in the form fields
+        document.getElementById('email').value = email;
+        document.getElementById('password').value = password;
+    }
+  </script>
 </body>
 
 </html>

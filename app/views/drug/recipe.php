@@ -34,6 +34,6 @@
        
     <?php endforeach; ?>
 <?php else : ?>
-    <?php var_dump($data['recipes']) ?>
+    <?php var_dump($data['recipes']) ?>,
     <p>Tidak ada invoice.</p>
 <?php endif; ?>

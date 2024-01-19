@@ -35,6 +35,21 @@ public function getPatientIdByUserId($userId)
         $this->bind(':user_id', $userId);
         return $this->single()['id'];
     }
+    public function settingPatientByUserId($userId)
+    {
+        $this->query('SELECT * FROM ' . $this->table . ' WHERE user_id = :user_id');
+        $this->bind(':user_id', $userId);
+        return $this->single();
+    }
+    public function settingUpdatePatient($user_id, $first_name, $last_name, $contact)
+    {
+        $this->query('UPDATE patients SET first_name = :first_name, last_name = :last_name, contact = :contact WHERE user_id = :user_id');
+        $this->bind(':user_id', $user_id);
+        $this->bind(':first_name', $first_name);
+        $this->bind(':last_name', $last_name);
+        $this->bind(':contact', $contact);
+        $this->execute();
+    }
 
 
 
@@ -62,10 +77,9 @@ public function createPatient($patient, $userId)
 
 public function updatePatient($id, $patient)
 {
-    $this->query('UPDATE ' . $this->table . ' SET user_id = :user_id, kecamatan_id = :kecamatan_id, desa_id = :desa_id, first_name = :first_name, last_name = :last_name, gender = :gender, contact = :contact, address = :address, date_of_birth = :date_of_birth, status_account = :status_account WHERE id = :id');
+    $this->query('UPDATE ' . $this->table . ' SET kecamatan_id = :kecamatan_id, desa_id = :desa_id, first_name = :first_name, last_name = :last_name, gender = :gender, contact = :contact, address = :address, date_of_birth = :date_of_birth, status_account = :status_account WHERE id = :id');
     
     $this->bind(':id', $id);
-    $this->bind(':user_id', $patient['user_id']);
     $this->bind(':kecamatan_id', $patient['kecamatan_id']);
     $this->bind(':desa_id', $patient['desa_id']);
     $this->bind(':first_name', $patient['first_name']);

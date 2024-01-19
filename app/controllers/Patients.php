@@ -137,14 +137,57 @@ class Patients extends Controller
 
         if ($this->model('Patients_model')->updatePatient($id, $data) > 0) {
             Flasher::setFlash('Patient berhasil', 'di update', 'success');
-            header('Location: ' . BASEURL . '/Patients/edit/' . $id);
+            header('Location: ' . BASEURL . '/Patients/detail/' . $id);
             exit;
         } else {
             Flasher::setFlash('Patient gagal', 'di update', 'danger');
-            header('Location: ' . BASEURL . '/Patients/edit/' . $id);
+            header('Location: ' . BASEURL . '/Patients/detail/' . $id);
             exit;
         }
     }
+    public function createOrUpdateMedical($patient_id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Ambil data dari formulir
+            $medicalData = [
+                'patient_id' => $patient_id,
+                'height' => $_POST['height'],
+                'weight' => $_POST['weight'],
+                'blood_group' => $_POST['blood_group'],
+                'pulse' => $_POST['pulse'],
+                'blood_pressure' => $_POST['blood_pressure'],
+                'respiration' => $_POST['respiration'],
+                'allergy' => $_POST['allergy'],
+                'diet' => $_POST['diet'],
+                // Tidak memerlukan session untuk 'update_by' karena sudah dikirimkan sebagai parameter
+            ];
+
+            // Cek apakah data medis sudah ada untuk pasien ini
+            $existingMedicalData = $this->model('MedicalInformationModel')->getMedicalInformationByPatientId($patient_id);
+
+            if ($existingMedicalData) {
+                // Jika sudah ada, lakukan operasi update
+                $result = $this->model('MedicalInformationModel')->updateMedicalInformation($existingMedicalData['id'], $medicalData);
+            } else {
+                // Jika belum ada, lakukan operasi create
+                $result = $this->model('MedicalInformationModel')->createMedicalInformation($medicalData);
+            }
+
+            if ($result) {
+                // Tampilkan pesan sukses menggunakan Flasher
+                Flasher::setFlash('Informasi medis berhasil', 'diupdate atau ditambahkan', 'success');
+            } else {
+                // Tampilkan pesan gagal menggunakan Flasher
+                Flasher::setFlash('Gagal', 'diupdate atau ditambahkan', 'danger');
+            }
+
+            // Redirect ke halaman tertentu setelah selesai
+            // Sesuaikan dengan kebutuhan Anda
+            header('Location: ' . BASEURL . '/Patients/detail/' . $patient_id);
+            exit;
+        }
+    }
+    
     public function detail($id)
     {
 
@@ -159,4 +202,6 @@ class Patients extends Controller
         $this->view('patients/detail', ['patient' => $patient, 'medical' => $medical]);
         $this->view('layouts/footer/footer');
     }
+
+    
 }

@@ -6,9 +6,9 @@ class Register extends Controller
     public function index()
     {
        
-        $data['kecamatan'] = $this->model('Patient_model')->getAllKecamatan();
+        $data['kecamatan'] = $this->model('Patients_model')->getAllKecamatan();
         $defaultKecamatanId = isset($data['kecamatan'][0]['id']) ? $data['kecamatan'][0]['id'] : null;
-        $data['desa'] = $defaultKecamatanId ? $this->model('Patient_model')->getDesaByKecamatanId($defaultKecamatanId) : [];
+        $data['desa'] = $defaultKecamatanId ? $this->model('Patients_model')->getDesaByKecamatanId($defaultKecamatanId) : [];
 
         $this->view('register/index', $data);
     }
@@ -41,7 +41,7 @@ class Register extends Controller
             'gender' => $_POST['gender'],
         ];
 
-        if ($this->model('Patient_model')->createPatient($data, $userId) > 0) {
+        if ($this->model('Patients_model')->createPatient($data, $userId) > 0) {
             Flasher::setFlash('Patient berhasil', 'di tambahkan silahkan login', 'success');
             header('Location: ' . BASEURL . '/register');
             exit;
@@ -64,7 +64,7 @@ class Register extends Controller
     public function getVillagesBySubdistrictId($subdistrictId)
     {
        
-        $villages = $this->model('Patient_model')->getVillagesBySubdistrictId($subdistrictId);
+        $villages = $this->model('Patients_model')->getVillagesBySubdistrictId($subdistrictId);
 
         echo json_encode($villages);
     }

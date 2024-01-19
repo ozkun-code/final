@@ -40,6 +40,15 @@ class Doctor_model extends Database {
     $this->execute();
     return $this->rowCount();
 }
+public function settingUpdateDoctor($user_id, $first_name, $last_name, $contact)
+    {
+        $this->query('UPDATE doctors SET first_name = :first_name, last_name = :last_name, contact = :contact WHERE user_id = :user_id');
+        $this->bind(':user_id', $user_id);
+        $this->bind(':first_name', $first_name);
+        $this->bind(':last_name', $last_name);
+        $this->bind(':contact', $contact);
+        $this->execute();
+    }
 
 
 public function deleteDoctor($doctor_id) {

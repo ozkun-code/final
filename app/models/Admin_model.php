@@ -46,6 +46,15 @@ class Admin_model extends Database
         $this->execute();
         return $this->rowCount();
     }
+    public function settingUpdateAdmin($user_id, $first_name, $last_name, $contact)
+    {
+        $this->query('UPDATE admins SET first_name = :first_name, last_name = :last_name, contact = :contact WHERE user_id = :user_id');
+        $this->bind(':user_id', $user_id);
+        $this->bind(':first_name', $first_name);
+        $this->bind(':last_name', $last_name);
+        $this->bind(':contact', $contact);
+        $this->execute();
+    }
 
     public function deleteAdmin($admin_id) {
         // Update status di tabel admin

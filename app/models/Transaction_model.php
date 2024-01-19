@@ -17,11 +17,13 @@ class Transaction_model extends Database
     
         return $this->execute();
     }
-    public function getAllTransactions()
-    {
-        $this->query('SELECT invoices.id, invoices.patient_id, invoices.diagnoses_id, invoices.date, invoices.total, patients.first_name, patients.last_name
-        FROM invoices
-        INNER JOIN patients ON invoices.patient_id = patients.id;');
+    public function getAllTransactions() {
+        $query = "SELECT invoices.id, invoices.patient_id, invoices.diagnoses_id, invoices.date, invoices.total, patients.first_name, patients.last_name
+                  FROM $this->tableInvoice
+                  INNER JOIN patients ON invoices.patient_id = patients.id
+                  ORDER BY invoices.date DESC";  
+
+        $this->query($query);
         return $this->resultSet();
     }
     public function getAllRecipes()

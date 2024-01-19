@@ -1,8 +1,10 @@
 
 <?php
+var_dump($data['patient']);
 $patient = $data['patient'];
 $medical = $data['medical'];
 ?>
+
 <div class="content-wrapper">
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -11,16 +13,18 @@ $medical = $data['medical'];
         <!-- Basic Layout -->
         <div class="col-xxl">
             <div class="card mb-8">
+                <!-- Data Patients Form -->
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h3 class="mb-0">Data Patients</h3>
                 </div>
-                <?php Flasher::flash(); ?>
+
                 <div class="card-body text-center">
-                  
+                <?php Flasher::flash(); ?>
                 </div>
+                
                 <div class="card-body">
-                    <form action="<?= BASEURL; ?>/patients/createactive" method="post">
-                        <div class="row">
+                    <form action="<?= BASEURL; ?>/patients/updatePatient/<?= $patient['id'] ?>" method="post">
+                    <div class="row">
                             <div class="col">
                                 <div class="mb-3">
                                     <label class="form-label" for="first_name">First Name:</label>
@@ -58,45 +62,64 @@ $medical = $data['medical'];
                             <label class="form-label" for="kabupaten">Kabupaten:</label>
                             <input type="text" class="form-control" id="kabupaten" name="kabupaten" value="Karawang" readonly>
                         </div>
-                        <h3 class="mb-0">Medical Information</h3>
-                        <hr> <!-- Pemisah -->
-                        <div class="mb-3">
-                            <label class="form-label" for="height">Height:</label>
-                            <input type="text" class="form-control" id="height" name="height" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="weight">Weight:</label>
-                            <input type="text" class="form-control" id="weight" name="weight" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="blood_group">Blood Group:</label>
-                            <input type="text" class="form-control" id="blood_group" name="blood_group" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="pulse">Pulse:</label>
-                            <input type="text" class="form-control" id="pulse" name="pulse" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="blood_pressure">Blood Pressure:</label>
-                            <input type="text" class="form-control" id="blood_pressure" name="blood_pressure" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="respiration">Respiration:</label>
-                            <input type="text" class="form-control" id="respiration" name="respiration" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="allergy">Allergy:</label>
-                            <input type="text" class="form-control" id="allergy" name="allergy" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label" for="diet">Diet:</label>
-                            <input type="text" class="form-control" id="diet" name="diet" required>
-                        </div>
-                        <input type="submit" value="Tambah Pasien" class="btn btn-primary">
+                        <input type="hidden" name="kecamatan_id" value="<?= $patient['kecamatan_id'] ?? ''; ?>">
+                        <input type="hidden" name="desa_id" value="<?= $patient['desa_id'] ?? ''; ?>">
+                        <input type="hidden" name="status_account" value="<?= $patient['status_account'] ?? ''; ?>">
+                        <input type="hidden" name="gender" value="<?= $patient['gender'] ?? ''; ?>">
+                        
+
+                        <input type="submit" value="Tambah Data Pasien" class="btn btn-primary">
                     </form>
+                </div>
+
+                <!-- Medical Information Form -->
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0">Medical Information</h3>
+                </div>
+                <div class="card-body">
+                <form action="<?= BASEURL; ?>/patients/createOrUpdateMedical/<?= $patient['id'] ?>" method="post">
+    <div class="row">
+        <div class="mb-3">
+            <label class="form-label" for="height">Height (cm):</label>
+            <input type="text" class="form-control" id="height" name="height" placeholder="Enter height in centimeters" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="weight">Weight (kg):</label>
+            <input type="text" class="form-control" id="weight" name="weight" placeholder="Enter weight in kilograms" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="blood_group">Blood Group:</label>
+            <input type="text" class="form-control" id="blood_group" name="blood_group" placeholder="Enter blood group" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="pulse">Pulse (bpm):</label>
+            <input type="text" class="form-control" id="pulse" name="pulse" placeholder="Enter pulse rate in beats per minute" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="blood_pressure">Blood Pressure (mmHg):</label>
+            <input type="text" class="form-control" id="blood_pressure" name="blood_pressure" placeholder="Enter blood pressure in millimeters of mercury" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="respiration">Respiration (breaths/min):</label>
+            <input type="text" class="form-control" id="respiration" name="respiration" placeholder="Enter respiration rate in breaths per minute" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="allergy">Allergy:</label>
+            <input type="text" class="form-control" id="allergy" name="allergy" placeholder="Enter any allergies" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="diet">Diet:</label>
+            <input type="text" class="form-control" id="diet" name="diet" placeholder="Enter dietary information" required>
+        </div>
+
+        <input type="submit" value="Update Medical Information" class="btn btn-primary">
+    </div>
+</form>
+
                 </div>
             </div>
         </div>
     </div>
     <!-- / Content -->
 </div>
+

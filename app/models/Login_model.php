@@ -32,6 +32,12 @@ class Login_model extends Database
         $this->bind(':role', $role);
         $this->execute();
     }
+    public function getUserById($user_id)
+    {
+        $this->query('SELECT id, email, password, role, status_account FROM users WHERE id = :user_id');
+        $this->bind(':user_id', $user_id);
+        return $this->single();
+    }
 
 
 
@@ -48,4 +54,12 @@ class Login_model extends Database
                 return 'layouts/navpatient';
         }
     }
+    public function updateUser($user_id, $email, $password)
+{
+    $this->query('UPDATE users SET email = :email, password = :password WHERE id = :user_id');
+    $this->bind(':user_id', $user_id);
+    $this->bind(':email', $email);
+    $this->bind(':password', $password);
+    $this->execute();
+}
 }
