@@ -7,7 +7,16 @@ class Diagnosis_model extends Database
     {
         $this->query('SELECT diagnoses.*, doctors.first_name, doctors.last_name FROM ' . $this->table . ' JOIN doctors ON diagnoses.doctor_id = doctors.id');
         return $this->resultSet();
+        
     }
+    public function getDiagnosisCount()
+{
+    $this->query('SELECT COUNT(*) as totalDiagnoses FROM ' . $this->table);
+    $totalDiagnoses = $this->single()['totalDiagnoses'];
+
+    return $totalDiagnoses;
+}
+
 
 
     public function getDiagnosisById($id)

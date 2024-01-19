@@ -9,12 +9,14 @@ class Diagnosis extends Controller
     
             $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
             $this->view($navView);
+            $userRole = $_SESSION['role'];
+           
 
             $diagnosis = $this->model('Diagnosis_model')->getDiagnosesByPatientId($patientId);
             $doctors = $this->model('Doctor_model')->getAllDoctor(); 
             $patient = $this->model('Patients_model')->getPatientById($patientId);
     
-            $this->view('diagnosis/index', ['patient' => $patient, 'diagnosis' => $diagnosis, 'doctors' => $doctors]);
+            $this->view('diagnosis/index', ['patient' => $patient, 'diagnosis' => $diagnosis, 'doctors' => $doctors, 'userRole' => $userRole]);
     
             $this->view('layouts/footer/footer');
         }

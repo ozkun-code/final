@@ -25,7 +25,7 @@
                                         <th>Harga jual</th>
                                         <th>Harga beli</th>
                                         <th>Stok</th>
-                                        <th>Expired date</th>
+                                     
                                 <!-- Kolom untuk tombol modal -->
                                     </tr>
                                 </thead>
@@ -38,13 +38,8 @@
                                                 <td><?= $drug['harga_jual'] ?></td>
                                                 <td><?= $drug['harga_beli'] ?></td>
                                                 <td><?= $drug['total_stok'] ?></td>
-                                                <td>
-                                                    <!-- Tampilkan tombol modal -->
-                                                    <a href="#" class="btn btn-primary" data-toggle="modal">
-    Detail
-</a>
-
-                                                </td>
+                                                
+                                                
                                             </tr>
                                             <!-- Modal detail stok dan tanggal kedaluwarsa -->
                                             <div class="modal fade" id="detailModal<?= $drug['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">

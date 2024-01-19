@@ -17,7 +17,11 @@ class Patients_model extends Database
     return $this->resultSet();
 }
 
-    
+public function getCount()
+{
+    $this->query('SELECT COUNT(*) as patient_count FROM ' . $this->table);
+    return $this->single()['patient_count'];
+}
 
 public function getPatientById($id)
 {

@@ -14,6 +14,11 @@ class Doctor_model extends Database {
         $this->bind(':id', $id);
         return $this->single();
     }
+    public function getCount()
+    {
+        $this->query('SELECT COUNT(*) as doctor_count FROM ' . $this->table);
+        return $this->single()['doctor_count'];
+    }
 
     public function createDoctor($data, $userId) {
 

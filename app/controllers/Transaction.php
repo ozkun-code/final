@@ -43,27 +43,24 @@ class Transaction extends Controller
 
         $this->view('layouts/footer/footerts');
     }
-    public function list()
+    public function list($patient_id = null)
     {
-
-
         $this->view('layouts/head/head');
-
+    
         $navView = $this->model('Login_model')->getNavView($_SESSION['role']);
         $this->view($navView);
-
-
-        $data['invoices'] = $this->model('Transaction_model')->getAllTransactions();
-        var_dump($data['invoices']);
-        
-        
+    
+        if ($patient_id) {
+            $data['invoices'] = $this->model('Transaction_model')->getTransactionsByPatientId($patient_id);
+        } else {
+            $data['invoices'] = $this->model('Transaction_model')->getAllTransactions();
+        }
+    
         $this->view('Transaction/list',$data);
-
+    
         $this->view('layouts/footer/footer');
-
-
-
     }
+    
 
     public function storeRecipe($patient_id, $looping,$diagnosis_id)
     {
@@ -92,6 +89,7 @@ class Transaction extends Controller
                     $items[] = $totalItem;
  
                     $this->model('Transaction_model')->saveToRecipe($invoiceId, $selectDrug, $patient_id, $qty, $hargaObat, $date);
+                    $this->model('Drug_model')->updateStockObat($selectDrug, $qty);
                 }
     
 
@@ -112,11 +110,14 @@ class Transaction extends Controller
    
 
 
-    public function print()
+    public function print($id)
     {
+        $data['recipe'] = $this->model('Transaction_model')->getRecipesByInvoiceId($id);
+        $data['invoice'] = $this->model('Transaction_model')->getInvoiceById($id);
 
-   
-        $this->view('Transaction/print');
+
+        
+        $this->view('Transaction/print',$data);
     }
     public function getDrugPriceById($drugId)
     {

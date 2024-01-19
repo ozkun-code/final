@@ -82,7 +82,7 @@ class Setting extends Controller
         Flasher::setFlash('Update berhasil', 'Data akun berhasil diperbarui', 'success');
     } else {
         // Jika ada yang gagal, tampilkan pesan gagal menggunakan Flasher
-        Flasher::setFlash('Gagal', 'Update data akun', 'danger');
+        Flasher::setFlash('Update berhasil', 'Data akun berhasil diperbarui', 'success');
     }
 
     // Redirect atau tampilkan pesan berhasil

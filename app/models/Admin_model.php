@@ -22,6 +22,11 @@ class Admin_model extends Database
     return $this->single();
 }
 
+public function getCount()
+    {
+        $this->query('SELECT COUNT(*) as admin_count FROM ' . $this->table);
+        return $this->single()['admin_count'];
+    }
 
     public function createAdmin($data, $userId)
     {

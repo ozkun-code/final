@@ -22,36 +22,19 @@
 
         <ul class="menu-inner py-1">
           <!-- Dashboard -->
-          <li class="menu-item">
-            <a href="<?php BASEURL; ?>/dashboard" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-home-circle"></i>
-              <div data-i18n="Analytics">Dashboard patient</div>
-            </a>
-          </li>
+          
           <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Patient</span>
           </li>
           <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <a href="javascript:void(0);" class="menu-link">
               <i class="menu-icon tf-icons bx bx-dna"></i>
               <div data-i18n="Misc">diagnosis
               </div>
             </a>
-            <ul class="menu-sub">
-              <li class="menu-item">
-                <a href="http://final1.test/diagnosis/3" class="menu-link">
-                  <div data-i18n="Error">diagnostic history
-                  </div>
-                </a>
-              </li>
-            </ul>
+            
           </li>
-          <li class="menu-item">
-            <a href="cards-basic.html" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-food-menu"></i>
-              <div data-i18n="Basic">Data Transaction</div>
-            </a>
-          </li>
+     
           <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
           <li class="menu-item">
             <a href="<?= BASEURL; ?>/setting" class="menu-link">
@@ -83,16 +66,7 @@
             </a>
           </div>
 
-          <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-            <!-- Search -->
-            <div class="navbar-nav align-items-center">
-              <div class="nav-item d-flex align-items-center">
-                <i class="bx bx-search fs-4 lh-0"></i>
-                <input type="text" class="form-control border-0 shadow-none" placeholder="Search<?= BASEURL; ?>." aria-label="Search<?= BASEURL; ?>." />
-              </div>
-            </div>
-
-          </div>
+          
         </nav>
 
         <!-- / Navbar -->

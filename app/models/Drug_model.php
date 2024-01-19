@@ -4,6 +4,53 @@ class Drug_model extends Database
 {
     private $tableDrug = 'drug';
     private $tableDrugStock = 'drug_stock';
+    private $tableRecipes = 'recipe';
+    private $recipeMargin = 2000;
+    public function getStockByDrugId($drugId)
+    {
+        $this->query('SELECT * FROM ' . $this->tableDrugStock . ' WHERE drug_id = :drug_id');
+        $this->bind(':drug_id', $drugId);
+        return $this->single();
+    }
+
+    public function updateStockObat($drugId, $quantity)
+{
+    // Ambil stok obat yang akan dikurangi, diurutkan berdasarkan expired date
+    $this->query('SELECT * FROM ' . $this->tableDrugStock . ' WHERE drug_id = :drug_id ORDER BY expired_date ASC');
+    $this->bind(':drug_id', $drugId);
+    $stockRows = $this->resultSet();
+
+    // Lakukan iterasi pada stok yang ada untuk mengurangi quantity
+    foreach ($stockRows as $stock) {
+        $currentStock = $stock['quantity'];
+
+        if ($quantity > 0) {
+            // Hitung stok yang akan dikurangi
+            $reduction = min($quantity, $currentStock);
+
+            // Update stok obat
+            $this->query('UPDATE ' . $this->tableDrugStock . ' SET quantity = :quantity WHERE drug_id = :drug_id AND expired_date = :expired_date');
+            $this->bind(':quantity', $currentStock - $reduction);
+            $this->bind(':drug_id', $drugId);
+            $this->bind(':expired_date', $stock['expired_date']);
+            $this->execute();
+
+            // Kurangi quantity yang masih perlu dikurangi
+            $quantity -= $reduction;
+        } else {
+            break; // Jika quantity sudah mencukupi, keluar dari loop
+        }
+    }
+}
+
+    
+    public function getDrugProfit()
+    {
+        $this->query('SELECT COUNT(*) as totalRecipes FROM ' . $this->tableRecipes);
+        $totalRecipes = $this->single()['totalRecipes'];
+
+        return $totalRecipes * $this->recipeMargin;
+    }
 
     public function getAllDrugs()
     {
@@ -18,6 +65,11 @@ class Drug_model extends Database
         $this->query('SELECT * FROM ' . $this->tableDrug . ' WHERE id = :id');
         $this->bind(':id', $id);
         return $this->single();
+    }
+    public function getCount()
+    {
+        $this->query('SELECT COUNT(*) as drug_count FROM ' . $this->tableDrug);
+        return $this->single()['drug_count'];
     }
 
     public function createDrug($data, $admin_id)

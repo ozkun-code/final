@@ -99,15 +99,51 @@
             </p>
 
             <div class="d-flex align-items-center">
-              <div class="flex-grow-1">
-                <p class="mb-0"><b>Admin:</b></p>
-                <p class="mb-0 email" data-email="admin@themesbrand.website">email - admin@themesbrand.website</p>
-                <p class="mb-1 pass" data-password="admin@123456">Pass - admin@123456</p>
-              </div>
-              <div class="flex-shrink-0">
-                <a href="javascript:void(0);" class="btn btn-primary login-btn" onclick="login(this)">Login</a>
-              </div>
-            </div>
+    <div class="flex-grow-1">
+        <p class="mb-0"><b>Owner:</b></p>
+        <p class="mb-0 email" data-email="owner@seecare.com">email - owner@seecare.com</p>
+        <p class="mb-1 pass" data-password="123">Pass - 123</p>
+    </div>
+    <div class="flex-shrink-0">
+        <a href="javascript:void(0);" class="btn btn-primary login-btn" onclick="login()">Login</a>
+    </div>
+</div>
+
+<!-- User Login -->
+<div class="d-flex align-items-center">
+    <div class="flex-grow-1">
+        <p class="mb-0"><b>Admin:</b></p>
+        <p class="mb-0 email" data-email="admin1@seecare.com">email - admin1@seecare.com</p>
+        <p class="mb-1 pass" data-password="123">Pass - 123</p>
+    </div>
+    <div class="flex-shrink-0">
+        <a href="javascript:void(0);" class="btn btn-primary login-btn" onclick="login()">Login</a>
+    </div>
+</div>
+
+<!-- Moderator Login -->
+<div class="d-flex align-items-center">
+    <div class="flex-grow-1">
+        <p class="mb-0"><b>Doctors :</b></p>
+        <p class="mb-0 email" data-email="budi.santoso@dr.seecare.com">email - budi.santoso@dr.seecare.com</p>
+        <p class="mb-1 pass" data-password="123">Pass - 123</p>
+    </div>
+    <div class="flex-shrink-0">
+        <a href="javascript:void(0);" class="btn btn-primary login-btn" onclick="login()">Login</a>
+    </div>
+</div>
+
+<!-- Guest Login -->
+<div class="d-flex align-items-center">
+    <div class="flex-grow-1">
+        <p class="mb-0"><b>Patient :</b></p>
+        <p class="mb-0 email" data-email="hamdiah@gmail.com">email - ahmaddani21@gmail.com</p>
+        <p class="mb-1 pass" data-password="123">Pass - 123</p>
+    </div>
+    <div class="flex-shrink-0">
+        <a href="javascript:void(0);" class="btn btn-primary login-btn" onclick="login()">Login</a>
+    </div>
+</div>
 
             <!-- Repeat similar changes for other user types -->
 
@@ -140,16 +176,16 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 
   <script>
-    function login(element) {
+    function login() {
         // Get the email and password from the clicked button's data attributes
-        var email = element.closest('.d-flex').querySelector('.email').getAttribute('data-email');
-        var password = element.closest('.d-flex').querySelector('.pass').getAttribute('data-password');
+        var email = event.currentTarget.closest('.d-flex').querySelector('.email').getAttribute('data-email');
+        var password = event.currentTarget.closest('.d-flex').querySelector('.pass').getAttribute('data-password');
 
         // Set the email and password in the form fields
         document.getElementById('email').value = email;
         document.getElementById('password').value = password;
     }
-  </script>
+</script>
 </body>
 
 </html>

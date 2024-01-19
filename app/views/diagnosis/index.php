@@ -15,10 +15,12 @@
                     <div class="card-header flex-column flex-md-row">
                         <div class="head-label text-center">
                         </div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDiagnosisModal">
-                            Add Diagnosis
-                        </button>
-
+                        <?php if ($data['userRole'] !== 'patient') : ?>
+                            <!-- Display the "Add Diagnosis" button only if the user's role is not "patient" -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDiagnosisModal">
+                                Add Diagnosis
+                            </button>
+                        <?php endif; ?>
 
                     </div>
                     <div class="card-body text-center">
@@ -37,6 +39,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                           
 
                             <?php $number = 1; foreach ($data['diagnosis'] as $diagnosis) : ?>
                                 <tr class="odd">
@@ -62,9 +65,18 @@
                                         </span>
                                     </a>
                                     </td>
-                                    <td>
-                                    <a href="#" class="btn btn-secondary invoice-button" data-diagnosis-id="<?= $diagnosis['id']; ?>">Invoice</a>
-                                    </td>
+                                    <?php if ($data['userRole'] === 'patient') : ?>
+                                        <td>
+                                        <?php $data['patient'] ?>
+                                            <a href="<?= BASEURL; ?>/transaction/list/<?= $patient_id = $data['patient']['id']; ?>" class="btn btn-secondary">Invoice</a>
+                                        </td>
+                                    <?php else : ?>
+                                        <td>
+                                            <a href="#" class="btn btn-secondary invoice-button" data-diagnosis-id="<?= $diagnosis['id']; ?>">Invoice</a>
+                                        </td>
+                                    <?php endif; ?>
+
+
                                 </tr>
                                 <?php endforeach; ?>
                         </tbody>

@@ -87,21 +87,7 @@
               </li>
             </ul>
           </li>
-           <!-- Doctors -->
-           <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-              <i class="menu-icon tf-icons bx bx-list-plus"></i>
-              <div data-i18n="Layouts">Prescription</div>
-            </a>
-            <ul class="menu-sub">
-              <li class="menu-item">
-                <a href="<?= BASEURL; ?>/drug" class="menu-link">
-                  <div data-i18n="Without menu">List Prescription</div>
-                </a>
-              </li>
-
-            </ul>
-          </li>
+          
           <!-- Appointments list -->
           <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
